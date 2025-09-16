@@ -5,63 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fun Trivia Quiz</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="bg-music" src="https://assets.mixkit.co/sfx/preview/mixkit-game-music-778.mp3" loop></audio>
-    <audio id="correct-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-bling-2070.mp3"></audio>
-    <audio id="wrong-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-1384.mp3"></audio>
-    <audio id="start-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-video-game-treasure-2067.mp3"></audio>
-    <audio id="finish-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-show-suspense-359.mp3"></audio>
-
-    <div id="game-container">
-        <h1 id="game-title">Fun Trivia Quiz</h1>
-
+    <main id="game-container">
         <div id="main-menu">
+            <h1>Fun Trivia Quiz</h1>
             <p>Welcome! Select a topic and enter the number of questions to get started.</p>
-
-            <div id="player-name-container">
-                <label for="player-name">Player Name:</label>
-                <input type="text" id="player-name" placeholder="Enter your name" required>
-            </div>
-
-            <div id="topic-selection">
-                <h3>Choose a Topic:</h3>
-                <div class="topic-buttons">
-                    <button data-topic="history">History</button>
-                    <button data-topic="movies">Movies</button>
-                    <button data-topic="science">Science</button>
-                    <button data-topic="general">General</button>
-                    <button data-topic="sports">Sports</button>
-                    <button data-topic="music">Music</button>
-                    <button data-topic="literature">Literature</button>
-                    <button data-topic="food_drink">Food & Drink</button>
-                    <button data-topic="mixed">Mixed</button>
-                </div>
-            </div>
-
-            <div id="question-settings">
-                <label for="question-count">Number of Questions (max 50):</label>
-                <input type="number" id="question-count" value="5" min="1" max="50">
-            </div>
             
+            <label for="player-name">Player Name:</label>
+            <input type="text" id="player-name" placeholder="Enter your name">
+
+            <div class="topic-buttons">
+                <h2>Choose a Topic:</h2>
+                <button data-topic="history">History</button>
+                <button data-topic="movies">Movies</button>
+                <button data-topic="science">Science</button>
+                <button data-topic="general">General</button>
+                <button data-topic="sports">Sports</button>
+                <button data-topic="music">Music</button>
+                <button data-topic="literature">Literature</button>
+                <button data-topic="food_drink">Food & Drink</button>
+                <button data-topic="mixed">Mixed</button>
+            </div>
+
+            <label for="question-count">Number of Questions (max 50):</label>
+            <input type="number" id="question-count" value="5" min="1" max="50">
+
             <button id="start-button" disabled>Start Quiz</button>
             <button id="fullscreen-button">Toggle Fullscreen</button>
         </div>
 
         <div id="quiz-container" class="hidden">
-            <h2 id="question">Question Text</h2>
-            <div id="options-container">
-                </div>
-            <p id="explanation"></p>
+            <h2 id="game-title"></h2>
+            <p id="progress-text"></p>
             <div id="progress-container">
-                <p id="progress-text"></p>
-                <div id="progress-bar-container">
-                    <div id="progress-bar"></div>
-                </div>
+                <div id="progress-bar"></div>
             </div>
-            <button id="next-button" class="hidden">Next Question</button>
+            <h3 id="question"></h3>
+            <div id="options-container"></div>
+            <p id="explanation"></p>
+            <button id="next-button" style="display: none;">Next Question</button>
             <button id="hint-button">Hint</button>
             <button id="end-button">End Quiz</button>
         </div>
@@ -70,18 +55,25 @@
             <h2>Quiz Complete!</h2>
             <p id="score-text"></p>
             <button id="restart-button">Restart</button>
-            
-            <h3>Summary of Answers:</h3>
-            <ul id="summary-list">
-                </ul>
+            <div id="summary">
+                <h3>Summary of Answers:</h3>
+                <ul id="summary-list"></ul>
+            </div>
         </div>
-    </div>
+
+    </main>
     
-    <div id="leaderboard-container">
+    <aside id="leaderboard-container">
         <h3>Top Scorers</h3>
         <ol id="leaderboard-list"></ol>
         <button id="reset-leaderboard-button">Reset Leaderboard</button>
-    </div>
+    </aside>
+
+    <audio id="bg-music" src="bg_music.mp3" loop></audio>
+    <audio id="correct-sound" src="correct.mp3"></audio>
+    <audio id="wrong-sound" src="wrong.mp3"></audio>
+    <audio id="start-sound" src="start.mp3"></audio>
+    <audio id="finish-sound" src="finish.mp3"></audio>
 
     <script src="script.js"></script>
 </body>
