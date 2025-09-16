@@ -17,7 +17,6 @@ body {
     text-align: center;
     width: 90%;
     max-width: 600px;
-    animation: fadeIn 1s ease-in-out;
 }
 
 h1, h2 {
@@ -25,10 +24,41 @@ h1, h2 {
 }
 
 /* New Styles */
-#high-score-display {
-    color: #2ecc71;
-    font-size: 1.2em;
-    margin-bottom: 15px;
+#player-profile {
+    margin-bottom: 20px;
+}
+
+#player-name {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background-color: #7f8c8d;
+    color: #2c3e50;
+    text-align: center;
+}
+
+#leaderboard-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    text-align: left;
+    background-color: #4a667f;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#leaderboard-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #34495e;
+}
+
+#leaderboard-list li:last-child {
+    border-bottom: none;
 }
 
 .progress-container {
@@ -66,6 +96,14 @@ h1, h2 {
 
 #summary-list li.incorrect {
     color: #e74c3c;
+}
+
+.option.correct {
+    animation: flashGreen 0.5s ease-in-out;
+}
+
+.option.incorrect {
+    animation: shake 0.5s ease-in-out;
 }
 
 /* Existing Styles */
@@ -145,16 +183,6 @@ h1, h2 {
     background-color: #6187a6;
 }
 
-.option.correct {
-    background-color: #27ae60;
-    border-color: #27ae60;
-}
-
-.option.incorrect {
-    background-color: #e74c3c;
-    border-color: #e74c3c;
-}
-
 #explanation {
     margin-top: 20px;
     padding: 10px;
@@ -162,7 +190,6 @@ h1, h2 {
     border-left: 4px solid #3498db;
     text-align: left;
     color: #ecf0f1;
-    animation: slideDown 0.5s ease-out;
 }
 
 button {
@@ -193,11 +220,11 @@ button:disabled {
     background-color: #c0392b;
 }
 
-#restart-button {
+#restart-button, #reset-leaderboard-button {
     background-color: #2ecc71;
 }
 
-#restart-button:hover {
+#restart-button:hover, #reset-leaderboard-button:hover {
     background-color: #27ae60;
 }
 
@@ -210,4 +237,29 @@ button:disabled {
 @keyframes slideDown {
     from { transform: translateY(-20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes flashGreen {
+    0% { background-color: #27ae60; }
+    50% { background-color: #34495e; }
+    100% { background-color: #27ae60; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    .topic-buttons {
+        flex-direction: column;
+    }
+    .topic-buttons button {
+        width: 100%;
+    }
 }
