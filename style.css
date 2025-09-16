@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #333; /* Dark background for the page outside the game */
+    background-color: #1a1a2e; /* A dark, deep blue for a more modern feel */
     color: #eee; /* Light text color for contrast */
     display: flex; /* Use flexbox to center the game container */
     justify-content: center; /* Center horizontally */
@@ -14,20 +14,20 @@ body, html {
 
 /* Game Container Styles */
 #game-container {
-    background-color: #222; /* Slightly lighter dark background for the game */
+    background-color: #2c2c54; /* A slightly lighter, more vibrant dark blue for the game */
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     text-align: center;
     max-width: 900px; /* Max width for larger screens */
     width: 90%; /* Responsive width */
-    margin: 20px auto; /* Auto margin for vertical centering fallback */
     box-sizing: border-box; /* Include padding in width calculation */
     transition: opacity 0.5s ease-in-out; /* Smooth transitions for content changes */
-    position: relative; /* Needed for z-index or absolute positioning children */
-    display: flex; /* Use flexbox for internal layout */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #555; /* Add a subtle border for definition */
 }
 
 /* Fullscreen-specific styles for the game-container */
@@ -37,13 +37,14 @@ body, html {
     max-width: none;
     max-height: none;
     margin: 0;
-    padding: 0; /* Remove padding when fullscreen if desired, or adjust */
+    padding: 0;
     border-radius: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #111; /* Even darker background for immersive fullscreen */
+    background-color: #111; /* A solid black for true immersive fullscreen */
+    border: none;
 }
 
 #game-container:-webkit-full-screen { /* Safari */
@@ -59,6 +60,7 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: #111;
+    border: none;
 }
 
 #game-container:-moz-full-screen { /* Firefox */
@@ -74,6 +76,7 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: #111;
+    border: none;
 }
 
 #game-container:-ms-full-screen { /* IE/Edge */
@@ -89,12 +92,13 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: #111;
+    border: none;
 }
 
 
 /* Headings */
 h1, h2, h3 {
-    color: #ffcc00; /* Gold color for headings */
+    color: #00bcd4; /* A vibrant teal color for headings */
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -110,7 +114,7 @@ h2 {
 
 h3 {
     font-size: 1.6em;
-    color: #aaddff; /* Lighter blue for subheadings */
+    color: #bbdefb; /* Lighter blue for subheadings */
 }
 
 /* Paragraphs and Labels */
@@ -127,12 +131,13 @@ input[type="number"] {
     margin-top: 5px;
     border: 1px solid #555;
     border-radius: 8px;
-    background-color: #444;
+    background-color: #333;
     color: #eee;
     font-size: 1em;
     width: calc(100% - 24px); /* Full width minus padding */
-    max-width: 300px; /* Max width for better form aesthetics */
+    max-width: 300px;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 input[type="text"]::placeholder,
@@ -181,13 +186,15 @@ button:disabled {
 }
 
 .topic-buttons button {
-    background-color: #6a1b9a; /* Purple for topic buttons */
+    background-color: #00bcd4; /* Vibrant teal for topic buttons */
+    color: #1a1a2e; /* Dark text for contrast */
+    font-weight: bold;
     padding: 10px 20px;
     font-size: 1em;
 }
 
 .topic-buttons button:hover:not(.selected):not(:disabled) {
-    background-color: #4a148c; /* Darker purple on hover */
+    background-color: #00aabf; /* Darker teal on hover */
 }
 
 .topic-buttons button.selected {
@@ -219,17 +226,20 @@ button:disabled {
 }
 
 .option {
-    background-color: #4CAF50; /* Green for options */
+    background-color: #3b3b64; /* A dark, subtle option color */
+    color: #eee;
     margin: 8px 0;
     padding: 15px 20px;
     font-size: 1.1em;
     text-align: left;
     border-radius: 10px;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .option:hover:not(:disabled) {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #4b4b74; /* Slightly lighter on hover */
     transform: translateX(5px);
 }
 
@@ -237,21 +247,23 @@ button:disabled {
     background-color: #28a745; /* Bootstrap success green */
     color: white;
     font-weight: bold;
+    border: 1px solid #28a745;
 }
 
 .option.incorrect-permanent {
     background-color: #dc3545; /* Bootstrap danger red */
     color: white;
     font-weight: bold;
+    border: 1px solid #dc3545;
 }
 
 #explanation {
     margin-top: 20px;
     padding: 15px;
     background-color: #3e2723; /* Dark brown for explanation box */
-    border-left: 5px solid #ffcc00;
+    border-left: 5px solid #00bcd4; /* Use the teal color */
     border-radius: 8px;
-    color: #ffeb3b; /* Light yellow for explanation text */
+    color: #bbdefb; /* Light yellow for explanation text */
     font-style: italic;
     max-width: 600px;
     width: 100%;
@@ -273,7 +285,7 @@ button:disabled {
 #progress-bar {
     height: 100%;
     width: 0%;
-    background-color: #ffcc00; /* Gold progress bar */
+    background-color: #00bcd4; /* Teal progress bar */
     border-radius: 10px;
     transition: width 0.5s ease-in-out;
 }
@@ -324,30 +336,31 @@ button:disabled {
 
 /* Leaderboard */
 #leaderboard-container {
-    background-color: #2c2c2c; /* Darker background for leaderboard */
+    background-color: #2c2c54; /* Same as game container for consistency */
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
     text-align: center;
     max-width: 350px;
     width: 80%;
-    margin-top: 30px; /* Space between game and leaderboard */
-    margin-left: 20px; /* Position to the right of game container */
+    margin-top: 30px;
+    margin-left: 20px;
     margin-right: 20px;
     box-sizing: border-box;
-    display: flex; /* Flexbox for internal centering */
+    display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid #555;
 }
 
 #leaderboard-container h3 {
-    color: #ffcc00;
+    color: #00bcd4;
     margin-bottom: 15px;
 }
 
 #leaderboard-list {
     list-style: decimal;
-    padding-left: 25px; /* Indent for numbers */
+    padding-left: 25px;
     text-align: left;
     width: 100%;
     margin-bottom: 20px;
@@ -378,7 +391,7 @@ button:disabled {
 
     #game-container, #leaderboard-container {
         padding: 20px;
-        width: 95%; /* Make containers take more width on smaller screens */
+        width: 95%;
     }
 
     .topic-buttons button {
@@ -418,12 +431,12 @@ button:disabled {
     }
 
     .topic-buttons button {
-        width: calc(50% - 10px); /* Two buttons per row on very small screens */
+        width: calc(50% - 10px);
         box-sizing: border-box;
     }
     
     body {
-        flex-direction: column; /* Stack game and leaderboard vertically on small screens */
+        flex-direction: column;
     }
 
     #leaderboard-container {
