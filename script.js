@@ -1242,6 +1242,7 @@ const summaryList = document.getElementById("summary-list");
 const playerNameInput = document.getElementById("player-name");
 const leaderboardList = document.getElementById("leaderboard-list");
 const resetLeaderboardButton = document.getElementById("reset-leaderboard-button");
+const fullscreenButton = document.getElementById("fullscreen-button"); // Get the new button
 const gameContainer = document.getElementById("game-container");
 
 const bgMusic = document.getElementById("bg-music");
@@ -1376,6 +1377,7 @@ restartButton.addEventListener("click", () => {
 });
 
 resetLeaderboardButton.addEventListener("click", resetLeaderboard);
+fullscreenButton.addEventListener("click", toggleFullscreen); // New event listener
 
 // --- Game Logic Functions ---
 function startTransition(callback) {
@@ -1492,6 +1494,19 @@ function generateSummary() {
 
 function endGame() {
     showResults();
+}
+
+// --- Fullscreen Toggling ---
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        // Request fullscreen on the document's body to make the whole page full screen
+        document.body.requestFullscreen().catch(err => {
+            alert(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+    } else {
+        // Exit fullscreen
+        document.exitFullscreen();
+    }
 }
 
 // Initial setup
