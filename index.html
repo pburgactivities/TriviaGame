@@ -19,24 +19,45 @@
         <source src="https://www.soundboard.com/media/255" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    <audio id="start-sound">
+        <source src="https://www.learninggamesforkids.com/sound-mp3s/sound-effects/whoosh-swoosh.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="finish-sound">
+        <source src="https://www.learninggamesforkids.com/sound-mp3s/tada-sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-    <div class="container">
+    <div class="container" id="game-container">
+        <div id="screen-transition-overlay"></div>
         <h1 id="game-title">Fun Trivia Quiz</h1>
         <div id="main-menu">
             <h2>Choose a Topic</h2>
-            <div id="high-score-display"></div>
+            <div id="player-profile">
+                <label for="player-name">Player Name:</label>
+                <input type="text" id="player-name" placeholder="Enter your name" maxlength="15">
+            </div>
             <div class="topic-buttons">
                 <button data-topic="history">History</button>
                 <button data-topic="movies">Movies</button>
                 <button data-topic="science">Science</button>
                 <button data-topic="general">General</button>
+                <button data-topic="sports">Sports</button>
+                <button data-topic="music">Music (50s-60s)</button>
+                <button data-topic="literature">Literature</button>
+                <button data-topic="food_drink">Food & Drink</button>
                 <button data-topic="mixed">Mixed</button>
             </div>
             <div class="questions-input">
                 <label for="question-count">Number of Questions:</label>
-                <input type="number" id="question-count" value="5" min="1" max="10">
+                <input type="number" id="question-count" value="5" min="1" max="50">
             </div>
             <button id="start-button" disabled>Start Game</button>
+            <div id="leaderboard-section">
+                <h3>Top Scores</h3>
+                <ol id="leaderboard-list"></ol>
+                <button id="reset-leaderboard-button">Reset Leaderboard</button>
+            </div>
         </div>
         <div id="quiz-container" class="hidden">
             <div class="progress-container">
