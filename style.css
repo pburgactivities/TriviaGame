@@ -3,21 +3,22 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #121212; /* Very dark background for high contrast */
-    color: #e0e0e0; /* Off-white text for readability */
+    background-color: #1a1a2e; /* A dark, deep blue for a modern feel */
+    color: #eee; /* Light text color for contrast */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background-color 0.5s ease;
 }
 
 /* Game Container Styles */
 #game-container {
-    background-color: #1e1e1e; /* Slightly lighter dark background for the game box */
+    background-color: #2c2c54; /* A slightly lighter, more vibrant dark blue for the game */
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.1), 0 0 10px rgba(0, 255, 255, 0.2); /* A subtle glow effect */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     text-align: center;
     max-width: 900px;
     width: 90%;
@@ -27,7 +28,7 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #333;
+    border: 2px solid #555;
 }
 
 /* Fullscreen-specific styles for the game-container */
@@ -43,7 +44,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: #121212; /* A consistent dark background for fullscreen */
     border: none;
     box-shadow: none;
 }
@@ -59,7 +60,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: #121212;
     border: none;
     box-shadow: none;
 }
@@ -75,7 +76,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: #121212;
     border: none;
     box-shadow: none;
 }
@@ -91,33 +92,42 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: #121212;
     border: none;
     box-shadow: none;
 }
 
-/* Headings */
+/* Headings and Text */
 h1, h2, h3 {
-    color: #00e5ff; /* A bright, glowing cyan for headings */
+    color: #00e5ff; /* Bright cyan for a glowing effect */
     margin-bottom: 20px;
-    text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff; /* Neon glow effect */
+    text-shadow: 0 0 10px #00e5ff, 0 0 20px rgba(0, 229, 255, 0.5); /* Neon glow effect */
 }
-
 h1 { font-size: 2.8em; margin-top: 0; }
 h2 { font-size: 2.2em; }
-h3 { font-size: 1.6em; color: #80dfff; text-shadow: none; } /* Slightly different subheading color */
-
-/* Paragraphs and Labels */
+h3 { font-size: 1.6em; color: #80dfff; text-shadow: none; }
 p, label {
     font-size: 1.1em;
     line-height: 1.6;
     margin-bottom: 15px;
     color: #ccc;
 }
+#explanation {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-left: 5px solid #00e5ff;
+    border-radius: 8px;
+    color: #e0e0e0;
+    font-style: italic;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
 
 /* Input Fields */
-input[type="text"],
-input[type="number"] {
+input[type="text"], input[type="number"] {
     padding: 12px;
     margin-top: 5px;
     border: 1px solid #555;
@@ -131,16 +141,12 @@ input[type="number"] {
     font-family: 'Montserrat', sans-serif;
     transition: box-shadow 0.3s ease;
 }
-
-input[type="text"]:focus,
-input[type="number"]:focus {
+input[type="text"]:focus, input[type="number"]:focus {
     outline: none;
     border-color: #00e5ff;
     box-shadow: 0 0 8px #00e5ff;
 }
-
-input[type="text"]::placeholder,
-input[type="number"]::placeholder {
+input[type="text"]::placeholder, input[type="number"]::placeholder {
     color: #bbb;
 }
 
@@ -155,21 +161,18 @@ button {
     font-size: 1.1em;
     margin: 8px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); /* Glow effect on buttons */
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
     font-family: 'Montserrat', sans-serif;
 }
-
 button:hover:not(:disabled) {
     background-color: #0056b3;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
 }
-
 button:active:not(:disabled) {
     transform: translateY(0);
     box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
 }
-
 button:disabled {
     background-color: #6c757d;
     cursor: not-allowed;
@@ -185,9 +188,8 @@ button:disabled {
     margin-bottom: 20px;
     gap: 10px;
 }
-
 .topic-buttons button {
-    background-color: #2a2a2a; /* Dark background for topic buttons */
+    background-color: #2a2a2a;
     color: #e0e0e0;
     font-weight: bold;
     padding: 10px 20px;
@@ -195,20 +197,17 @@ button:disabled {
     border: 1px solid #555;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
 }
-
 .topic-buttons button:hover:not(.selected):not(:disabled) {
     background-color: #3a3a3a;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
-
 .topic-buttons button.selected {
-    background-color: #00e5ff; /* Bright glow for selected topic */
+    background-color: #00e5ff;
     color: #121212;
     font-weight: bold;
     border: 2px solid #00e5ff;
     box-shadow: 0 0 15px #00e5ff, 0 0 25px #00e5ff;
 }
-
 .topic-buttons button.selected:hover {
     background-color: #00c4e0;
 }
@@ -220,7 +219,6 @@ button:disabled {
     align-items: center;
     gap: 15px;
 }
-
 #options-container {
     display: flex;
     flex-direction: column;
@@ -228,9 +226,8 @@ button:disabled {
     max-width: 600px;
     margin-top: 15px;
 }
-
 .option {
-    background-color: #2a2a2a; /* Dark background for options */
+    background-color: #2a2a2a;
     color: #e0e0e0;
     margin: 8px 0;
     padding: 15px 20px;
@@ -241,13 +238,11 @@ button:disabled {
     border: 1px solid #444;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 .option:hover:not(:disabled) {
     background-color: #3a3a3a;
     transform: translateX(5px);
     box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
 }
-
 .option.correct-permanent {
     background-color: #28a745;
     color: white;
@@ -255,27 +250,12 @@ button:disabled {
     border: 1px solid #28a745;
     box-shadow: 0 0 10px #28a745;
 }
-
 .option.incorrect-permanent {
     background-color: #dc3545;
     color: white;
     font-weight: bold;
     border: 1px solid #dc3545;
     box-shadow: 0 0 10px #dc3545;
-}
-
-#explanation {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #2a2a2a;
-    border-left: 5px solid #00e5ff; /* Use the bright cyan color */
-    border-radius: 8px;
-    color: #e0e0e0;
-    font-style: italic;
-    max-width: 600px;
-    width: 100%;
-    text-align: left;
-    box-sizing: border-box;
 }
 
 /* Progress Bar */
@@ -288,16 +268,14 @@ button:disabled {
     height: 20px;
     overflow: hidden;
 }
-
 #progress-bar {
     height: 100%;
     width: 0%;
-    background-color: #00e5ff; /* Bright cyan progress bar */
+    background-color: #00e5ff;
     border-radius: 10px;
     transition: width 0.5s ease-in-out;
     box-shadow: 0 0 10px #00e5ff;
 }
-
 #progress-text {
     margin-bottom: 5px;
     font-size: 0.9em;
@@ -311,14 +289,12 @@ button:disabled {
     align-items: center;
     gap: 15px;
 }
-
 #score-text {
     font-size: 1.5em;
     font-weight: bold;
     color: #00e5ff;
     text-shadow: 0 0 10px #00e5ff;
 }
-
 #summary-list {
     list-style: none;
     padding: 0;
@@ -326,18 +302,15 @@ button:disabled {
     width: 100%;
     max-width: 600px;
 }
-
 #summary-list li {
     margin-bottom: 8px;
     padding: 10px;
     border-radius: 5px;
 }
-
 #summary-list li.correct {
     background-color: rgba(40, 167, 69, 0.2);
     color: #28a745;
 }
-
 #summary-list li.incorrect {
     background-color: rgba(220, 53, 69, 0.2);
     color: #dc3545;
@@ -361,13 +334,11 @@ button:disabled {
     align-items: center;
     border: 1px solid #333;
 }
-
 #leaderboard-container h3 {
     color: #00e5ff;
     text-shadow: 0 0 8px #00e5ff;
     margin-bottom: 15px;
 }
-
 #leaderboard-list {
     list-style: decimal;
     padding-left: 25px;
@@ -376,13 +347,12 @@ button:disabled {
     margin-bottom: 20px;
     color: #ccc;
 }
-
 #leaderboard-list li {
     margin-bottom: 5px;
     font-size: 1.05em;
 }
 
-/* Hidden Utility Class */
+/* Utility Class */
 .hidden {
     display: none !important;
 }
@@ -396,7 +366,6 @@ button:disabled {
     .topic-buttons button { padding: 8px 15px; font-size: 0.9em; }
     .option { padding: 12px 15px; font-size: 1em; }
 }
-
 @media (max-width: 480px) {
     #game-container { margin: 10px auto; padding: 15px; }
     h1 { font-size: 1.8em; }
