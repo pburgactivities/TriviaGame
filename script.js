@@ -802,7 +802,7 @@ const allQuestions = {
             hint: "He was famous for his hit song 'Jailhouse Rock'."
         },
         {
-            question: "What's Going On' is a famous album by which artist?",
+            question: "'What's Going On' is a famous album by which artist?",
             options: ["Otis Redding", "Marvin Gaye", "Smokey Robinson", "Sam Cooke"],
             answer: "Marvin Gaye",
             explanation: "Released in 1971, this album is considered a landmark of soul music.",
@@ -1442,7 +1442,7 @@ function checkAnswer(selectedButton, selectedOption) {
     optionsContainer.querySelectorAll(".option").forEach(button => {
         button.disabled = true;
         if (button.textContent === correctOption) {
-            button.classList.add("correct");
+            button.classList.add("correct-permanent"); // Add this
         }
     });
 
@@ -1450,8 +1450,9 @@ function checkAnswer(selectedButton, selectedOption) {
     if (isCorrect) {
         score++;
         correctSound.play().catch(e => console.log("Correct sound failed:", e));
+        selectedButton.classList.add("correct-permanent"); // Add this
     } else {
-        selectedButton.classList.add("incorrect");
+        selectedButton.classList.add("incorrect-permanent"); // Add this
         wrongSound.play().catch(e => console.log("Wrong sound failed:", e));
     }
 
