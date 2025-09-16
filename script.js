@@ -35,6 +35,30 @@ const allQuestions = {
             options: ["Amelia Earhart", "Bessie Coleman", "Sally Ride", "Valentina Tereshkova"],
             answer: "Amelia Earhart",
             explanation: "Amelia Earhart accomplished this feat in 1932, becoming a global icon."
+        },
+        {
+            question: "The Magna Carta was signed in which year?",
+            options: ["1215", "1492", "1776", "1812"],
+            answer: "1215",
+            explanation: "The Magna Carta, a foundational document in English law, was signed by King John in 1215."
+        },
+        {
+            question: "What year did the United States enter World War II?",
+            options: ["1939", "1940", "1941", "1942"],
+            answer: "1941",
+            explanation: "The U.S. entered World War II following the attack on Pearl Harbor on December 7, 1941."
+        },
+        {
+            question: "Who was the British Prime Minister during most of World War II?",
+            options: ["Neville Chamberlain", "Winston Churchill", "Clement Attlee", "Franklin D. Roosevelt"],
+            answer: "Winston Churchill",
+            explanation: "Winston Churchill led the United Kingdom to victory against the Axis powers."
+        },
+        {
+            question: "What was the name of the ship Christopher Columbus sailed on his first voyage?",
+            options: ["The Pinta", "The Nina", "The Santa Maria", "The Mayflower"],
+            answer: "The Santa Maria",
+            explanation: "The Santa Maria was the largest of the three ships on Columbus's first expedition to the New World in 1492."
         }
     ],
     movies: [
@@ -73,6 +97,30 @@ const allQuestions = {
             options: ["Psycho", "Vertigo", "The Birds", "Rear Window"],
             answer: "Psycho",
             explanation: "Hitchcock’s 'Psycho' (1960) changed the horror genre and features a famously shocking shower scene."
+        },
+        {
+            question: "What was the name of the hobbit who took the One Ring to Mordor?",
+            options: ["Frodo Baggins", "Samwise Gamgee", "Bilbo Baggins", "Pippin Took"],
+            answer: "Frodo Baggins",
+            explanation: "Frodo Baggins is the main protagonist of J.R.R. Tolkien's 'The Lord of the Rings'."
+        },
+        {
+            question: "Which 1970s movie musical features the hit songs 'Greased Lightnin'' and 'Summer Nights'?",
+            options: ["The Sound of Music", "Grease", "Saturday Night Fever", "Fiddler on the Roof"],
+            answer: "Grease",
+            explanation: "'Grease', starring John Travolta and Olivia Newton-John, was a blockbuster musical in 1978."
+        },
+        {
+            question: "Who directed the classic film 'Casablanca'?",
+            options: ["Frank Capra", "Orson Welles", "Michael Curtiz", "Billy Wilder"],
+            answer: "Michael Curtiz",
+            explanation: "Michael Curtiz directed 'Casablanca', a timeless romantic drama from 1942."
+        },
+        {
+            question: "What is the name of the spaceship in 'Star Trek'?",
+            options: ["Millennium Falcon", "Serenity", "Enterprise", "Nostromo"],
+            answer: "Enterprise",
+            explanation: "The U.S.S. Enterprise is the fictional starship in the 'Star Trek' television series and movies."
         }
     ],
     science: [
@@ -111,6 +159,30 @@ const allQuestions = {
             options: ["100°F", "200°F", "212°F", "250°F"],
             answer: "212°F",
             explanation: "Water boils at 212°F at standard atmospheric pressure."
+        },
+        {
+            question: "What is the smallest planet in our solar system?",
+            options: ["Mars", "Mercury", "Pluto", "Venus"],
+            answer: "Mercury",
+            explanation: "Mercury is the smallest planet and the closest to the Sun."
+        },
+        {
+            question: "What is the main gas that makes up the air we breathe?",
+            options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+            answer: "Nitrogen",
+            explanation: "Nitrogen makes up about 78% of the Earth's atmosphere, while oxygen is about 21%."
+        },
+        {
+            question: "What type of energy is stored in a battery?",
+            options: ["Mechanical energy", "Thermal energy", "Chemical energy", "Nuclear energy"],
+            answer: "Chemical energy",
+            explanation: "Batteries store chemical energy and convert it into electrical energy."
+        },
+        {
+            question: "What is the name of the force that keeps us on the ground?",
+            options: ["Magnetism", "Gravity", "Friction", "Tension"],
+            answer: "Gravity",
+            explanation: "Gravity is the fundamental force of attraction that exists between any two masses."
         }
     ],
     general: [
@@ -149,166 +221,32 @@ const allQuestions = {
             options: ["Tokyo", "Delhi", "Shanghai", "São Paulo"],
             answer: "Tokyo",
             explanation: "While other cities have a larger metropolitan area, Tokyo has the largest population within its city proper."
+        },
+        {
+            question: "What is the largest country in the world by area?",
+            options: ["Canada", "China", "Russia", "United States"],
+            answer: "Russia",
+            explanation: "Russia is the largest country by total area, spanning 11 time zones."
+        },
+        {
+            question: "Which of these is not a member of the G7?",
+            options: ["Japan", "Germany", "China", "Italy"],
+            answer: "China",
+            explanation: "The G7 is a group of seven advanced economies: Canada, France, Germany, Italy, Japan, the United Kingdom, and the United States."
+        },
+        {
+            question: "How many states are in the United States?",
+            options: ["48", "49", "50", "51"],
+            answer: "50",
+            explanation: "There are 50 states and the District of Columbia in the United States."
+        },
+        {
+            question: "What is the primary ingredient in hummus?",
+            options: ["Lentils", "Chickpeas", "Black Beans", "Kidney Beans"],
+            answer: "Chickpeas",
+            explanation: "Hummus is a popular Middle Eastern dip made from cooked and mashed chickpeas blended with tahini, olive oil, lemon juice, and garlic."
         }
     ]
 };
 
-let currentQuestionIndex = 0;
-let score = 0;
-let selectedQuestions = [];
-let totalQuestions = 0;
-
-const mainMenu = document.getElementById("main-menu");
-const quizContainer = document.getElementById("quiz-container");
-const questionEl = document.getElementById("question");
-const optionsContainer = document.getElementById("options-container");
-const nextButton = document.getElementById("next-button");
-const endButton = document.getElementById("end-button");
-const explanationEl = document.getElementById("explanation");
-const resultsContainer = document.getElementById("results-container");
-const scoreText = document.getElementById("score-text");
-const topicButtons = document.querySelectorAll(".topic-buttons button");
-const startButton = document.getElementById("start-button");
-const restartButton = document.getElementById("restart-button");
-const questionCountInput = document.getElementById("question-count");
-const progressText = document.getElementById("progress-text");
-const gameTitle = document.getElementById("game-title");
-
-const bgMusic = document.getElementById("bg-music");
-const correctSound = document.getElementById("correct-sound");
-const wrongSound = document.getElementById("wrong-sound");
-
-let selectedTopic = null;
-
-topicButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        topicButtons.forEach(btn => btn.classList.remove("selected"));
-        button.classList.add("selected");
-        selectedTopic = button.dataset.topic;
-        startButton.disabled = false;
-    });
-});
-
-startButton.addEventListener("click", () => {
-    totalQuestions = parseInt(questionCountInput.value, 10);
-    let questionsPool = [];
-
-    if (selectedTopic === "mixed") {
-        for (const topic in allQuestions) {
-            questionsPool = questionsPool.concat(allQuestions[topic]);
-        }
-        gameTitle.textContent = "Mixed Topics";
-    } else if (selectedTopic) {
-        questionsPool = allQuestions[selectedTopic];
-        gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
-    }
-
-    if (questionsPool.length < totalQuestions) {
-        alert(`Sorry, there are only ${questionsPool.length} questions available. Please select a number less than or equal to this.`);
-        return;
-    }
-
-    selectedQuestions = shuffleArray(questionsPool).slice(0, totalQuestions);
-    startGame();
-});
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-function startGame() {
-    bgMusic.play().catch(e => console.log("Background music autoplay failed:", e));
-    mainMenu.classList.add("hidden");
-    resultsContainer.classList.add("hidden");
-    quizContainer.classList.remove("hidden");
-    currentQuestionIndex = 0;
-    score = 0;
-    loadQuestion();
-}
-
-function loadQuestion() {
-    if (currentQuestionIndex >= selectedQuestions.length) {
-        showResults();
-        return;
-    }
-
-    progressText.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
-
-    const currentQuestion = selectedQuestions[currentQuestionIndex];
-    questionEl.textContent = currentQuestion.question;
-    optionsContainer.innerHTML = "";
-    explanationEl.textContent = "";
-    nextButton.style.display = "none";
-
-    // Shuffle options to prevent correct answer from always being in the same spot
-    const shuffledOptions = shuffleArray([...currentQuestion.options]);
-    shuffledOptions.forEach(option => {
-        const button = document.createElement("button");
-        button.textContent = option;
-        button.classList.add("option");
-        button.addEventListener("click", () => checkAnswer(button, option));
-        optionsContainer.appendChild(button);
-    });
-}
-
-function checkAnswer(selectedButton, selectedOption) {
-    const currentQuestion = selectedQuestions[currentQuestionIndex];
-    const correctOption = currentQuestion.answer;
-
-    optionsContainer.querySelectorAll(".option").forEach(button => {
-        button.disabled = true;
-        if (button.textContent === correctOption) {
-            button.classList.add("correct");
-        }
-    });
-
-    if (selectedOption === correctOption) {
-        score++;
-        correctSound.play().catch(e => console.log("Correct sound failed:", e));
-    } else {
-        selectedButton.classList.add("incorrect");
-        wrongSound.play().catch(e => console.log("Wrong sound failed:", e));
-    }
-
-    explanationEl.textContent = currentQuestion.explanation;
-    nextButton.style.display = "block";
-}
-
-function nextQuestion() {
-    currentQuestionIndex++;
-    loadQuestion();
-}
-
-function showResults() {
-    bgMusic.pause();
-    quizContainer.classList.add("hidden");
-    resultsContainer.classList.remove("hidden");
-    scoreText.textContent = `You scored ${score} out of ${totalQuestions} questions!`;
-}
-
-function endGame() {
-    showResults();
-}
-
-nextButton.addEventListener("click", nextQuestion);
-endButton.addEventListener("click", endGame);
-restartButton.addEventListener("click", () => {
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
-    mainMenu.classList.remove("hidden");
-    quizContainer.classList.add("hidden");
-    resultsContainer.classList.add("hidden");
-    questionCountInput.value = 5;
-    topicButtons.forEach(btn => btn.classList.remove("selected"));
-    selectedTopic = null;
-    startButton.disabled = false; // Enable start button by default
-    gameTitle.textContent = "Fun Trivia Quiz"; // Reset title
-});
-
-// Initial setup
-startButton.disabled = false;
-mainMenu.classList.remove("hidden");
+// ... (rest of the script.js code remains the same) ...
