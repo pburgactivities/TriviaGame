@@ -1219,7 +1219,7 @@ let score = 0;
 let selectedQuestions = [];
 let totalQuestions = 0;
 let answeredQuestions = [];
-let playerName = "Player";
+let playerName = ""; // Start with empty string to force name entry
 
 const mainMenu = document.getElementById("main-menu");
 const quizContainer = document.getElementById("quiz-container");
@@ -1286,29 +1286,38 @@ function resetLeaderboard() {
     }
 }
 
+// --- Game Readiness Check ---
+function checkGameReadiness() {
+    const nameEntered = playerNameInput.value.trim().length > 0;
+    const topicSelected = selectedTopic !== null;
+    startButton.disabled = !(nameEntered && topicSelected);
+}
+
 // --- Event Listeners ---
 topicButtons.forEach(button => {
     button.addEventListener("click", () => {
         topicButtons.forEach(btn => btn.classList.remove("selected"));
         button.classList.add("selected");
         selectedTopic = button.dataset.topic;
-        startButton.disabled = false;
+        checkGameReadiness(); // Call the new function here
         
         // Update max questions based on selected topic
         if (selectedTopic === "mixed") {
             const totalQuestions = Object.values(allQuestions).flat().length;
-            questionCountInput.max = totalQuestions;
+            questionCountInput.max = totalQuestions > 50 ? 50 : totalQuestions;
         } else {
-            questionCountInput.max = allQuestions[selectedTopic].length;
+            questionCountInput.max = allQuestions[selectedTopic].length > 50 ? 50 : allQuestions[selectedTopic].length;
         }
     });
 });
 
 playerNameInput.addEventListener("input", (e) => {
-    playerName = e.target.value.trim() || "Player";
+    playerName = e.target.value.trim();
+    checkGameReadiness(); // Call the new function here
 });
 
 startButton.addEventListener("click", () => {
+    if (startButton.disabled) return; // Add this check to prevent disabled button from being clicked
     totalQuestions = parseInt(questionCountInput.value, 10);
     let questionsPool = [];
 
@@ -1360,7 +1369,7 @@ restartButton.addEventListener("click", () => {
         questionCountInput.value = 5;
         topicButtons.forEach(btn => btn.classList.remove("selected"));
         selectedTopic = null;
-        startButton.disabled = true;
+        checkGameReadiness(); // Call this function on restart
         gameTitle.textContent = "Fun Trivia Quiz";
         updateLeaderboardDisplay();
     });
@@ -1485,5 +1494,5 @@ function endGame() {
 }
 
 // Initial setup
-startButton.disabled = true;
+checkGameReadiness(); // Call this on page load to set initial button state
 updateLeaderboardDisplay();
