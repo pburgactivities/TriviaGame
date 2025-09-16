@@ -164,4 +164,245 @@ const allQuestions = {
             question: "What is the smallest planet in our solar system?",
             options: ["Mars", "Mercury", "Pluto", "Venus"],
             answer: "Mercury",
-            explanation: "Mercury is the smallest planet and the closest to
+            explanation: "Mercury is the smallest planet and the closest to the Sun."
+        },
+        {
+            question: "What is the main gas that makes up the air we breathe?",
+            options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+            answer: "Nitrogen",
+            explanation: "Nitrogen makes up about 78% of the Earth's atmosphere, while oxygen is about 21%."
+        },
+        {
+            question: "What type of energy is stored in a battery?",
+            options: ["Mechanical energy", "Thermal energy", "Chemical energy", "Nuclear energy"],
+            answer: "Chemical energy",
+            explanation: "Batteries store chemical energy and convert it into electrical energy."
+        },
+        {
+            question: "What is the name of the force that keeps us on the ground?",
+            options: ["Magnetism", "Gravity", "Friction", "Tension"],
+            answer: "Gravity",
+            explanation: "Gravity is the fundamental force of attraction that exists between any two masses."
+        }
+    ],
+    general: [
+        {
+            question: "What is the capital of France?",
+            options: ["Berlin", "Madrid", "Paris", "Rome"],
+            answer: "Paris",
+            explanation: "Paris is the capital and most populous city of France. It is also a global center for art, fashion, and culture."
+        },
+        {
+            question: "What is the main ingredient in guacamole?",
+            options: ["Tomato", "Onion", "Avocado", "Chili pepper"],
+            answer: "Avocado",
+            explanation: "Guacamole is an avocado-based dip, originating from Mexico."
+        },
+        {
+            question: "What year did the Beatles make their U.S. debut on 'The Ed Sullivan Show'?",
+            options: ["1962", "1964", "1966", "1968"],
+            answer: "1964",
+            explanation: "The Beatles' first appearance on 'The Ed Sullivan Show' on February 9, 1964, marked the start of the 'British Invasion' in America."
+        },
+        {
+            question: "Who was known as 'The King of Rock and Roll'?",
+            options: ["Chuck Berry", "Buddy Holly", "Elvis Presley", "Little Richard"],
+            answer: "Elvis Presley",
+            explanation: "Elvis Presley became a cultural icon and is widely known by his nickname, 'The King'."
+        },
+        {
+            question: "What is the highest mountain in the world?",
+            options: ["Mount Everest", "K2", "Kangchenjunga", "Lhotse"],
+            answer: "Mount Everest",
+            explanation: "Mount Everest, located in the Himalayas, is the Earth's highest mountain above sea level."
+        },
+        {
+            question: "What is the most populous city in the world?",
+            options: ["Tokyo", "Delhi", "Shanghai", "São Paulo"],
+            answer: "Tokyo",
+            explanation: "While other cities have a larger metropolitan area, Tokyo has the largest population within its city proper."
+        },
+        {
+            question: "What is the largest country in the world by area?",
+            options: ["Canada", "China", "Russia", "United States"],
+            answer: "Russia",
+            explanation: "Russia is the largest country by total area, spanning 11 time zones."
+        },
+        {
+            question: "Which of these is not a member of the G7?",
+            options: ["Japan", "Germany", "China", "Italy"],
+            answer: "China",
+            explanation: "The G7 is a group of seven advanced economies: Canada, France, Germany, Italy, Japan, the United Kingdom, and the United States."
+        },
+        {
+            question: "How many states are in the United States?",
+            options: ["48", "49", "50", "51"],
+            answer: "50",
+            explanation: "There are 50 states and the District of Columbia in the United States."
+        },
+        {
+            question: "What is the primary ingredient in hummus?",
+            options: ["Lentils", "Chickpeas", "Black Beans", "Kidney Beans"],
+            answer: "Chickpeas",
+            explanation: "Hummus is a popular Middle Eastern dip made from cooked and mashed chickpeas blended with tahini, olive oil, lemon juice, and garlic."
+        }
+    ]
+};
+
+let currentQuestionIndex = 0;
+let score = 0;
+let selectedQuestions = [];
+let totalQuestions = 0;
+
+const mainMenu = document.getElementById("main-menu");
+const quizContainer = document.getElementById("quiz-container");
+const questionEl = document.getElementById("question");
+const optionsContainer = document.getElementById("options-container");
+const nextButton = document.getElementById("next-button");
+const endButton = document.getElementById("end-button");
+const explanationEl = document.getElementById("explanation");
+const resultsContainer = document.getElementById("results-container");
+const scoreText = document.getElementById("score-text");
+const topicButtons = document.querySelectorAll(".topic-buttons button");
+const startButton = document.getElementById("start-button");
+const restartButton = document.getElementById("restart-button");
+const questionCountInput = document.getElementById("question-count");
+const progressText = document.getElementById("progress-text");
+const gameTitle = document.getElementById("game-title");
+
+const bgMusic = document.getElementById("bg-music");
+const correctSound = document.getElementById("correct-sound");
+const wrongSound = document.getElementById("wrong-sound");
+
+let selectedTopic = null;
+
+topicButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        topicButtons.forEach(btn => btn.classList.remove("selected"));
+        button.classList.add("selected");
+        selectedTopic = button.dataset.topic;
+        startButton.disabled = false;
+    });
+});
+
+startButton.addEventListener("click", () => {
+    totalQuestions = parseInt(questionCountInput.value, 10);
+    let questionsPool = [];
+
+    if (selectedTopic === "mixed") {
+        for (const topic in allQuestions) {
+            questionsPool = questionsPool.concat(allQuestions[topic]);
+        }
+        gameTitle.textContent = "Mixed Topics";
+    } else if (selectedTopic) {
+        questionsPool = allQuestions[selectedTopic];
+        gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
+    }
+
+    if (questionsPool.length < totalQuestions) {
+        alert(`Sorry, there are only ${questionsPool.length} questions available. Please select a number less than or equal to this.`);
+        return;
+    }
+
+    selectedQuestions = shuffleArray(questionsPool).slice(0, totalQuestions);
+    startGame();
+});
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function startGame() {
+    bgMusic.play().catch(e => console.log("Background music autoplay failed:", e));
+    mainMenu.classList.add("hidden");
+    resultsContainer.classList.add("hidden");
+    quizContainer.classList.remove("hidden");
+    currentQuestionIndex = 0;
+    score = 0;
+    loadQuestion();
+}
+
+function loadQuestion() {
+    if (currentQuestionIndex >= selectedQuestions.length) {
+        showResults();
+        return;
+    }
+
+    progressText.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
+
+    const currentQuestion = selectedQuestions[currentQuestionIndex];
+    questionEl.textContent = currentQuestion.question;
+    optionsContainer.innerHTML = "";
+    explanationEl.textContent = "";
+    nextButton.style.display = "none";
+
+    const shuffledOptions = shuffleArray([...currentQuestion.options]);
+    shuffledOptions.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("option");
+        button.addEventListener("click", () => checkAnswer(button, option));
+        optionsContainer.appendChild(button);
+    });
+}
+
+function checkAnswer(selectedButton, selectedOption) {
+    const currentQuestion = selectedQuestions[currentQuestionIndex];
+    const correctOption = currentQuestion.answer;
+
+    optionsContainer.querySelectorAll(".option").forEach(button => {
+        button.disabled = true;
+        if (button.textContent === correctOption) {
+            button.classList.add("correct");
+        }
+    });
+
+    if (selectedOption === correctOption) {
+        score++;
+        correctSound.play().catch(e => console.log("Correct sound failed:", e));
+    } else {
+        selectedButton.classList.add("incorrect");
+        wrongSound.play().catch(e => console.log("Wrong sound failed:", e));
+    }
+
+    explanationEl.textContent = currentQuestion.explanation;
+    nextButton.style.display = "block";
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    loadQuestion();
+}
+
+function showResults() {
+    bgMusic.pause();
+    quizContainer.classList.add("hidden");
+    resultsContainer.classList.remove("hidden");
+    scoreText.textContent = `You scored ${score} out of ${totalQuestions} questions!`;
+}
+
+function endGame() {
+    showResults();
+}
+
+nextButton.addEventListener("click", nextQuestion);
+endButton.addEventListener("click", endGame);
+restartButton.addEventListener("click", () => {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    mainMenu.classList.remove("hidden");
+    quizContainer.classList.add("hidden");
+    resultsContainer.classList.add("hidden");
+    questionCountInput.value = 5;
+    topicButtons.forEach(btn => btn.classList.remove("selected"));
+    selectedTopic = null;
+    startButton.disabled = true;
+    gameTitle.textContent = "Fun Trivia Quiz";
+});
+
+// Disable start button on initial load
+startButton.disabled = true;
