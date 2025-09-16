@@ -23,6 +23,18 @@ const allQuestions = {
             options: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "Theodore Roosevelt"],
             answer: "Abraham Lincoln",
             explanation: "Abraham Lincoln served as the 16th U.S. President, leading the country during the Civil War."
+        },
+        {
+            question: "In what year did the Berlin Wall fall?",
+            options: ["1987", "1989", "1991", "1993"],
+            answer: "1989",
+            explanation: "The fall of the Berlin Wall in 1989 was a pivotal event that led to the reunification of Germany and the end of the Cold War."
+        },
+        {
+            question: "Who was the first woman to fly solo across the Atlantic Ocean?",
+            options: ["Amelia Earhart", "Bessie Coleman", "Sally Ride", "Valentina Tereshkova"],
+            answer: "Amelia Earhart",
+            explanation: "Amelia Earhart accomplished this feat in 1932, becoming a global icon."
         }
     ],
     movies: [
@@ -49,6 +61,18 @@ const allQuestions = {
             options: ["1955", "1960", "1965", "1970"],
             answer: "1955",
             explanation: "Disneyland opened its doors in Anaheim, California, on July 17, 1955."
+        },
+        {
+            question: "Who played the title role in the 1964 film 'Mary Poppins'?",
+            options: ["Julie Andrews", "Debbie Reynolds", "Doris Day", "Audrey Hepburn"],
+            answer: "Julie Andrews",
+            explanation: "Julie Andrews won the Academy Award for Best Actress for her performance as Mary Poppins."
+        },
+        {
+            question: "The iconic shower scene from which Alfred Hitchcock movie is one of the most famous in cinema history?",
+            options: ["Psycho", "Vertigo", "The Birds", "Rear Window"],
+            answer: "Psycho",
+            explanation: "Hitchcock’s 'Psycho' (1960) changed the horror genre and features a famously shocking shower scene."
         }
     ],
     science: [
@@ -75,6 +99,18 @@ const allQuestions = {
             options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
             answer: "Pacific Ocean",
             explanation: "The Pacific Ocean is the largest and deepest of the world's five oceans. It covers approximately 30% of the Earth's surface."
+        },
+        {
+            question: "What is the process by which plants make their own food?",
+            options: ["Respiration", "Photosynthesis", "Digestion", "Transpiration"],
+            answer: "Photosynthesis",
+            explanation: "Photosynthesis is the process used by plants to convert light energy into chemical energy, which fuels their growth."
+        },
+        {
+            question: "What is the boiling point of water in Fahrenheit?",
+            options: ["100°F", "200°F", "212°F", "250°F"],
+            answer: "212°F",
+            explanation: "Water boils at 212°F at standard atmospheric pressure."
         }
     ],
     general: [
@@ -101,6 +137,18 @@ const allQuestions = {
             options: ["Chuck Berry", "Buddy Holly", "Elvis Presley", "Little Richard"],
             answer: "Elvis Presley",
             explanation: "Elvis Presley became a cultural icon and is widely known by his nickname, 'The King'."
+        },
+        {
+            question: "What is the highest mountain in the world?",
+            options: ["Mount Everest", "K2", "Kangchenjunga", "Lhotse"],
+            answer: "Mount Everest",
+            explanation: "Mount Everest, located in the Himalayas, is the Earth's highest mountain above sea level."
+        },
+        {
+            question: "What is the most populous city in the world?",
+            options: ["Tokyo", "Delhi", "Shanghai", "São Paulo"],
+            answer: "Tokyo",
+            explanation: "While other cities have a larger metropolitan area, Tokyo has the largest population within its city proper."
         }
     ]
 };
@@ -124,6 +172,11 @@ const startButton = document.getElementById("start-button");
 const restartButton = document.getElementById("restart-button");
 const questionCountInput = document.getElementById("question-count");
 const progressText = document.getElementById("progress-text");
+const gameTitle = document.getElementById("game-title");
+
+const bgMusic = document.getElementById("bg-music");
+const correctSound = document.getElementById("correct-sound");
+const wrongSound = document.getElementById("wrong-sound");
 
 let selectedTopic = null;
 
@@ -144,8 +197,10 @@ startButton.addEventListener("click", () => {
         for (const topic in allQuestions) {
             questionsPool = questionsPool.concat(allQuestions[topic]);
         }
+        gameTitle.textContent = "Mixed Topics";
     } else if (selectedTopic) {
         questionsPool = allQuestions[selectedTopic];
+        gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
     }
 
     if (questionsPool.length < totalQuestions) {
@@ -166,6 +221,7 @@ function shuffleArray(array) {
 }
 
 function startGame() {
+    bgMusic.play().catch(e => console.log("Background music autoplay failed:", e));
     mainMenu.classList.add("hidden");
     resultsContainer.classList.add("hidden");
     quizContainer.classList.remove("hidden");
@@ -212,8 +268,10 @@ function checkAnswer(selectedButton, selectedOption) {
 
     if (selectedOption === correctOption) {
         score++;
+        correctSound.play().catch(e => console.log("Correct sound failed:", e));
     } else {
         selectedButton.classList.add("incorrect");
+        wrongSound.play().catch(e => console.log("Wrong sound failed:", e));
     }
 
     explanationEl.textContent = currentQuestion.explanation;
@@ -226,6 +284,7 @@ function nextQuestion() {
 }
 
 function showResults() {
+    bgMusic.pause();
     quizContainer.classList.add("hidden");
     resultsContainer.classList.remove("hidden");
     scoreText.textContent = `You scored ${score} out of ${totalQuestions} questions!`;
@@ -238,14 +297,18 @@ function endGame() {
 nextButton.addEventListener("click", nextQuestion);
 endButton.addEventListener("click", endGame);
 restartButton.addEventListener("click", () => {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
     mainMenu.classList.remove("hidden");
     quizContainer.classList.add("hidden");
     resultsContainer.classList.add("hidden");
     questionCountInput.value = 5;
     topicButtons.forEach(btn => btn.classList.remove("selected"));
     selectedTopic = null;
-    startButton.disabled = true;
+    startButton.disabled = false; // Enable start button by default
+    gameTitle.textContent = "Fun Trivia Quiz"; // Reset title
 });
 
-// Start the game by showing the main menu
+// Initial setup
+startButton.disabled = false;
 mainMenu.classList.remove("hidden");
