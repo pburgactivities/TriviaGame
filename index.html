@@ -4,399 +4,462 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fun Trivia Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
+        /* General Body and HTML Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a2e; /* A dark, deep blue for a modern feel */
+            color: #eee; /* Light text color for contrast */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
         }
 
-        .container {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        /* Game Container Styles */
+        #game-container {
+            background-color: #2c2c54; /* A slightly lighter, more vibrant dark blue for the game */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
+            max-width: 900px;
             width: 90%;
-            max-width: 700px;
-            border: 1px solid #ddd;
+            box-sizing: border-box;
+            transition: all 0.5s ease-in-out;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #555;
         }
 
-        h1, h2, h3 {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-
-        #player-profile {
-            margin: 20px 0;
-        }
-
-        #player-name {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            width: calc(100% - 22px);
-            max-width: 250px;
-            text-align: center;
-        }
-
-        #leaderboard-section {
-            margin-top: 30px;
-        }
-
-        #leaderboard-list {
-            list-style-type: none;
+        /* Fullscreen-specific styles for the game-container */
+        #game-container:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            max-height: none;
+            margin: 0;
             padding: 0;
-            margin-top: 15px;
-            text-align: left;
-            background-color: #f4f4f4;
-            border-radius: 8px;
-            padding: 15px;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #eee;
-        }
-
-        #leaderboard-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        #leaderboard-list li:last-child {
-            border-bottom: none;
-        }
-
-        .progress-container {
-            background-color: #e9ecef;
-            border-radius: 5px;
-            height: 12px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            background-color: #28a745;
-            height: 100%;
-            width: 0%;
-            border-radius: 5px;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .topic-buttons, .subcategory-buttons {
+            border-radius: 0;
             display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-
-        .topic-buttons button, .subcategory-buttons button {
-            padding: 12px 20px;
-            border: 2px solid #007bff;
-            background-color: #e9f5ff;
-            color: #007bff;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
-        }
-
-        .topic-buttons button:hover, .subcategory-buttons button:hover {
-            background-color: #007bff;
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .topic-buttons button.selected, .subcategory-buttons button.selected {
-            background-color: #0056b3;
-            color: #fff;
-            border-color: #0056b3;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transform: translateY(0);
-        }
-
-        .questions-input {
-            margin: 25px 0;
-            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-color: #121212; /* A consistent dark background for fullscreen */
+            border: none;
+            box-shadow: none;
+        }
+        #game-container:-webkit-full-screen { /* Safari */
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            border: none;
+            box-shadow: none;
+        }
+        #game-container:-moz-full-screen { /* Firefox */
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            border: none;
+            box-shadow: none;
+        }
+        #game-container:-ms-full-screen { /* IE/Edge */
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Headings and Text */
+        h1, h2, h3 {
+            color: #00e5ff; /* Bright cyan for a glowing effect */
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00e5ff, 0 0 20px rgba(0, 229, 255, 0.5); /* Neon glow effect */
+        }
+        h1 { font-size: 2.8em; margin-top: 0; }
+        h2 { font-size: 2.2em; }
+        h3 { font-size: 1.6em; color: #80dfff; text-shadow: none; }
+        p, label {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        #explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #2a2a2a;
+            border-left: 5px solid #00e5ff;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-style: italic;
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        /* Input Fields */
+        input[type="text"], input[type="number"] {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            font-size: 1em;
+            width: calc(100% - 24px);
+            max-width: 300px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            transition: box-shadow 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #00e5ff;
+            box-shadow: 0 0 8px #00e5ff;
+        }
+        input[type="text"]::placeholder, input[type="number"]::placeholder {
+            color: #bbb;
+        }
+
+        /* Buttons */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+            font-family: 'Montserrat', sans-serif;
+        }
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+        }
+        button:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+        }
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.7;
+            box-shadow: none;
+        }
+
+        /* Topic Buttons specific styling */
+        .topic-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
             gap: 10px;
         }
-
-        .questions-input label {
+        .topic-buttons button {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
             font-weight: bold;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: 1px solid #555;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+        .topic-buttons button:hover:not(.selected):not(:disabled) {
+            background-color: #3a3a3a;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        .topic-buttons button.selected {
+            background-color: #00e5ff;
+            color: #121212;
+            font-weight: bold;
+            border: 2px solid #00e5ff;
+            box-shadow: 0 0 15px #00e5ff, 0 0 25px #00e5ff;
+        }
+        .topic-buttons button.selected:hover {
+            background-color: #00c4e0;
         }
 
-        .questions-input input {
-            padding: 8px;
-            width: 60px;
-            text-align: center;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
+        /* Quiz Container specific styles */
         #quiz-container {
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
-
         #options-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 25px;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 15px;
         }
-
         .option {
-            padding: 18px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            color: #333;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            margin: 8px 0;
+            padding: 15px 20px;
+            font-size: 1.1em;
             text-align: left;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid #444;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .option:hover:not(:disabled) {
+            background-color: #3a3a3a;
+            transform: translateX(5px);
+            box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+        }
+        .option.correct-permanent {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            border: 1px solid #28a745;
+            box-shadow: 0 0 10px #28a745;
+        }
+        .option.incorrect-permanent {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+            border: 1px solid #dc3545;
+            box-shadow: 0 0 10px #dc3545;
         }
 
-        .option:hover {
-            background-color: #e9ecef;
-            transform: translateY(-2px);
+        /* Progress Bar */
+        #progress-container {
+            width: 80%;
+            max-width: 500px;
+            background-color: #333;
+            border-radius: 10px;
+            margin-top: 20px;
+            height: 20px;
+            overflow: hidden;
         }
-        
-        #question {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #00e5ff;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 10px #00e5ff;
+        }
+        #progress-text {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #aaa;
         }
 
-        #explanation {
-            margin-top: 25px;
-            padding: 15px;
-            background-color: #eaf5ff;
-            border-left: 5px solid #007bff;
-            text-align: left;
-            border-radius: 5px;
-            color: #333;
-            font-style: italic;
-        }
-
-        .button-group {
+        /* Results Container */
+        #results-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: 15px;
-            margin-top: 25px;
         }
-
-        button {
-            padding: 12px 25px;
-            font-size: 16px;
-            border: none;
+        #score-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00e5ff;
+            text-shadow: 0 0 10px #00e5ff;
+        }
+        #summary-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            width: 100%;
+            max-width: 600px;
+        }
+        #summary-list li {
+            margin-bottom: 8px;
+            padding: 10px;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        }
+        #summary-list li.correct {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+        #summary-list li.incorrect {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
         }
 
-        #start-button, #restart-button, #reset-leaderboard-button {
-            background-color: #28a745;
-            color: white;
+        /* Leaderboard */
+        #leaderboard-container {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.1), 0 0 10px rgba(0, 255, 255, 0.2);
+            text-align: center;
+            max-width: 350px;
+            width: 80%;
+            margin-top: 30px;
+            margin-left: 20px;
+            margin-right: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #333;
+        }
+        #leaderboard-container h3 {
+            color: #00e5ff;
+            text-shadow: 0 0 8px #00e5ff;
+            margin-bottom: 15px;
+        }
+        #leaderboard-list {
+            list-style: decimal;
+            padding-left: 25px;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        #leaderboard-list li {
+            margin-bottom: 5px;
+            font-size: 1.05em;
         }
 
-        #start-button:hover, #restart-button:hover, #reset-leaderboard-button:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
+        /* Utility Class */
+        .hidden {
+            display: none !important;
         }
 
-        #next-button {
-            background-color: #007bff;
-            color: white;
-        }
-
-        #next-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
-
-        #end-button {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        #end-button:hover {
-            background-color: #c82333;
-            transform: translateY(-2px);
-        }
-
-        #hint-button {
-            background-color: #ffc107;
-            color: #212529;
-        }
-
-        #hint-button:hover {
-            background-color: #e0a800;
-            transform: translateY(-2px);
-        }
-
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .option.correct {
-            background-color: #28a745;
-            color: white;
-            animation: flashGreen 0.5s ease-in-out;
-        }
-        .option.incorrect {
-            background-color: #dc3545;
-            color: white;
-            animation: shake 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideDown {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes flashGreen {
-            0%, 100% { background-color: #28a745; }
-            50% { background-color: #fff; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-        
-        #fullscreen-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 15px;
-            background-color: #6c757d;
-            color: white;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            line-height: 1;
-            z-index: 1000;
-        }
-
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .topic-buttons, .subcategory-buttons {
-                flex-direction: column;
-            }
-            .topic-buttons button, .subcategory-buttons button {
-                width: 100%;
-            }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.4em; }
+            #game-container, #leaderboard-container { padding: 20px; width: 95%; }
+            .topic-buttons button { padding: 8px 15px; font-size: 0.9em; }
+            .option { padding: 12px 15px; font-size: 1em; }
+        }
+        @media (max-width: 480px) {
+            #game-container { margin: 10px auto; padding: 15px; }
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            h3 { font-size: 1.2em; }
+            button { padding: 10px 20px; font-size: 1em; }
+            .topic-buttons { gap: 5px; }
+            .topic-buttons button { width: calc(50% - 10px); box-sizing: border-box; }
+            body { flex-direction: column; }
+            #leaderboard-container { margin-top: 20px; margin-left: auto; margin-right: auto; }
+        }
+
+        /* Ensure the audio elements are hidden but functional */
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <audio id="bg-music" loop>
-        <source src="https://www.learninggamesforkids.com/sound-mp3s/background/soft-piano-bg.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="correct-sound">
-        <source src="https://www.soundboard.com/media/196" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="wrong-sound">
-        <source src="https://www.soundboard.com/media/255" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="start-sound">
-        <source src="https://www.learninggamesforkids.com/sound-mp3s/sound-effects/whoosh-swoosh.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="finish-sound">
-        <source src="https://www.learninggamesforkids.com/sound-mp3s/tada-sound.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
 
-    <div class="container" id="game-container">
-        <h1 id="game-title">Fun Trivia Quiz</h1>
-
+    <main id="game-container">
         <div id="main-menu">
-            <h2>Choose a Topic</h2>
-            <div id="player-profile">
-                <label for="player-name">Player Name:</label>
-                <input type="text" id="player-name" placeholder="Enter your name" maxlength="15">
+            <h1>Fun Trivia Quiz</h1>
+            <p>Welcome! Select a topic and enter the number of questions to get started.</p>
+            
+            <label for="player-name">Player Name:</label>
+            <input type="text" id="player-name" placeholder="Enter your name">
+
+            <div class="topic-buttons">
+                <h2>Choose a Topic:</h2>
+                <button data-topic="history">History</button>
+                <button data-topic="movies">Movies</button>
+                <button data-topic="science">Science</button>
+                <button data-topic="general">General</button>
+                <button data-topic="sports">Sports</button>
+                <button data-topic="music">Music</button>
+                <button data-topic="literature">Literature</button>
+                <button data-topic="food_drink">Food & Drink</button>
+                <button data-topic="mixed">Mixed</button>
             </div>
 
-            <div id="topic-selection">
-                <div class="topic-buttons">
-                    <button data-topic="history">History</button>
-                    <button data-topic="movies">Movies</button>
-                    <button data-topic="science">Science</button>
-                    <button data-topic="general">General</button>
-                    <button data-topic="music" class="has-subcategories">Music</button>
-                    <button data-topic="sports">Sports</button>
-                    <button data-topic="literature">Literature</button>
-                    <button data-topic="food_drink">Food & Drink</button>
-                    <button data-topic="mixed">Mixed</button>
-                </div>
-                <div id="music-subcategories" class="subcategory-buttons hidden">
-                    <button data-topic="music-60s">1960s</button>
-                    <button data-topic="music-70s">1970s</button>
-                    <button data-topic="music-80s">1980s</button>
-                    <button data-topic="music-90s">1990s</button>
-                    <button id="back-button">Back</button>
-                </div>
-            </div>
+            <label for="question-count">Number of Questions (max 50):</label>
+            <input type="number" id="question-count" value="5" min="1" max="50">
 
-            <div class="questions-input">
-                <label for="question-count">Number of Questions:</label>
-                <input type="number" id="question-count" value="10" min="1" max="50">
-            </div>
-
-            <button id="start-button" disabled>Start Game</button>
-
-            <div id="leaderboard-section">
-                <h3>Top Scores</h3>
-                <ol id="leaderboard-list"></ol>
-                <button id="reset-leaderboard-button">Reset Leaderboard</button>
-            </div>
+            <button id="start-button" disabled>Start Quiz</button>
+            <button id="fullscreen-button">Toggle Fullscreen</button>
         </div>
 
         <div id="quiz-container" class="hidden">
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
+            <h2 id="game-title"></h2>
             <p id="progress-text"></p>
-            <h2 id="question"></h2>
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <h3 id="question"></h3>
             <div id="options-container"></div>
             <p id="explanation"></p>
-            <div class="button-group">
-                <button id="hint-button">Hint</button>
-                <button id="next-button" class="hidden">Next Question</button>
-                <button id="end-button">End Game</button>
-            </div>
+            <button id="next-button" style="display: none;">Next Question</button>
+            <button id="hint-button">Hint</button>
+            <button id="end-button">End Quiz</button>
         </div>
 
         <div id="results-container" class="hidden">
             <h2>Quiz Complete!</h2>
             <p id="score-text"></p>
-            <ul id="summary-list"></ul>
-            <button id="restart-button">Play Again</button>
+            <button id="restart-button">Restart</button>
+            <div id="summary">
+                <h3>Summary of Answers:</h3>
+                <ul id="summary-list"></ul>
+            </div>
         </div>
-    </div>
+
+    </main>
     
-    <button id="fullscreen-button">⤢</button>
-    <script src="Trivia JavaScript.txt"></script>
+    <aside id="leaderboard-container">
+        <h3>Top Scorers</h3>
+        <ol id="leaderboard-list"></ol>
+        <button id="reset-leaderboard-button">Reset Leaderboard</button>
+    </aside>
+
+    <audio id="bg-music" src="bg_music.mp3" loop></audio>
+    <audio id="correct-sound" src="correct.mp3"></audio>
+    <audio id="wrong-sound" src="wrong.mp3"></audio>
+    <audio id="start-sound" src="start.mp3"></audio>
+    <audio id="finish-sound" src="finish.mp3"></audio>
+
+    <script src="script.js"></script>
 </body>
 </html>
