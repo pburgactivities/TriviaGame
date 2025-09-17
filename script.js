@@ -17,7 +17,10 @@ const startButton = document.getElementById('start-button');
 const fullscreenButton = document.getElementById('fullscreen-button');
 const playerNameInput = document.getElementById('player-name');
 const questionCountInput = document.getElementById('question-count');
-const topicButtons = document.querySelectorAll('.topic-buttons button');
+
+// Responsive topic selection containers
+const topicButtonsContainer = document.getElementById('topic-buttons');
+const topicDropdown = document.getElementById('topic-dropdown');
 
 // Quiz elements
 const gameTitle = document.getElementById('game-title');
@@ -38,12 +41,6 @@ const summaryList = document.getElementById('summary-list');
 // Leaderboard elements
 const leaderboardList = document.getElementById('leaderboard-list');
 const resetLeaderboardButton = document.getElementById('reset-leaderboard-button');
-
-let currentTopic = '';
-let currentQuestionIndex = 0;
-let score = 0;
-let userAnswers = [];
-let questions = [];
 
 // Quiz data (50 questions per topic)
 const allQuestions = {
@@ -513,21 +510,76 @@ const allQuestions = {
     ],
 };
 
-// Event Listeners for Main Menu
-topicButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove 'selected' from all buttons
-        topicButtons.forEach(btn => btn.classList.remove('selected'));
-        // Add 'selected' to the clicked button
-        button.classList.add('selected');
-        currentTopic = button.dataset.topic;
-        startButton.disabled = false;
-        questionCountInput.max = allQuestions[currentTopic].length;
-        if (parseInt(questionCountInput.value) > allQuestions[currentTopic].length) {
-            questionCountInput.value = allQuestions[currentTopic].length;
-        }
+// Dynamically get topic list from allQuestions
+const topics = Object.keys(allQuestions);
+
+let currentTopic = '';
+let currentQuestionIndex = 0;
+let score = 0;
+let userAnswers = [];
+let questions = [];
+
+// --- Responsive Topic Selection ---
+
+function setupTopics() {
+    topicButtonsContainer.innerHTML = '';
+    topicDropdown.innerHTML = '<option value="">Select Topic</option>';
+    topics.forEach(topic => {
+        // Desktop button
+        const btn = document.createElement('button');
+        btn.textContent = topic.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+        btn.dataset.topic = topic;
+        btn.classList.add('topic-btn');
+        btn.addEventListener('click', () => {
+            selectTopic(topic);
+        });
+        topicButtonsContainer.appendChild(btn);
+
+        // Mobile dropdown
+        const opt = document.createElement('option');
+        opt.value = topic;
+        opt.textContent = btn.textContent;
+        topicDropdown.appendChild(opt);
     });
+
+    // Set initial states
+    topicDropdown.value = '';
+    startButton.disabled = true;
+    currentTopic = '';
+}
+
+function selectTopic(topic) {
+    currentTopic = topic;
+    // Highlight selected button
+    Array.from(topicButtonsContainer.children).forEach(btn =>
+        btn.classList.toggle('selected', btn.dataset.topic === topic)
+    );
+    topicDropdown.value = topic;
+    startButton.disabled = playerNameInput.value.trim() === '';
+    questionCountInput.max = allQuestions[currentTopic].length;
+    if (parseInt(questionCountInput.value) > allQuestions[currentTopic].length) {
+        questionCountInput.value = allQuestions[currentTopic].length;
+    }
+}
+
+topicDropdown.addEventListener('change', () => {
+    if (topicDropdown.value) {
+        selectTopic(topicDropdown.value);
+    }
 });
+
+function checkScreen() {
+    if (window.innerWidth < 650) {
+        topicButtonsContainer.classList.add('hidden');
+        topicDropdown.classList.remove('hidden');
+    } else {
+        topicButtonsContainer.classList.remove('hidden');
+        topicDropdown.classList.add('hidden');
+    }
+}
+window.addEventListener('resize', checkScreen);
+
+// --- Main Menu Event Listeners ---
 
 playerNameInput.addEventListener('input', () => {
     if (playerNameInput.value.trim() !== '' && currentTopic !== '') {
@@ -550,6 +602,10 @@ startButton.addEventListener('click', () => {
         alert("Please enter your name to start the quiz.");
         return;
     }
+    if (!currentTopic) {
+        alert("Please select a topic!");
+        return;
+    }
     const questionCount = parseInt(questionCountInput.value);
     if (isNaN(questionCount) || questionCount < 1 || questionCount > allQuestions[currentTopic].length) {
         alert(`Please enter a number of questions between 1 and ${allQuestions[currentTopic].length}.`);
@@ -563,7 +619,7 @@ startButton.addEventListener('click', () => {
     currentQuestionIndex = 0;
     userAnswers = [];
     
-    gameTitle.textContent = `Quiz Quest - ${currentTopic.charAt(0).toUpperCase() + currentTopic.slice(1)}`;
+    gameTitle.textContent = `Quiz Quest - ${currentTopic.replace('_',' ').replace(/\b\w/g, l => l.toUpperCase())}`;
     mainMenu.classList.add('hidden');
     quizContainer.classList.remove('hidden');
     displayQuestion();
@@ -581,7 +637,8 @@ fullscreenButton.addEventListener('click', () => {
     }
 });
 
-// Quiz Game Logic
+// --- Quiz Game Logic ---
+
 function displayQuestion() {
     const questionData = questions[currentQuestionIndex];
     questionElement.textContent = questionData.question;
@@ -590,7 +647,7 @@ function displayQuestion() {
     nextButton.style.display = 'none';
 
     // Shuffle options to prevent cheating
-    const shuffledOptions = shuffleArray(questionData.options);
+    const shuffledOptions = shuffleArray([...questionData.options]);
 
     shuffledOptions.forEach(option => {
         const button = document.createElement('button');
@@ -670,13 +727,10 @@ endButton.addEventListener('click', () => {
 function updateProgress() {
     const progress = ((currentQuestionIndex) / questions.length) * 100;
     progressBar.style.width = `${progress}%`;
-    progressText.textContent = `Question ${currentQuestionIndex} of ${questions.length}`;
-    if (currentQuestionIndex === 0) {
-        progressText.textContent = `Question 1 of ${questions.length}`;
-    }
+    progressText.textContent = `Question ${currentQuestionIndex === 0 ? 1 : currentQuestionIndex} of ${questions.length}`;
 }
 
-// Results and Leaderboard Logic
+// --- Results and Leaderboard Logic ---
 function showResults() {
     bgMusic.pause();
     bgMusic.currentTime = 0;
@@ -704,12 +758,13 @@ restartButton.addEventListener('click', () => {
     bgMusic.currentTime = 0;
     resultsContainer.classList.add('hidden');
     mainMenu.classList.remove('hidden');
-    // Reset inputs and buttons
     playerNameInput.value = '';
     questionCountInput.value = '5';
     startButton.disabled = true;
-    topicButtons.forEach(btn => btn.classList.remove('selected'));
+    Array.from(topicButtonsContainer.children).forEach(btn => btn.classList.remove('selected'));
     currentTopic = '';
+    setupTopics();
+    checkScreen();
 });
 
 // Local Storage for High Scores
@@ -728,11 +783,7 @@ function saveHighScore() {
     };
     
     leaderboard.push(newEntry);
-    
-    // Sort by score (descending)
     leaderboard.sort((a, b) => b.score - a.score);
-    
-    // Keep only the top 10 scores
     const topScores = leaderboard.slice(0, 10);
     localStorage.setItem('quizLeaderboard', JSON.stringify(topScores));
 }
@@ -745,7 +796,7 @@ function displayLeaderboard() {
     } else {
         leaderboard.forEach(entry => {
             const li = document.createElement('li');
-            li.textContent = `${entry.name} - ${entry.score} on ${entry.topic}`;
+            li.textContent = `${entry.name} - ${entry.score} on ${entry.topic.replace('_',' ').replace(/\b\w/g, l => l.toUpperCase())}`;
             leaderboardList.appendChild(li);
         });
     }
@@ -765,9 +816,11 @@ function shuffleArray(array) {
     return array;
 }
 
-// Initial state on page load
+// --- Initial state on page load ---
 document.addEventListener('DOMContentLoaded', () => {
+    setupTopics();
+    checkScreen();
     displayLeaderboard();
     bgMusic.play();
-    bgMusic.pause(); // Pause it immediately so it doesn't play on load
+    bgMusic.pause();
 });
