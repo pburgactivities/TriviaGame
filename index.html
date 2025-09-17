@@ -4,109 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #34495e;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 90%;
-            max-width: 600px;
-        }
-        h1, h2 {
-            color: #ecf0f1;
-        }
-        #player-profile {
-            margin-bottom: 20px;
-        }
-        #player-name {
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            background-color: #7f8c8d;
-            color: #2c3e50;
-            margin-left: 5px;
-        }
-        .hidden {
-            display: none;
-        }
-        button {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: #3498db;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        button:disabled {
-            background-color: #7f8c8d;
-            cursor: not-allowed;
-        }
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .option.correct {
-            background-color: #2ecc71;
-        }
-        .option.incorrect {
-            background-color: #e74c3c;
-        }
-        #explanation {
-            margin-top: 10px;
-            font-style: italic;
-        }
-        .progress-container {
-            background-color: #7f8c8d;
-            border-radius: 10px;
-            height: 10px;
-            width: 100%;
-            margin: 10px 0;
-        }
-        .progress-bar {
-            background-color: #3498db;
-            height: 100%;
-            width: 0%;
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-        #summary-list li {
-            list-style-type: none;
-            margin: 5px 0;
-            padding: 5px;
-            border-radius: 5px;
-        }
-        #summary-list li.correct {
-            background-color: #2ecc7133;
-        }
-        #summary-list li.incorrect {
-            background-color: #e74c3c33;
-        }
-        .topic-buttons.hidden {
-            display: none;
-        }
-        .selected {
-            background-color: #f1c40f;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <audio id="bg-music" src="assets/music.mp3" loop></audio>
@@ -176,7 +74,7 @@
             <button id="restart-button">Play Again</button>
         </div>
     </div>
-    <script type="module" src="ui.js"></script> 
+    <script type="module" src="ui.js"></script>
     <script type="module" src="game.js"></script>
 </body>
 </html>
