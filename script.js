@@ -352,12 +352,187 @@ const allQuestions = {
             explanation: "Originally written and recorded by Dolly Parton, Whitney Houston's version for 'The Bodyguard' soundtrack became a global phenomenon.",
             hint: "She was the star of the movie 'The Bodyguard'."
         }
+    ],
+    sports: [
+        {
+            question: "Which country won the first-ever FIFA World Cup?",
+            options: ["Brazil", "Uruguay", "Germany", "Italy"],
+            answer: "Uruguay",
+            explanation: "Uruguay hosted and won the first World Cup in 1930, defeating Argentina in the final match.",
+            hint: "The host country also won the tournament."
+        },
+        {
+            question: "How many players are on a standard baseball team?",
+            options: ["8", "9", "10", "11"],
+            answer: "9",
+            explanation: "A standard baseball team has nine players on the field at one time.",
+            hint: "It's the same number of players as a standard cricket team."
+        },
+        {
+            question: "Who is the all-time leading scorer in the NBA?",
+            options: ["Michael Jordan", "Kareem Abdul-Jabbar", "LeBron James", "Kobe Bryant"],
+            answer: "LeBron James",
+            explanation: "LeBron James surpassed Kareem Abdul-Jabbar's record in February 2023 to become the NBA's all-time leading scorer.",
+            hint: "He currently plays for the Los Angeles Lakers."
+        },
+        {
+            question: "What is the name of the professional American football league in the United States?",
+            options: ["NFL", "MLB", "NHL", "NCAA"],
+            answer: "NFL",
+            explanation: "The National Football League (NFL) is the highest level of professional American football in the United States.",
+            hint: "It stands for National Football League."
+        },
+        {
+            question: "In which sport would you perform a 'slam dunk'?",
+            options: ["Tennis", "Basketball", "Golf", "Volleyball"],
+            answer: "Basketball",
+            explanation: "A 'slam dunk' is a type of basketball shot that is performed when a player forcefully dunks the ball into the basket.",
+            hint: "This sport is played on a court with a hoop."
+        }
+    ],
+    literature: [
+        {
+            question: "Who wrote the classic novel '1984'?",
+            options: ["Aldous Huxley", "George Orwell", "Ray Bradbury", "J.R.R. Tolkien"],
+            answer: "George Orwell",
+            explanation: "'1984' is a dystopian social science fiction novel by English writer George Orwell.",
+            hint: "He also wrote 'Animal Farm'."
+        },
+        {
+            question: "What is the main setting of the Harry Potter series?",
+            options: ["Hogwarts", "Diagon Alley", "Azkaban", "The Burrow"],
+            answer: "Hogwarts",
+            explanation: "Hogwarts School of Witchcraft and Wizardry is the primary setting for the first seven books in the series.",
+            hint: "It's a school for wizards and witches."
+        },
+        {
+            question: "Which of Shakespeare's plays is the longest?",
+            options: ["Hamlet", "Macbeth", "Romeo and Juliet", "Othello"],
+            answer: "Hamlet",
+            explanation: "Hamlet is Shakespeare's longest play, with 4,042 lines and 29,551 words.",
+            hint: "The main character is a prince of Denmark."
+        },
+        {
+            question: "The character 'Sherlock Holmes' was created by which author?",
+            options: ["Arthur Conan Doyle", "Agatha Christie", "Edgar Allan Poe", "Mark Twain"],
+            answer: "Arthur Conan Doyle",
+            explanation: "Sherlock Holmes is a fictional detective created by British author Sir Arthur Conan Doyle.",
+            hint: "The author's first name is Arthur."
+        },
+        {
+            question: "In 'The Lord of the Rings', what is the name of the volcanic mountain where the One Ring was forged?",
+            options: ["Mount Doom", "Mount Fuji", "Mount Erebor", "Mount Cleft"],
+            answer: "Mount Doom",
+            explanation: "Mount Doom, also known as Orodruin, is a volcano in the fictional land of Mordor.",
+            hint: "It is the only place where the One Ring can be destroyed."
+        }
+    ],
+    food_drink: [
+        {
+            question: "What is sushi traditionally wrapped in?",
+            options: ["Lettuce", "Rice paper", "Nori seaweed", "Spinach leaves"],
+            answer: "Nori seaweed",
+            explanation: "Nori is an edible seaweed used as a wrapper for sushi and onigiri.",
+            hint: "It's a type of roasted seaweed."
+        },
+        {
+            question: "Which country is the origin of the pizza?",
+            options: ["Spain", "Italy", "France", "Greece"],
+            answer: "Italy",
+            explanation: "Pizza originated in Naples, Italy, in the 19th century.",
+            hint: "The Colosseum is in this country."
+        },
+        {
+            question: "What type of fruit is used to make a 'piña colada'?",
+            options: ["Apple", "Pineapple", "Mango", "Strawberry"],
+            answer: "Pineapple",
+            explanation: "A piña colada is a sweet cocktail made with rum, coconut cream or milk, and pineapple juice.",
+            hint: "The word 'piña' means pineapple in Spanish."
+        },
+        {
+            question: "What is the main ingredient in 'sake'?",
+            options: ["Rice", "Grapes", "Potatoes", "Barley"],
+            answer: "Rice",
+            explanation: "Sake, or Japanese rice wine, is an alcoholic beverage made by fermenting rice that has been polished to remove the bran.",
+            hint: "It's a fermented grain."
+        },
+        {
+            question: "What is the spiciest pepper in the world?",
+            options: ["Jalapeño", "Habanero", "Carolina Reaper", "Ghost Pepper"],
+            answer: "Carolina Reaper",
+            explanation: "The Carolina Reaper holds the Guinness World Record for the hottest chili pepper.",
+            hint: "It's named after a state in the US."
+        }
+    ],
+    music: {
+        'music-60s': [
+            {
+                question: "Which band released the song 'Hey Jude'?",
+                options: ["The Beatles", "The Rolling Stones", "The Who", "The Kinks"],
+                answer: "The Beatles",
+                explanation: "'Hey Jude' was a single released by the English rock band the Beatles in August 1968.",
+                hint: "They were from Liverpool."
+            },
+            {
+                question: "What iconic rock festival took place in 1969?",
+                options: ["Monterey Pop Festival", "Woodstock", "Isle of Wight Festival", "Newport Folk Festival"],
+                answer: "Woodstock",
+                explanation: "The Woodstock Music & Art Fair was a legendary music festival held on a dairy farm in Bethel, New York, from August 15 to 18, 1969.",
+                hint: "The name of this festival is also the name of a character in the Peanuts comics."
+            }
+        ],
+        'music-70s': [
+            {
+                question: "Queen's 'Bohemian Rhapsody' was released in which year?",
+                options: ["1973", "1975", "1977", "1979"],
+                answer: "1975",
+                explanation: "The iconic rock anthem was released in 1975 on the album 'A Night at the Opera'.",
+                hint: "The year is the same as the movie 'Jaws'."
+            },
+            {
+                question: "Which band had a hit with 'Stairway to Heaven'?",
+                options: ["The Eagles", "Led Zeppelin", "Pink Floyd", "Fleetwood Mac"],
+                answer: "Led Zeppelin",
+                explanation: "Released in 1971, 'Stairway to Heaven' is considered one of the greatest rock songs of all time.",
+                hint: "The band's name is a synonym for a big airship made of gas."
+            }
+        ],
+        'music-80s': [
+            {
+                question: "Who was known as the 'King of Pop' in the 1980s?",
+                options: ["Prince", "Madonna", "Michael Jackson", "George Michael"],
+                answer: "Michael Jackson",
+                explanation: "Michael Jackson's album 'Thriller' became the best-selling album of all time, solidifying his status as the 'King of Pop'.",
+                hint: "He was a member of the Jackson 5."
+            },
+            {
+                question: "What was the name of the popular music video channel that launched in 1981?",
+                options: ["MTV", "VH1", "CMT", "BET"],
+                answer: "MTV",
+                explanation: "MTV, or Music Television, launched on August 1, 1981, and revolutionized the music industry.",
+                hint: "The first video played on this channel was 'Video Killed the Radio Star' by The Buggles."
+            }
+        ],
+        'music-90s': [
+            {
+                question: "Which grunge band released the album 'Nevermind' in 1991?",
+                options: ["Pearl Jam", "Soundgarden", "Nirvana", "Alice in Chains"],
+            answer: "Nirvana",
+            explanation: "Nirvana's 'Nevermind' brought alternative rock into the mainstream and is considered a landmark album of the 1990s.",
+            hint: "The band's lead singer was Kurt Cobain."
+        },
+        {
+            question: "Who sang the hit song 'I Will Always Love You'?",
+            options: ["Mariah Carey", "Celine Dion", "Whitney Houston", "Toni Braxton"],
+            answer: "Whitney Houston",
+            explanation: "Originally written and recorded by Dolly Parton, Whitney Houston's version for 'The Bodyguard' soundtrack became a global phenomenon.",
+            hint: "She was the star of the movie 'The Bodyguard'."
+        }
     ]
     }
 };
 
 // --- DOM Elements ---
-// A good practice is to gather all your HTML elements at the top of the script
 const mainMenu = document.getElementById("main-menu");
 const quizContainer = document.getElementById("quiz-container");
 const resultsContainer = document.getElementById("results-container");
@@ -380,6 +555,7 @@ const playerNameInput = document.getElementById("player-name");
 const leaderboardList = document.getElementById("leaderboard-list");
 const resetLeaderboardButton = document.getElementById("reset-leaderboard-button");
 const gameContainer = document.getElementById("game-container");
+const fullscreenButton = document.getElementById("fullscreen-button");
 
 // Audio elements
 const bgMusic = document.getElementById("bg-music");
@@ -402,21 +578,17 @@ let totalQuestions = 0;
 let answeredQuestions = [];
 let playerName = "Player";
 let selectedTopic = null;
+let hintUsed = false;
 
 // --- Helper Functions ---
+
 // A reusable function to handle screen transitions and game state changes
 function showScreen(screenToShow) {
-    // Animate a fade transition for a smoother user experience
-    gameContainer.style.opacity = 0;
-    setTimeout(() => {
-        // Hide all screens
-        mainMenu.classList.add("hidden");
-        quizContainer.classList.add("hidden");
-        resultsContainer.classList.add("hidden");
-        // Show the requested screen
-        screenToShow.classList.remove("hidden");
-        gameContainer.style.opacity = 1;
-    }, 500);
+    gameContainer.classList.remove("hidden");
+    mainMenu.classList.add("hidden");
+    quizContainer.classList.add("hidden");
+    resultsContainer.classList.add("hidden");
+    screenToShow.classList.remove("hidden");
 }
 
 // Fisher-Yates shuffle algorithm for randomizing arrays
@@ -473,13 +645,11 @@ function startGame() {
 }
 
 function loadQuestion() {
-    // Check if the quiz is over
     if (currentQuestionIndex >= selectedQuestions.length) {
         showResults();
         return;
     }
 
-    // Update progress bar and text
     progressText.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
     updateProgressBar();
 
@@ -487,10 +657,10 @@ function loadQuestion() {
     questionEl.textContent = currentQuestion.question;
     optionsContainer.innerHTML = "";
     explanationEl.textContent = "";
-    nextButton.style.display = "none";
-    hintButton.style.display = "block";
+    nextButton.classList.add("hidden");
+    hintButton.disabled = false;
+    hintUsed = false;
 
-    // Shuffle options and create buttons
     const shuffledOptions = shuffleArray([...currentQuestion.options]);
     shuffledOptions.forEach(option => {
         const button = document.createElement("button");
@@ -510,7 +680,7 @@ function checkAnswer(selectedButton, selectedOption) {
     const currentQuestion = selectedQuestions[currentQuestionIndex];
     const correctOption = currentQuestion.answer;
 
-    hintButton.style.display = "none";
+    hintButton.disabled = true;
     optionsContainer.querySelectorAll(".option").forEach(button => {
         button.disabled = true;
         if (button.textContent === correctOption) {
@@ -528,7 +698,7 @@ function checkAnswer(selectedButton, selectedOption) {
     }
 
     explanationEl.textContent = currentQuestion.explanation;
-    nextButton.style.display = "block";
+    nextButton.classList.remove("hidden");
 
     answeredQuestions.push({
         question: currentQuestion.question,
@@ -562,29 +732,26 @@ function endGame() {
     showResults();
 }
 
-// --- Event Listeners ---
-// Handle topic button clicks, including subcategories
+// --- UI Event Handlers ---
 topicButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // Toggle the visibility of subcategory buttons if the parent topic is clicked
-        if (button.dataset.topic === "music") {
+        const topic = button.dataset.topic;
+        if (topic === "music") {
             topicSelection.querySelector(".topic-buttons").classList.add("hidden");
             musicSubcategories.classList.remove("hidden");
-            selectedTopic = null; // Reset selected topic
+            selectedTopic = null;
             startButton.disabled = true;
             return;
         }
-        
-        // Select a standard topic
+
         topicButtons.forEach(btn => btn.classList.remove("selected"));
         subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
         button.classList.add("selected");
-        selectedTopic = button.dataset.topic;
+        selectedTopic = topic;
         startButton.disabled = false;
     });
 });
 
-// Handle subcategory button clicks
 subcategoryButtons.forEach(button => {
     button.addEventListener("click", () => {
         subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
@@ -595,7 +762,6 @@ subcategoryButtons.forEach(button => {
     });
 });
 
-// Handle the back button click
 backButton.addEventListener("click", () => {
     topicSelection.querySelector(".topic-buttons").classList.remove("hidden");
     musicSubcategories.classList.add("hidden");
@@ -603,17 +769,14 @@ backButton.addEventListener("click", () => {
     startButton.disabled = true;
 });
 
-// Handle player name input
 playerNameInput.addEventListener("input", (e) => {
     playerName = e.target.value.trim() || "Player";
 });
 
-// Handle Start Game button click
 startButton.addEventListener("click", () => {
     totalQuestions = parseInt(questionCountInput.value, 10);
     let questionsPool = [];
 
-    // Logic to select questions based on the chosen topic or subcategory
     if (selectedTopic === "mixed") {
         for (const topic in allQuestions) {
             if (typeof allQuestions[topic] === 'object' && !Array.isArray(allQuestions[topic])) {
@@ -626,10 +789,10 @@ startButton.addEventListener("click", () => {
         }
         gameTitle.textContent = "Mixed Topics";
     } else if (selectedTopic) {
-        const [parentTopic, subTopic] = selectedTopic.split('-');
+        const [parentTopic] = selectedTopic.split('-');
         if (allQuestions[parentTopic] && allQuestions[parentTopic][selectedTopic]) {
             questionsPool = allQuestions[parentTopic][selectedTopic];
-            gameTitle.textContent = `${subTopic.toUpperCase()} Trivia`;
+            gameTitle.textContent = selectedTopic.replace('-', ' ').toUpperCase() + " Trivia";
         } else if (allQuestions[selectedTopic]) {
             questionsPool = allQuestions[selectedTopic];
             gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
@@ -646,29 +809,27 @@ startButton.addEventListener("click", () => {
     startGame();
 });
 
-// Handle next button click
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     loadQuestion();
 });
 
-// Handle end game button click
 endButton.addEventListener("click", endGame);
 
-// Handle hint button click
 hintButton.addEventListener("click", () => {
     const currentQuestion = selectedQuestions[currentQuestionIndex];
-    explanationEl.textContent = currentQuestion.hint;
+    if (!hintUsed) {
+        explanationEl.textContent = currentQuestion.hint;
+        hintUsed = true;
+    }
 });
 
-// Handle restart button click
 restartButton.addEventListener("click", () => {
     bgMusic.pause();
     bgMusic.currentTime = 0;
     showScreen(mainMenu);
     
-    // Reset UI state
-    questionCountInput.value = 5;
+    questionCountInput.value = 10;
     topicButtons.forEach(btn => btn.classList.remove("selected"));
     subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
     topicSelection.querySelector(".topic-buttons").classList.remove("hidden");
@@ -679,8 +840,17 @@ restartButton.addEventListener("click", () => {
     updateLeaderboardDisplay();
 });
 
-// Handle reset leaderboard button click
 resetLeaderboardButton.addEventListener("click", resetLeaderboard);
+
+fullscreenButton.addEventListener("click", () => {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+    }
+});
 
 // Initial setup
 startButton.disabled = true;
