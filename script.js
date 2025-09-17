@@ -28,6 +28,7 @@ const playerNameInput = document.getElementById("player-name");
 const leaderboardList = document.getElementById("leaderboard-list");
 const resetLeaderboardButton = document.getElementById("reset-leaderboard-button");
 const gameContainer = document.getElementById("game-container");
+const fullscreenButton = document.getElementById("fullscreen-button");
 
 const bgMusic = document.getElementById("bg-music");
 const correctSound = document.getElementById("correct-sound");
@@ -211,6 +212,17 @@ restartButton.addEventListener("click", () => {
 });
 
 resetLeaderboardButton.addEventListener("click", resetLeaderboard);
+
+// --- Fullscreen Logic ---
+fullscreenButton.addEventListener("click", () => {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        gameContainer.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+    }
+});
 
 // --- Game Logic Functions ---
 function startTransition(callback) {
