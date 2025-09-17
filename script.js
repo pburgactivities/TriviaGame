@@ -311,7 +311,7 @@ function checkAnswer(selectedButton, selectedOption) {
 }
 
 function showResults() {
-    bgMusic.pause();
+        bgMusic.pause();
     finishSound.play().catch(e => console.log("Finish sound failed:", e));
     startTransition(() => {
         quizContainer.classList.add("hidden");
