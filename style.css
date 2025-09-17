@@ -3,8 +3,8 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #1a1a2e; /* A dark, deep blue for a modern feel */
-    color: #eee; /* Light text color for contrast */
+    background-color: #1a1a2e;
+    color: #eee;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@ body, html {
 
 /* Game Container Styles */
 #game-container {
-    background-color: #2c2c54; /* A slightly lighter, more vibrant dark blue for the game */
+    background-color: #2c2c54;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -31,7 +31,6 @@ body, html {
     border: 2px solid #555;
 }
 
-/* Fullscreen-specific styles for the game-container */
 #game-container:fullscreen,
 #game-container:-webkit-full-screen,
 #game-container:-moz-full-screen,
@@ -47,16 +46,16 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #121212; /* A consistent dark background for fullscreen */
+    background-color: #121212;
     border: none;
     box-shadow: none;
 }
 
 /* Headings and Text */
 h1, h2, h3 {
-    color: #00e5ff; /* Bright cyan for a glowing effect */
+    color: #00e5ff;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px #00e5ff, 0 0 20px rgba(0, 229, 255, 0.5); /* Neon glow effect */
+    text-shadow: 0 0 10px #00e5ff, 0 0 20px rgba(0, 229, 255, 0.5);
 }
 h1 { font-size: 2.8em; margin-top: 0; }
 h2 { font-size: 2.2em; }
@@ -81,6 +80,7 @@ p, label {
     width: 100%;
     text-align: left;
     box-sizing: border-box;
+    min-height: 60px; /* Ensures hint/explanation area stays consistent */
 }
 
 /* Input Fields */
@@ -137,7 +137,7 @@ button:disabled {
     box-shadow: none;
 }
 
-/* Topic Buttons specific styling */
+/* Topic Buttons */
 .topic-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -169,12 +169,15 @@ button:disabled {
     background-color: #00c4e0;
 }
 
-/* Quiz Container specific styles */
+/* Quiz Container */
 #quiz-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    min-height: 430px; /* Ensures all question pages have consistent height */
+    width: 100%;
+    max-width: 600px;
 }
 #options-container {
     display: flex;
@@ -182,6 +185,7 @@ button:disabled {
     width: 100%;
     max-width: 600px;
     margin-top: 15px;
+    min-height: 150px; /* Ensures options area doesn't collapse */
 }
 .option {
     background-color: #2a2a2a;
@@ -322,6 +326,8 @@ button:disabled {
     #game-container, #leaderboard-container { padding: 20px; width: 95%; }
     .topic-buttons button { padding: 8px 15px; font-size: 0.9em; }
     .option { padding: 12px 15px; font-size: 1em; }
+    #quiz-container { min-height: 350px; }
+    #options-container { min-height: 100px; }
 }
 @media (max-width: 480px) {
     #game-container { margin: 10px auto; padding: 15px; }
@@ -330,6 +336,8 @@ button:disabled {
     h3 { font-size: 1.2em; }
     button { padding: 8px 12px; font-size: 0.9em; }
     #leaderboard-container { padding: 10px; }
+    #quiz-container { min-height: 250px; }
+    #options-container { min-height: 70px; }
 }
 
 /* Ensure the audio elements are hidden but functional */
