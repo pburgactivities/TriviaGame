@@ -1,6 +1,6 @@
 {
   "history": {
-    "history-usa": [
+    "USA": [
       {
         "question": "Who was the first President of the United States?",
         "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams"],
@@ -72,7 +72,7 @@
         "hint": "The 'Summer of Love' decade."
       }
     ],
-    "history-uk": [
+    "UK": [
       {
         "question": "Who was the first female Prime Minister of the United Kingdom?",
         "options": ["Queen Elizabeth I", "Margaret Thatcher", "Theresa May", "Indira Gandhi"],
@@ -144,7 +144,7 @@
         "hint": "The era's name is in the question."
       }
     ],
-    "history-france": [
+    "France": [
       {
         "question": "In what year did the French Revolution begin?",
         "options": ["1776", "1789", "1804", "1815"],
@@ -216,7 +216,7 @@
         "hint": "A famous trio of virtues."
       }
     ],
-    "history-ancient-rome": [
+    "Ancient Rome": [
       {
         "question": "Who was the first emperor of Rome?",
         "options": ["Julius Caesar", "Nero", "Augustus", "Constantine"],
@@ -288,7 +288,7 @@
         "hint": "He was the first Roman emperor to convert to Christianity."
       }
     ],
-    "history-ancient-greece": [
+    "Ancient Greece": [
       {
         "question": "What was the name of the Greek city-state known for its military power?",
         "options": ["Athens", "Corinth", "Sparta", "Thebes"],
@@ -361,61 +361,62 @@
       }
     ]
   },
-  "movies": [
-    {
-      "question": "In what year was the first 'Star Wars' movie released?",
-      "options": ["1975", "1977", "1980", "1983"],
-      "answer": "1977",
-      "explanation": "'Star Wars: Episode IV - A New Hope' was released in 1977, changing the landscape of cinema forever.",
-      "hint": "The same year the first 'Rocky' movie won Best Picture."
-    },
-    {
-      "question": "Who directed the movie 'Jaws'?",
-      "options": ["Alfred Hitchcock", "Steven Spielberg", "George Lucas", "Martin Scorsese"],
-      "answer": "Steven Spielberg",
-      "explanation": "Steven Spielberg's direction of 'Jaws' established him as a major Hollywood filmmaker.",
-      "hint": "He also directed 'E.T.' and 'Jurassic Park'."
-    },
-    {
-      "question": "What is the name of the hobbit who carries the One Ring in 'The Lord of the Rings'?",
-      "options": ["Samwise Gamgee", "Meriadoc Brandybuck", "Pippin Took", "Frodo Baggins"],
-      "answer": "Frodo Baggins",
-      "explanation": "Frodo Baggins is the main protagonist of the trilogy and the bearer of the One Ring.",
-      "hint": "His last name is a type of bag."
-    },
-    {
-      "question": "Which film won the first Academy Award for Best Picture?",
-      "options": ["The Jazz Singer", "Wings", "The Broadway Melody", "Sunrise: A Song of Two Humans"],
-      "answer": "Wings",
-      "explanation": "The 1927 silent film 'Wings' was the inaugural winner of the Best Picture award.",
-      "hint": "It was a silent war movie."
-    },
-    {
-      "question": "What actress starred as Dorothy in 'The Wizard of Oz'?",
-      "options": ["Shirley Temple", "Lana Turner", "Judy Garland", "Elizabeth Taylor"],
-      "answer": "Judy Garland",
-      "explanation": "Judy Garland became an iconic star for her role as Dorothy Gale in the 1939 classic film.",
-      "hint": "She was also the mother of Liza Minnelli."
-    },
-    {
-      "question": "In the movie 'The Matrix,' what is Neo's real name?",
-      "options": ["Thomas Anderson", "John Smith", "Mike Jones", "James Johnson"],
-      "answer": "Thomas Anderson",
-      "explanation": "Neo's real name is revealed as Thomas Anderson before he is unplugged from the Matrix.",
-      "hint": "His last name is a common first name."
-    },
-    {
-      "question": "What is the name of the fictional African country in 'Black Panther'?",
-      "options": ["Wakanda", "Zambesia", "Genovia", "Aldovia"],
-      "answer": "Wakanda",
-      "explanation": "Wakanda is a technologically advanced, isolated nation in the Marvel Cinematic Universe.",
-      "hint": "Starts with 'W'."
-    },
-    {
-      "question": "Who played the character of the Joker in 'The Dark Knight'?",
-      "options": ["Jack Nicholson", "Jared Leto", "Joaquin Phoenix", "Heath Ledger"],
-      "answer": "Heath Ledger",
-      "explanation": "Heath Ledger won a posthumous Academy Award for his role as the Joker.",
+  "movies": {
+    "main": [
+      {
+        "question": "In what year was the first 'Star Wars' movie released?",
+        "options": ["1975", "1977", "1980", "1983"],
+        "answer": "1977",
+        "explanation": "'Star Wars: Episode IV - A New Hope' was released in 1977, changing the landscape of cinema forever.",
+        "hint": "The same year the first 'Rocky' movie won Best Picture."
+      },
+      {
+        "question": "Who directed the movie 'Jaws'?",
+        "options": ["Alfred Hitchcock", "Steven Spielberg", "George Lucas", "Martin Scorsese"],
+        "answer": "Steven Spielberg",
+        "explanation": "Steven Spielberg's direction of 'Jaws' established him as a major Hollywood filmmaker.",
+        "hint": "He also directed 'E.T.' and 'Jurassic Park'."
+      },
+      {
+        "question": "What is the name of the hobbit who carries the One Ring in 'The Lord of the Rings'?",
+        "options": ["Samwise Gamgee", "Meriadoc Brandybuck", "Pippin Took", "Frodo Baggins"],
+        "answer": "Frodo Baggins",
+        "explanation": "Frodo Baggins is the main protagonist of the trilogy and the bearer of the One Ring.",
+        "hint": "His last name is a type of bag."
+      },
+      {
+        "question": "Which film won the first Academy Award for Best Picture?",
+        "options": ["The Jazz Singer", "Wings", "The Broadway Melody", "Sunrise: A Song of Two Humans"],
+        "answer": "Wings",
+        "explanation": "The 1927 silent film 'Wings' was the inaugural winner of the Best Picture award.",
+        "hint": "It was a silent war movie."
+      },
+      {
+        "question": "What actress starred as Dorothy in 'The Wizard of Oz'?",
+        "options": ["Shirley Temple", "Lana Turner", "Judy Garland", "Elizabeth Taylor"],
+        "answer": "Judy Garland",
+        "explanation": "Judy Garland became an iconic star for her role as Dorothy Gale in the 1939 classic film.",
+        "hint": "She was also the mother of Liza Minnelli."
+      },
+      {
+        "question": "In the movie 'The Matrix,' what is Neo's real name?",
+        "options": ["Thomas Anderson", "John Smith", "Mike Jones", "James Johnson"],
+        "answer": "Thomas Anderson",
+        "explanation": "Neo's real name is revealed as Thomas Anderson before he is unplugged from the Matrix.",
+        "hint": "His last name is a common first name."
+      },
+      {
+        "question": "What is the name of the fictional African country in 'Black Panther'?",
+        "options": ["Wakanda", "Zambesia", "Genovia", "Aldovia"],
+        "answer": "Wakanda",
+        "explanation": "Wakanda is a technologically advanced, isolated nation in the Marvel Cinematic Universe.",
+        "hint": "Starts with 'W'."
+      },
+      {
+        "question": "Who played the character of the Joker in 'The Dark Knight'?",
+        "options": ["Jack Nicholson", "Jared Leto", "Joaquin Phoenix", "Heath Ledger"],
+        "answer": "Heath Ledger",
+        "explanation": "Heath Ledger won a posthumous Academy Award for his role as the Joker.",
         "hint": "He tragically passed away after filming."
       },
       {
@@ -432,8 +433,10 @@
         "explanation": "'Beauty and the Beast' was the first animated film to be nominated for Best Picture in 1991.",
         "hint": "A tale as old as time."
       }
-    ],
-    "science": [
+    ]
+  },
+  "science": {
+    "main": [
       {
         "question": "What planet is known as the 'Red Planet'?",
         "options": ["Mars", "Jupiter", "Venus", "Saturn"],
@@ -504,8 +507,10 @@
         "explanation": "A galaxy is a massive system of stars, stellar remnants, interstellar gas, dust, and dark matter bound together by gravity.",
         "hint": "The Milky Way is one."
       }
-    ],
-    "general": [
+    ]
+  },
+  "general": {
+    "main": [
       {
         "question": "What is the capital of France?",
         "options": ["London", "Berlin", "Paris", "Rome"],
@@ -576,877 +581,10 @@
         "explanation": "Mount Everest, located in the Himalayas, is the highest mountain above sea level.",
         "hint": "You have to climb it to be an expert."
       }
-    ],
-    "music": {
-      "music-60s": [
-        {
-          "question": "The Beatles' final album released was 'Let It Be', but what was the last one they recorded?",
-          "options": ["Sgt. Pepper's Lonely Hearts Club Band", "Abbey Road", "Revolver", "Magical Mystery Tour"],
-          "answer": "Abbey Road",
-          "explanation": "'Let It Be' was released in 1970, after the band had broken up, but 'Abbey Road' was the last album they recorded together in 1969.",
-          "hint": "Named after a famous London street crossing."
-        },
-        {
-          "question": "Who was the lead singer of The Doors?",
-          "options": ["Jim Morrison", "Robert Plant", "Mick Jagger", "John Lennon"],
-          "answer": "Jim Morrison",
-          "explanation": "Jim Morrison was the iconic and charismatic lead singer of The Doors.",
-          "hint": "He was known as the 'Lizard King'."
-        },
-        {
-          "question": "Which of these artists was not part of the '27 Club'?",
-          "options": ["Jimi Hendrix", "Janis Joplin", "Jim Morrison", "Bob Dylan"],
-          "answer": "Bob Dylan",
-          "explanation": "The '27 Club' is a list of musicians who died at the age of 27.",
-          "hint": "He is still alive."
-        },
-        {
-          "question": "What was the name of Elvis Presley's home in Memphis, Tennessee?",
-          "options": ["Graceland", "Neverland", "Heartbreak Hotel", "Sun Studios"],
-          "answer": "Graceland",
-          "explanation": "Graceland is a famous mansion that served as Elvis Presley's home and is now a museum.",
-          "hint": "It sounds like a place full of grace."
-        },
-        {
-          "question": "Which band had a hit song with 'Good Vibrations'?",
-          "options": ["The Beatles", "The Beach Boys", "The Rolling Stones", "The Who"],
-          "answer": "The Beach Boys",
-          "explanation": "'Good Vibrations' was a highly complex and experimental pop song released by The Beach Boys in 1966.",
-          "hint": "They were known for their harmonies and surf rock."
-        },
-        {
-          "question": "Who was the lead guitarist of The Who?",
-          "options": ["Eric Clapton", "Keith Richards", "Jimmy Page", "Pete Townshend"],
-          "answer": "Pete Townshend",
-          "explanation": "Pete Townshend was the primary songwriter and guitarist for the rock band The Who.",
-          "hint": "He often smashed his guitars on stage."
-        },
-        {
-          "question": "The famous Woodstock music festival took place in which year?",
-          "options": ["1967", "1969", "1971", "1973"],
-          "answer": "1969",
-          "explanation": "The Woodstock Music & Art Fair was a legendary music festival held in August 1969.",
-          "hint": "The year of the moon landing."
-        },
-        {
-          "question": "Which song by Simon & Garfunkel was featured in the movie 'The Graduate'?",
-          "options": ["'Mrs. Robinson'", "'Bridge over Troubled Water'", "'The Sound of Silence'", "'America'"],
-          "answer": "'Mrs. Robinson'",
-          "explanation": "'Mrs. Robinson' was a huge hit that became synonymous with the film 'The Graduate'.",
-          "hint": "It's about a character in the movie."
-        },
-        {
-          "question": "Which singer was known as 'The Queen of Soul'?",
-          "options": ["Diana Ross", "Aretha Franklin", "Tina Turner", "Etta James"],
-          "answer": "Aretha Franklin",
-          "explanation": "Aretha Franklin earned the nickname 'The Queen of Soul' for her powerful voice and gospel-infused style.",
-          "hint": "She's famous for her song 'Respect'."
-        },
-        {
-          "question": "What was the title of The Beatles' first album released in the UK?",
-          "options": ["Please Please Me", "With the Beatles", "A Hard Day's Night", "Help!"],
-          "answer": "Please Please Me",
-          "explanation": "The album was recorded in a single day and released in 1963 to commercial success.",
-          "hint": "The name of a song on the album."
-        }
-      ],
-      "music-70s": [
-        {
-          "question": "Which band released the iconic album 'Hotel California'?",
-          "options": ["Led Zeppelin", "Eagles", "Fleetwood Mac", "The Rolling Stones"],
-          "answer": "Eagles",
-          "explanation": "The Eagles' album 'Hotel California' was released in 1976 and is one of the best-selling albums of all time.",
-          "hint": "They were a soft rock band."
-        },
-        {
-          "question": "What was the name of the popular disco group known for the song 'Stayin' Alive'?",
-          "options": ["ABBA", "Queen", "Bee Gees", "Earth, Wind & Fire"],
-          "answer": "Bee Gees",
-          "explanation": "The Bee Gees' 'Stayin' Alive' was a central song on the 'Saturday Night Fever' soundtrack.",
-          "hint": "Their name is made of two words."
-        },
-        {
-          "question": "Which rock band had a hit with the song 'Bohemian Rhapsody'?",
-          "options": ["Led Zeppelin", "Pink Floyd", "Queen", "AC/DC"],
-          "answer": "Queen",
-          "explanation": "'Bohemian Rhapsody' is a legendary rock opera song from Queen's 1975 album 'A Night at the Opera'.",
-          "hint": "Named after a royal."
-        },
-        {
-          "question": "Who was the lead singer of Led Zeppelin?",
-          "options": ["Robert Plant", "Bon Scott", "Freddie Mercury", "Paul McCartney"],
-          "answer": "Robert Plant",
-          "explanation": "Robert Plant was the vocalist and lyricist for the influential rock band Led Zeppelin.",
-          "hint": "He also had a solo career."
-        },
-        {
-          "question": "What artist released the album 'Rumours' in 1977?",
-          "options": ["Fleetwood Mac", "Carole King", "Joni Mitchell", "Stevie Wonder"],
-          "answer": "Fleetwood Mac",
-          "explanation": "'Rumours' is the eleventh studio album by the British-American rock band Fleetwood Mac.",
-          "hint": "Their name sounds like a car."
-        },
-        {
-          "question": "Which artist released the song 'What's Going On' in 1971?",
-          "options": ["Stevie Wonder", "Marvin Gaye", "James Brown", "Al Green"],
-          "answer": "Marvin Gaye",
-          "explanation": "'What's Going On' is a protest song by Marvin Gaye that addresses issues of war and social injustice.",
-          "hint": "His last name rhymes with 'say'."
-        },
-        {
-          "question": "Who was the legendary guitarist of Pink Floyd?",
-          "options": ["Syd Barrett", "David Gilmour", "Roger Waters", "Nick Mason"],
-          "answer": "David Gilmour",
-          "explanation": "David Gilmour joined Pink Floyd in 1968 and became a major creative force in the band.",
-          "hint": "He also had a solo career."
-        },
-        {
-          "question": "What was the stage name of the musician born Reginald Dwight?",
-          "options": ["Freddie Mercury", "Paul McCartney", "Elton John", "David Bowie"],
-          "answer": "Elton John",
-          "explanation": "Elton John, a flamboyant rock star, took his stage name in the late 1960s.",
-          "hint": "He wrote the song 'Rocket Man'."
-        },
-        {
-          "question": "Which artist released the album 'Tapestry' in 1971?",
-          "options": ["Joni Mitchell", "Carole King", "Carly Simon", "Janis Joplin"],
-          "answer": "Carole King",
-          "explanation": "'Tapestry' is the second solo studio album by Carole King. It is one of the best-selling albums of all time.",
-          "hint": "Her name sounds like a ruler."
-        },
-        {
-          "question": "Which iconic artist released the song 'Rebel Rebel'?",
-          "options": ["Mick Jagger", "David Bowie", "Lou Reed", "Iggy Pop"],
-          "answer": "David Bowie",
-          "explanation": "'Rebel Rebel' is a song by David Bowie from his 1974 album 'Diamond Dogs'.",
-          "hint": "He was known as the 'Starman'."
-        }
-      ],
-      "music-80s": [
-        {
-          "question": "What Michael Jackson album, released in 1982, is the best-selling album of all time?",
-          "options": ["Bad", "Thriller", "Off the Wall", "Dangerous"],
-          "answer": "Thriller",
-          "explanation": "'Thriller' is a pop masterpiece that solidified Michael Jackson's status as the 'King of Pop'.",
-          "hint": "The name of the album is also a dance."
-        },
-        {
-          "question": "Which artist released the song 'Like a Virgin'?",
-          "options": ["Janet Jackson", "Whitney Houston", "Madonna", "Mariah Carey"],
-          "answer": "Madonna",
-          "explanation": "'Like a Virgin' was a controversial but hugely successful single from Madonna's 1984 album of the same name.",
-          "hint": "Her nickname is 'The Material Girl'."
-        },
-        {
-          "question": "Which band had a hit song with 'Sweet Child o' Mine'?",
-          "options": ["Bon Jovi", "Guns N' Roses", "Aerosmith", "Metallica"],
-          "answer": "Guns N' Roses",
-          "explanation": "'Sweet Child o' Mine' is one of the most recognizable rock songs of the 1980s.",
-          "hint": "They had a famous lead guitarist named Slash."
-        },
-        {
-          "question": "Who sang the hit song 'I Wanna Dance with Somebody (Who Loves Me)'?",
-          "options": ["Mariah Carey", "Celine Dion", "Whitney Houston", "Janet Jackson"],
-          "answer": "Whitney Houston",
-          "explanation": "'I Wanna Dance with Somebody' was released by Whitney Houston in 1987 and became an instant classic.",
-          "hint": "She was the star of the movie 'The Bodyguard'."
-        },
-        {
-          "question": "What band was known for their music video for 'Take on Me'?",
-          "options": ["A-ha", "Duran Duran", "Depeche Mode", "Tears for Fears"],
-          "answer": "A-ha",
-          "explanation": "The music video for 'Take on Me' was famous for its use of rotoscoping animation and became an MTV staple.",
-          "hint": "Their name sounds like an exclamation."
-        },
-        {
-          "question": "Which band had a hit song with 'Don't Stop Believin'?",
-          "options": ["Journey", "Queen", "Boston", "Foreigner"],
-          "answer": "Journey",
-          "explanation": "'Don't Stop Believin'' is one of the most enduring rock anthems of all time.",
-          "hint": "Their name is also a trip."
-        },
-        {
-          "question": "Who was the lead singer of the band U2?",
-          "options": ["Bono", "The Edge", "Adam Clayton", "Larry Mullen Jr."],
-          "answer": "Bono",
-          "explanation": "Bono is the lead vocalist and primary lyricist for the Irish rock band U2.",
-          "hint": "His name is a gift in Latin."
-        },
-        {
-          "question": "What song from the movie 'Top Gun' was a number one hit for Berlin?",
-          "options": ["'Danger Zone'", "'Take My Breath Away'", "'Top Gun Anthem'", "'Mighty Wings'"],
-          "answer": "'Take My Breath Away'",
-          "explanation": "'Take My Breath Away' was a romantic ballad that became a signature song for the movie.",
-          "hint": "The name of the song is also a phrase."
-        },
-        {
-          "question": "Which artist released the album 'Purple Rain'?",
-          "options": ["Prince", "Michael Jackson", "Madonna", "Stevie Wonder"],
-          "answer": "Prince",
-          "explanation": "'Purple Rain' is the sixth studio album by Prince and a classic of the 1980s.",
-          "hint": "The artist is also a symbol."
-        },
-        {
-          "question": "What was the name of the popular hair band known for the song 'Every Rose Has Its Thorn'?",
-          "options": ["Poison", "Bon Jovi", "Motley Crue", "Def Leppard"],
-          "answer": "Poison",
-          "explanation": "Poison was a popular hair band that had a hit with the power ballad 'Every Rose Has Its Thorn'.",
-          "hint": "Their name is a type of liquid."
-        }
-      ],
-      "music-90s": [
-        {
-          "question": "Who sang the hit song 'I Will Always Love You' from the movie 'The Bodyguard'?",
-          "options": ["Celine Dion", "Mariah Carey", "Whitney Houston", "Toni Braxton"],
-          "answer": "Whitney Houston",
-          "explanation": "Whitney Houston's rendition of 'I Will Always Love You' is one of the best-selling singles of all time.",
-          "hint": "She was also the star of the movie."
-        },
-        {
-          "question": "Which band released the album 'Nevermind'?",
-          "options": ["Pearl Jam", "Soundgarden", "Nirvana", "Alice in Chains"],
-          "answer": "Nirvana",
-          "explanation": "'Nevermind' launched the grunge music scene into the mainstream and is considered a rock masterpiece.",
-          "hint": "The lead singer was Kurt Cobain."
-        },
-        {
-          "question": "What female artist released the hit single 'One Sweet Day' with Boyz II Men?",
-          "options": ["Celine Dion", "Mariah Carey", "Janet Jackson", "Whitney Houston"],
-          "answer": "Mariah Carey",
-          "explanation": "'One Sweet Day' spent a record 16 weeks at number one on the Billboard Hot 100 chart.",
-          "hint": "She is known for her impressive vocal range."
-        },
-        {
-          "question": "What was the name of the band that had a hit with the song 'Losing My Religion'?",
-          "options": ["R.E.M.", "U2", "Nirvana", "Pearl Jam"],
-          "answer": "R.E.M.",
-          "explanation": "'Losing My Religion' was a massive hit for the alternative rock band R.E.M. in 1991.",
-          "hint": "Their name is an abbreviation for a type of sleep."
-        },
-        {
-          "question": "Which band was known for the hit song 'Wonderwall'?",
-          "options": ["Blur", "Pulp", "Radiohead", "Oasis"],
-          "answer": "Oasis",
-          "explanation": "'Wonderwall' is one of the most recognizable songs from the British rock band Oasis.",
-          "hint": "They were part of the Britpop movement."
-        },
-        {
-          "question": "Who was the lead singer of the band Pearl Jam?",
-          "options": ["Layne Staley", "Chris Cornell", "Eddie Vedder", "Kurt Cobain"],
-          "answer": "Eddie Vedder",
-          "explanation": "Eddie Vedder is the lead vocalist and one of the primary songwriters of the rock band Pearl Jam.",
-          "hint": "He is known for his powerful, baritone voice."
-        },
-        {
-          "question": "What was the name of the first Spice Girls single?",
-          "options": ["'Wannabe'", "'Spice Up Your Life'", "'2 Become 1'", "'Say You'll Be There'"],
-          "answer": "'Wannabe'",
-          "explanation": "'Wannabe' was the Spice Girls' debut single and an international smash hit in 1996.",
-          "hint": "Its name is a shortened version of 'want to be'."
-        },
-        {
-          "question": "Which rapper released the album 'The Slim Shady LP'?",
-          "options": ["Jay-Z", "Dr. Dre", "Snoop Dogg", "Eminem"],
-          "answer": "Eminem",
-          "explanation": "'The Slim Shady LP' was Eminem's major-label debut album, released in 1999.",
-          "hint": "He is known as the 'Rap God'."
-        },
-        {
-          "question": "What was the title of the movie that featured the song 'My Heart Will Go On'?",
-          "options": ["The Bodyguard", "Moulin Rouge!", "Titanic", "Sleepless in Seattle"],
-          "answer": "Titanic",
-          "explanation": "'My Heart Will Go On' was the theme song for the 1997 blockbuster film 'Titanic'.",
-          "hint": "A movie about a sinking ship."
-        },
-        {
-          "question": "Who was the lead singer of the band No Doubt?",
-          "options": ["Avril Lavigne", "Gwen Stefani", "Alanis Morissette", "Pink"],
-          "answer": "Gwen Stefani",
-          "explanation": "Gwen Stefani rose to fame as the lead singer of the band No Doubt before launching a solo career.",
-          "hint": "Her last name is similar to a country in Europe."
-        }
-      ]
-    },
-    "sports": {
-      "sports-basketball": [
-        {
-          "question": "Who holds the record for the most points scored in a single NBA game?",
-          "options": ["LeBron James", "Michael Jordan", "Wilt Chamberlain", "Kareem Abdul-Jabbar"],
-          "answer": "Wilt Chamberlain",
-          "explanation": "Wilt Chamberlain scored 100 points in a game against the New York Knicks on March 2, 1962.",
-          "hint": "His last name sounds like a royal bedroom."
-        },
-        {
-          "question": "What is the official name of the 'Hoosiers' basketball team?",
-          "options": ["Indiana University", "Purdue University", "Butler University", "University of Notre Dame"],
-          "answer": "Indiana University",
-          "explanation": "The 'Hoosiers' is the nickname for the Indiana University athletic teams.",
-          "hint": "They're known for a famous rivalry with Purdue."
-        },
-        {
-          "question": "How many players are on a basketball court for one team during a game?",
-          "options": ["4", "5", "6", "7"],
-          "answer": "5",
-          "explanation": "A standard basketball game has five players from each team on the court at a time.",
-          "hint": "It's the same number of players on a volleyball team."
-        },
-        {
-          "question": "Which NBA team has won the most championships in history?",
-          "options": ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Golden State Warriors"],
-          "answer": "Boston Celtics",
-          "explanation": "The Boston Celtics have won the most NBA championships in history, with 17 titles.",
-          "hint": "Their logo is a green clover."
-        },
-        {
-          "question": "Who is the all-time leading scorer in NBA history?",
-          "options": ["Michael Jordan", "Kareem Abdul-Jabbar", "LeBron James", "Kobe Bryant"],
-          "answer": "LeBron James",
-          "explanation": "LeBron James surpassed Kareem Abdul-Jabbar for the all-time scoring record in 2023.",
-          "hint": "He is currently a player for the Lakers."
-        },
-        {
-          "question": "What is a 'triple-double' in basketball?",
-          "options": ["10 points, 10 assists, 10 rebounds", "10 points, 10 rebounds, 10 blocks", "10 points, 10 assists, 10 steals", "10 or more in three statistical categories"],
-          "answer": "10 or more in three statistical categories",
-          "explanation": "A triple-double is a single-game performance where a player accumulates a double-digit number in three of the five statistical categories: points, rebounds, assists, steals, and blocked shots.",
-          "hint": "It involves at least ten of something, three times."
-        },
-        {
-          "question": "What is the name of the professional women's basketball league in the US?",
-          "options": ["WNBA", "NCAA", "WBL", "A-1"],
-          "answer": "WNBA",
-          "explanation": "The Women's National Basketball Association is the premier women's professional basketball league in the United States.",
-          "hint": "It sounds like the men's league, with a 'W'."
-        },
-        {
-          "question": "Who is considered the founder of basketball?",
-          "options": ["James Naismith", "John Wooden", "Michael Jordan", "Kareem Abdul-Jabbar"],
-          "answer": "James Naismith",
-          "explanation": "James Naismith, a Canadian physical education instructor, invented basketball in 1891.",
-          "hint": "His last name sounds like a common last name."
-        },
-        {
-          "question": "Which NBA player is famous for his 'Skyhook' shot?",
-          "options": ["Shaquille O'Neal", "Magic Johnson", "Michael Jordan", "Kareem Abdul-Jabbar"],
-          "answer": "Kareem Abdul-Jabbar",
-          "explanation": "The 'Skyhook' was a signature shot for Kareem Abdul-Jabbar and was notoriously difficult to block.",
-          "hint": "His first name is Kareem."
-        },
-        {
-          "question": "What is the team name for the professional basketball team in Chicago?",
-          "options": ["Bulls", "Bears", "Cubs", "White Sox"],
-          "answer": "Bulls",
-          "explanation": "The Chicago Bulls are an American professional basketball team based in Chicago.",
-          "hint": "They're known for having Michael Jordan."
-        }
-      ],
-      "sports-baseball": [
-        {
-          "question": "Which MLB team is known as 'The Bronx Bombers'?",
-          "options": ["Boston Red Sox", "New York Yankees", "Los Angeles Dodgers", "Chicago Cubs"],
-          "answer": "New York Yankees",
-          "explanation": "The New York Yankees' powerful lineup earned them the nickname 'The Bronx Bombers' in the 1930s.",
-          "hint": "They play their home games in New York City."
-        },
-        {
-          "question": "How many innings are in a standard game of baseball?",
-          "options": ["7", "8", "9", "10"],
-          "answer": "9",
-          "explanation": "A standard professional baseball game consists of nine innings, unless the game is tied after the ninth.",
-          "hint": "One less than a perfect ten."
-        },
-        {
-          "question": "What is the name of the championship series in Major League Baseball?",
-          "options": ["The World Series", "The Super Bowl", "The NBA Finals", "The Stanley Cup"],
-          "answer": "The World Series",
-          "explanation": "The World Series is the annual championship series of Major League Baseball.",
-          "hint": "It's a series that decides the world champion."
-        },
-        {
-          "question": "What is a 'perfect game' in baseball?",
-          "options": ["When a pitcher throws a no-hitter", "When a pitcher doesn't allow a runner on base", "When a pitcher strikes out every batter", "When a team scores a run in every inning"],
-          "answer": "When a pitcher doesn't allow a runner on base",
-          "explanation": "A perfect game is a game in which a pitcher pitches a victory that lasts a minimum of nine innings and in which no opposing player reaches base.",
-          "hint": "It's a rare feat for a pitcher."
-        },
-        {
-          "question": "Who is considered the greatest baseball player of all time?",
-          "options": ["Babe Ruth", "Ty Cobb", "Ted Williams", "Hank Aaron"],
-          "answer": "Babe Ruth",
-          "explanation": "Babe Ruth is widely regarded as the greatest baseball player of all time, famous for his home run hitting.",
-          "hint": "His nickname was 'The Sultan of Swat'."
-        },
-        {
-          "question": "What is a 'grand slam' in baseball?",
-          "options": ["A home run with the bases loaded", "A home run that wins the game", "A home run with no runners on base", "A home run in the bottom of the ninth inning"],
-          "answer": "A home run with the bases loaded",
-          "explanation": "A grand slam is a home run hit with a runner on first, second, and third base.",
-          "hint": "It scores four runs at once."
-        },
-        {
-          "question": "What is the name of the professional women's softball league in the US?",
-          "options": ["WNBA", "WSSB", "WSA", "NPF"],
-          "answer": "NPF",
-          "explanation": "The National Pro Fastpitch was the women's professional softball league in the US from 2004 to 2020.",
-          "hint": "It's an acronym."
-        },
-        {
-          "question": "What is the official name of the 'Curse of the Bambino'?",
-          "options": ["A curse that affected the Boston Red Sox", "A curse that affected the New York Yankees", "A curse that affected the Chicago Cubs", "A curse that affected the Los Angeles Dodgers"],
-          "answer": "A curse that affected the Boston Red Sox",
-          "explanation": "The 'Curse of the Bambino' was a famous baseball superstition that affected the Boston Red Sox.",
-          "hint": "It was named after Babe Ruth."
-        },
-        {
-          "question": "What is the name of the professional baseball team in Boston?",
-          "options": ["Red Sox", "Celtics", "Patriots", "Bruins"],
-          "answer": "Red Sox",
-          "explanation": "The Boston Red Sox are an American professional baseball team based in Boston.",
-          "hint": "Their socks are a certain color."
-        },
-        {
-          "question": "What is the name of the famous baseball stadium in Chicago?",
-          "options": ["Wrigley Field", "Fenway Park", "Yankee Stadium", "Dodger Stadium"],
-          "answer": "Wrigley Field",
-          "explanation": "Wrigley Field is a famous baseball stadium in Chicago that is home to the Chicago Cubs.",
-          "hint": "It's named after a chewing gum."
-        }
-      ],
-      "sports-football": [
-        {
-          "question": "How many players are on the field for one team during an American football game?",
-          "options": ["9", "10", "11", "12"],
-          "answer": "11",
-          "explanation": "A standard American football game has 11 players from each team on the field at a time.",
-          "hint": "The same number as a soccer team."
-        },
-        {
-          "question": "What is a 'touchdown' in American football?",
-          "options": ["When a player crosses the goal line with the ball", "When a player scores a field goal", "When a player intercepts the ball", "When a player gets a sack"],
-          "answer": "When a player crosses the goal line with the ball",
-          "explanation": "A touchdown is a score in American football that is worth six points.",
-          "hint": "It's the main way to score in the game."
-        },
-        {
-          "question": "What is the championship game of the NFL called?",
-          "options": ["The World Series", "The Super Bowl", "The NBA Finals", "The Stanley Cup"],
-          "answer": "The Super Bowl",
-          "explanation": "The Super Bowl is the annual championship game of the NFL.",
-          "hint": "It's a big event in February."
-        },
-        {
-          "question": "Who is the all-time leader in passing yards in the NFL?",
-          "options": ["Tom Brady", "Drew Brees", "Peyton Manning", "Brett Favre"],
-          "answer": "Drew Brees",
-          "explanation": "Drew Brees is the all-time leader in passing yards in the NFL, with over 80,000 yards.",
-          "hint": "He played for the New Orleans Saints."
-        },
-        {
-          "question": "What is a 'sack' in American football?",
-          "options": ["When a defender tackles the quarterback behind the line of scrimmage", "When a defender intercepts the ball", "When a defender forces a fumble", "When a defender scores a touchdown"],
-          "answer": "When a defender tackles the quarterback behind the line of scrimmage",
-          "explanation": "A sack is a play in which a defensive player tackles the quarterback behind the line of scrimmage.",
-          "hint": "It's a way to get a negative yardage."
-        },
-        {
-          "question": "What is the name of the professional football team in Kansas City?",
-          "options": ["Chiefs", "Royals", "Cubs", "Lions"],
-          "answer": "Chiefs",
-          "explanation": "The Kansas City Chiefs are an American professional football team based in Kansas City, Missouri.",
-          "hint": "They're known for having Patrick Mahomes."
-        },
-        {
-          "question": "What is the name of the professional football league in the US?",
-          "options": ["NBA", "NFL", "MLB", "NHL"],
-          "answer": "NFL",
-          "explanation": "The National Football League is the largest professional American football league in the world.",
-          "hint": "It's an acronym."
-        },
-        {
-          "question": "What is the name of the famous football stadium in Green Bay?",
-          "options": ["Lambeau Field", "Arrowhead Stadium", "AT&T Stadium", "MetLife Stadium"],
-          "answer": "Lambeau Field",
-          "explanation": "Lambeau Field is a famous football stadium in Green Bay, Wisconsin, and is home to the Green Bay Packers.",
-          "hint": "It's known as the 'Frozen Tundra'."
-        },
-        {
-          "question": "What is the name of the trophy awarded to the Super Bowl winner?",
-          "options": ["Lombardi Trophy", "Heisman Trophy", "Stanley Cup", "World Series Trophy"],
-          "answer": "Lombardi Trophy",
-          "explanation": "The Lombardi Trophy is the trophy awarded to the winner of the Super Bowl.",
-          "hint": "It's named after a famous coach."
-        },
-        {
-          "question": "What is the term for a play in which a defender returns an interception for a touchdown?",
-          "options": ["A pick six", "A fumble", "A sack", "A safety"],
-          "answer": "A pick six",
-          "explanation": "A 'pick six' is a play in which a defensive player intercepts a pass and returns it for a touchdown.",
-          "hint": "It's a six-point play."
-        }
-      ],
-      "sports-soccer": [
-        {
-          "question": "How many players are on the field for one team during a soccer game?",
-          "options": ["9", "10", "11", "12"],
-          "answer": "11",
-          "explanation": "A standard soccer game has 11 players from each team on the field at a time.",
-          "hint": "The same number as an American football team."
-        },
-        {
-          "question": "What is a 'hat-trick' in soccer?",
-          "options": ["When a player scores three goals in a game", "When a player scores a goal with his head", "When a player scores a goal from a penalty kick", "When a player scores a goal from outside the penalty box"],
-          "answer": "When a player scores three goals in a game",
-          "explanation": "A 'hat-trick' is a feat of scoring three goals in a single match.",
-          "hint": "It's a term also used in hockey."
-        },
-        {
-          "question": "What is the name of the world's largest soccer tournament?",
-          "options": ["The World Cup", "The Champions League", "The Europa League", "The Copa América"],
-          "answer": "The World Cup",
-          "explanation": "The FIFA World Cup is the largest and most prestigious soccer tournament in the world.",
-          "hint": "It takes place every four years."
-        },
-        {
-          "question": "Who is considered the greatest soccer player of all time?",
-          "options": ["Lionel Messi", "Cristiano Ronaldo", "Pele", "Diego Maradona"],
-          "answer": "Pele",
-          "explanation": "Pele is widely regarded as the greatest soccer player of all time, winning three World Cups with Brazil.",
-          "hint": "He was a Brazilian legend."
-        },
-        {
-          "question": "What is a 'penalty kick' in soccer?",
-          "options": ["A free kick from the penalty spot", "A free kick from outside the penalty box", "A corner kick", "A throw-in"],
-          "answer": "A free kick from the penalty spot",
-          "explanation": "A penalty kick is a free kick awarded to a team after a foul is committed inside the penalty box.",
-          "hint": "It's a one-on-one shot against the goalkeeper."
-        },
-        {
-          "question": "What is the name of the professional soccer league in the US?",
-          "options": ["MLS", "EPL", "La Liga", "Serie A"],
-          "answer": "MLS",
-          "explanation": "Major League Soccer is the professional soccer league in the United States and Canada.",
-          "hint": "It's an acronym."
-        },
-        {
-          "question": "What is the name of the famous soccer stadium in Rio de Janeiro?",
-          "options": ["Maracanã Stadium", "Wembley Stadium", "Santiago Bernabéu Stadium", "Camp Nou"],
-          "answer": "Maracanã Stadium",
-          "explanation": "The Maracanã Stadium is a famous soccer stadium in Rio de Janeiro, Brazil, and is one of the largest stadiums in the world.",
-          "hint": "It hosted the 1950 and 2014 World Cup finals."
-        },
-        {
-          "question": "What is the name of the international soccer federation?",
-          "options": ["UEFA", "FIFA", "CONCACAF", "CAF"],
-          "answer": "FIFA",
-        "explanation": "The International Federation of Association Football is the governing body of international soccer.",
-        "hint": "It's an acronym."
-      },
-      {
-        "question": "What is the name of the trophy awarded to the World Cup winner?",
-        "options": ["Lombardi Trophy", "Ligue 1", "Golden Boot", "FIFA World Cup Trophy"],
-        "answer": "FIFA World Cup Trophy",
-        "explanation": "The FIFA World Cup Trophy is the trophy awarded to the winner of the World Cup.",
-        "hint": "It's the most prestigious trophy in soccer."
-      },
-      {
-        "question": "What is the name of the famous soccer player from Argentina?",
-        "options": ["Lionel Messi", "Cristiano Ronaldo", "Pele", "Diego Maradona"],
-        "answer": "Lionel Messi",
-        "explanation": "Lionel Messi is an Argentinian soccer player who is widely regarded as one of the greatest players of all time.",
-        "hint": "His name is in the question."
-      }
     ]
   },
-  "geography": [
-    {
-      "question": "What is the capital of Australia?",
-      "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
-      "answer": "Canberra",
-      "explanation": "Canberra is the capital of Australia, even though it's not the most populous city.",
-      "hint": "It was a planned city."
-    },
-    {
-      "question": "Which country is the largest by population?",
-      "options": ["India", "China", "United States", "Indonesia"],
-      "answer": "India",
-      "explanation": "As of 2023, India is the most populous country in the world, surpassing China.",
-      "hint": "It's in South Asia."
-    },
-    {
-      "question": "What is the longest mountain range in the world?",
-      "options": ["The Andes", "The Himalayas", "The Rocky Mountains", "The Alps"],
-      "answer": "The Andes",
-      "explanation": "The Andes mountain range runs along the western coast of South America and is the longest continental mountain range in the world.",
-      "hint": "It's in South America."
-    },
-    {
-      "question": "What is the name of the largest desert in the world?",
-      "options": ["Sahara Desert", "Gobi Desert", "Arabian Desert", "Antarctica"],
-      "answer": "Antarctica",
-      "explanation": "Antarctica is the largest desert in the world, as a desert is defined by a lack of precipitation, not heat.",
-      "hint": "It's a continent."
-    },
-    {
-      "question": "What is the most populous city in the world?",
-      "options": ["Tokyo", "Shanghai", "Delhi", "Mumbai"],
-      "answer": "Tokyo",
-      "explanation": "Tokyo is the most populous city in the world, with over 37 million people in its metropolitan area.",
-      "hint": "It's in Japan."
-    },
-    {
-      "question": "Which country is home to the Great Barrier Reef?",
-      "options": ["Australia", "Indonesia", "Fiji", "New Zealand"],
-      "answer": "Australia",
-      "explanation": "The Great Barrier Reef is the world's largest coral reef system, located off the coast of Queensland, Australia.",
-      "hint": "It's also a continent."
-    },
-    {
-      "question": "What is the name of the famous ancient city in Jordan?",
-      "options": ["Petra", "Jerusalem", "Cairo", "Damascus"],
-      "answer": "Petra",
-      "explanation": "Petra is an ancient city in Jordan known for its rock-cut architecture.",
-      "hint": "Its name means 'rock' in Greek."
-    },
-    {
-      "question": "Which country is located at the top of South America?",
-      "options": ["Brazil", "Colombia", "Argentina", "Chile"],
-      "answer": "Colombia",
-      "explanation": "Colombia is located at the top of South America, bordering Panama.",
-      "hint": "Its name sounds like a bird."
-    },
-    {
-      "question": "What is the name of the famous river that flows through London?",
-      "options": ["River Thames", "River Seine", "River Danube", "River Rhine"],
-      "answer": "River Thames",
-      "explanation": "The River Thames is the second-longest river in the United Kingdom and flows through London.",
-      "hint": "Its name starts with 'T'."
-    },
-    {
-      "question": "What is the name of the famous monument in India?",
-      "options": ["Taj Mahal", "Eiffel Tower", "Statue of Liberty", "Great Wall of China"],
-      "answer": "Taj Mahal",
-      "explanation": "The Taj Mahal is a famous mausoleum in India that was built by the Mughal emperor Shah Jahan.",
-      "hint": "It's a symbol of love."
-    }
-  ],
-  "food": [
-    {
-      "question": "What is sushi made of?",
-      "options": ["Raw fish and rice", "Cooked fish and rice", "Raw fish and noodles", "Cooked fish and noodles"],
-      "answer": "Raw fish and rice",
-      "explanation": "Sushi is a traditional Japanese dish made of raw fish and rice.",
-      "hint": "A popular Japanese food."
-    },
-    {
-      "question": "What is the main ingredient in hummus?",
-      "options": ["Chickpeas", "Lentils", "Black beans", "Kidney beans"],
-      "answer": "Chickpeas",
-      "explanation": "Hummus is a Middle Eastern dip or spread made from cooked, mashed chickpeas blended with tahini, lemon juice, and garlic.",
-      "hint": "It's a type of legume."
-    },
-    {
-      "question": "What is the main ingredient in guacamole?",
-      "options": ["Tomatoes", "Onions", "Avocados", "Cilantro"],
-      "answer": "Avocados",
-      "explanation": "Guacamole is a dip or spread made from mashed avocados, onions, tomatoes, and cilantro.",
-      "hint": "It's a green fruit."
-    },
-    {
-      "question": "What is the name of the Italian dish made of pasta and a meat sauce?",
-      "options": ["Spaghetti", "Lasagna", "Fettuccine", "Ravioli"],
-      "answer": "Spaghetti",
-      "explanation": "Spaghetti is a long, thin, cylindrical pasta that is often served with a meat sauce.",
-      "hint": "It's a popular pasta dish."
-    },
-    {
-      "question": "What is the main ingredient in paella?",
-      "options": ["Rice", "Pasta", "Noodles", "Couscous"],
-      "answer": "Rice",
-      "explanation": "Paella is a Spanish rice dish that is often made with seafood, chicken, and vegetables.",
-      "hint": "It's a popular Spanish dish."
-    },
-    {
-      "question": "What is the name of the famous dessert made of sponge cake soaked in coffee?",
-      "options": ["Tiramisu", "Panna Cotta", "Cannoli", "Gelato"],
-      "answer": "Tiramisu",
-      "explanation": "Tiramisu is a coffee-flavored Italian dessert.",
-      "hint": "It's a popular Italian dessert."
-    },
-    {
-      "question": "What is the name of the popular Mexican dish made of a corn tortilla filled with meat, cheese, and vegetables?",
-      "options": ["Burrito", "Taco", "Quesadilla", "Enchilada"],
-      "answer": "Taco",
-      "explanation": "A taco is a traditional Mexican dish made of a corn or wheat tortilla filled with meat, cheese, and vegetables.",
-      "hint": "You eat it with your hands."
-    },
-    {
-      "question": "What is the main ingredient in falafel?",
-      "options": ["Chickpeas", "Lentils", "Black beans", "Kidney beans"],
-      "answer": "Chickpeas",
-      "explanation": "Falafel is a deep-fried ball or patty made from ground chickpeas.",
-      "hint": "It's a Middle Eastern food."
-    },
-    {
-      "question": "What is the name of the famous Chinese dish made of noodles and vegetables?",
-      "options": ["Chow Mein", "Fried Rice", "Kung Pao Chicken", "Sweet and Sour Pork"],
-      "answer": "Chow Mein",
-      "explanation": "Chow Mein is a Chinese dish of stir-fried noodles with vegetables and a sauce.",
-      "hint": "Its name means 'stir-fried noodles'."
-    },
-    {
-      "question": "What is the name of the famous Italian dish made of thin layers of pasta and meat sauce?",
-      "options": ["Spaghetti", "Lasagna", "Fettuccine", "Ravioli"],
-      "answer": "Lasagna",
-      "explanation": "Lasagna is a dish made of stacked layers of pasta with sauce and cheese.",
-      "hint": "It's Garfield's favorite food."
-    }
-  ],
-  "animals": [
-    {
-      "question": "What is the largest land animal?",
-      "options": ["Elephant", "Giraffe", "Hippopotamus", "Rhinoceros"],
-      "answer": "Elephant",
-      "explanation": "The African bush elephant is the largest living land animal.",
-      "hint": "It has a long trunk."
-    },
-    {
-      "question": "What is the fastest land animal?",
-      "options": ["Lion", "Tiger", "Cheetah", "Leopard"],
-      "answer": "Cheetah",
-      "explanation": "The cheetah is the fastest land animal, reaching speeds of up to 120 km/h (75 mph).",
-      "hint": "It has a spotted coat."
-    },
-    {
-      "question": "What is the largest marine animal?",
-      "options": ["Whale shark", "Blue whale", "Great white shark", "Orca"],
-      "answer": "Blue whale",
-      "explanation": "The blue whale is the largest animal known to have ever existed.",
-      "hint": "It's a mammal."
-    },
-    {
-      "question": "What is a group of lions called?",
-      "options": ["A herd", "A pack", "A pride", "A flock"],
-      "answer": "A pride",
-      "explanation": "A group of lions is called a pride, which is typically made up of a few adult males and several females.",
-      "hint": "It's a source of great honor."
-    },
-    {
-      "question": "What is the only mammal that can fly?",
-      "options": ["Bat", "Flying squirrel", "Flying fox", "Eagle"],
-      "answer": "Bat",
-      "explanation": "Bats are the only mammals that can sustain flight.",
-      "hint": "It's a nocturnal animal."
-    },
-    {
-      "question": "What is the name of the tallest animal?",
-      "options": ["Giraffe", "Elephant", "Zebra", "Rhinoceros"],
-      "answer": "Giraffe",
-      "explanation": "The giraffe is the tallest living animal.",
-      "hint": "It has a long neck."
-    },
-    {
-      "question": "What is the name of the largest bird in the world?",
-      "options": ["Ostrich", "Eagle", "Penguin", "Hummingbird"],
-      "answer": "Ostrich",
-      "explanation": "The ostrich is the largest living bird, and it cannot fly.",
-      "hint": "It's native to Africa."
-    },
-    {
-      "question": "What is the name of the largest spider in the world?",
-      "options": ["Tarantula", "Black Widow", "Wolf Spider", "Goliath Birdeater"],
-      "answer": "Goliath Birdeater",
-      "explanation": "The Goliath Birdeater is the largest spider in the world, with a leg span of up to 30 cm (12 in).",
-      "hint": "It's a type of tarantula."
-    },
-    {
-      "question": "What is a group of crows called?",
-      "options": ["A murder", "A flock", "A herd", "A parliament"],
-      "answer": "A murder",
-      "explanation": "A group of crows is called a murder, a term that dates back to the 15th century.",
-      "hint": "It's a spooky term."
-    },
-    {
-      "question": "What is the name of the fastest bird in the world?",
-      "options": ["Peregrine Falcon", "Golden Eagle", "Ostrich", "Hummingbird"],
-      "answer": "Peregrine Falcon",
-      "explanation": "The peregrine falcon is the fastest bird in the world, reaching speeds of up to 320 km/h (200 mph).",
-      "hint": "It's known for its incredible speed."
-    }
-  ],
-  "mixed": [
-    {
-      "question": "What is the name of the largest city in the world by population?",
-      "options": ["Tokyo", "Shanghai", "Delhi", "Mumbai"],
-      "answer": "Tokyo",
-      "explanation": "Tokyo is the most populous city in the world, with over 37 million people in its metropolitan area.",
-      "hint": "It's in Japan."
-    },
-    {
-      "question": "Who was the first person to sign the Declaration of Independence?",
-      "options": ["Thomas Jefferson", "Benjamin Franklin", "John Hancock", "George Washington"],
-      "answer": "John Hancock",
-      "explanation": "John Hancock signed his name first and largest so that King George III could read it without his spectacles.",
-      "hint": "His signature is the largest one on the document."
-    },
-    {
-      "question": "Which band had a hit song with 'Bohemian Rhapsody'?",
-      "options": ["Led Zeppelin", "Pink Floyd", "Queen", "AC/DC"],
-      "answer": "Queen",
-      "explanation": "'Bohemian Rhapsody' is a legendary rock opera song from Queen's 1975 album 'A Night at the Opera'.",
-      "hint": "Named after a royal."
-    },
-    {
-      "question": "What is a 'triple-double' in basketball?",
-      "options": ["10 points, 10 assists, 10 rebounds", "10 points, 10 rebounds, 10 blocks", "10 points, 10 assists, 10 steals", "10 or more in three statistical categories"],
-      "answer": "10 or more in three statistical categories",
-      "explanation": "A triple-double is a single-game performance where a player accumulates a double-digit number in three of the five statistical categories: points, rebounds, assists, steals, and blocked shots.",
-      "hint": "It involves at least ten of something, three times."
-    },
-    {
-      "question": "What is the name of the legendary founder of Rome?",
-      "options": ["Romulus", "Remus", "Augustus", "Julius Caesar"],
-      "answer": "Romulus",
-      "explanation": "According to legend, Rome was founded by twins Romulus and Remus, with Romulus eventually becoming the first king.",
-      "hint": "His name is very similar to the city's name."
-    },
-    {
-      "question": "What is the name of the largest desert in the world?",
-      "options": ["Sahara Desert", "Gobi Desert", "Arabian Desert", "Antarctica"],
-      "answer": "Antarctica",
-      "explanation": "Antarctica is the largest desert in the world, as a desert is defined by a lack of precipitation, not heat.",
-      "hint": "It's a continent."
-    },
-    {
-      "question": "What is the main ingredient in guacamole?",
-      "options": ["Tomatoes", "Onions", "Avocados", "Cilantro"],
-      "answer": "Avocados",
-      "explanation": "Guacamole is a dip or spread made from mashed avocados, onions, tomatoes, and cilantro.",
-      "hint": "It's a green fruit."
-    },
-    {
-      "question": "What is the only mammal that can fly?",
-      "options": ["Bat", "Flying squirrel", "Flying fox", "Eagle"],
-      "answer": "Bat",
-      "explanation": "Bats are the only mammals that can sustain flight.",
-      "hint": "It's a nocturnal animal."
-    },
-    {
-      "question": "What is the powerhouse of the cell?",
-      "options": ["Nucleus", "Ribosome", "Mitochondria", "Cytoplasm"],
-      "answer": "Mitochondria",
-      "explanation": "Mitochondria are organelles that generate most of the chemical energy needed to power the cell's biochemical reactions.",
-      "hint": "It starts with 'M'."
-    },
-    {
-      "question": "What is the name of the famous football stadium in Green Bay?",
-      "options": ["Lambeau Field", "Arrowhead Stadium", "AT&T Stadium", "MetLife Stadium"],
-      "answer": "Lambeau Field",
-      "explanation": "Lambeau Field is a famous football stadium in Green Bay, Wisconsin, and is home to the Green Bay Packers.",
-      "hint": "It's known as the 'Frozen Tundra'."
-    }
-  ],
   "music": {
-    "music-60s": [
+    "60s": [
       {
         "question": "The Beatles' final album released was 'Let It Be', but what was the last one they recorded?",
         "options": ["Sgt. Pepper's Lonely Hearts Club Band", "Abbey Road", "Revolver", "Magical Mystery Tour"],
@@ -1518,7 +656,7 @@
         "hint": "The name of a song on the album."
       }
     ],
-    "music-70s": [
+    "70s": [
       {
         "question": "Which band released the iconic album 'Hotel California'?",
         "options": ["Led Zeppelin", "Eagles", "Fleetwood Mac", "The Rolling Stones"],
@@ -1590,7 +728,7 @@
         "hint": "He was known as the 'Starman'."
       }
     ],
-    "music-80s": [
+    "80s": [
       {
         "question": "What Michael Jackson album, released in 1982, is the best-selling album of all time?",
         "options": ["Bad", "Thriller", "Off the Wall", "Dangerous"],
@@ -1662,7 +800,7 @@
         "hint": "Their name is a type of liquid."
       }
     ],
-    "music-90s": [
+    "90s": [
       {
         "question": "Who sang the hit song 'I Will Always Love You' from the movie 'The Bodyguard'?",
         "options": ["Celine Dion", "Mariah Carey", "Whitney Houston", "Toni Braxton"],
@@ -1736,7 +874,7 @@
     ]
   },
   "sports": {
-    "sports-basketball": [
+    "Basketball": [
       {
         "question": "Who holds the record for the most points scored in a single NBA game?",
         "options": ["LeBron James", "Michael Jordan", "Wilt Chamberlain", "Kareem Abdul-Jabbar"],
@@ -1808,7 +946,7 @@
         "hint": "They're known for having Michael Jordan."
       }
     ],
-    "sports-baseball": [
+    "Baseball": [
       {
         "question": "Which MLB team is known as 'The Bronx Bombers'?",
         "options": ["Boston Red Sox", "New York Yankees", "Los Angeles Dodgers", "Chicago Cubs"],
@@ -1880,7 +1018,7 @@
         "hint": "It's named after a chewing gum."
       }
     ],
-    "sports-football": [
+    "Football": [
       {
         "question": "How many players are on the field for one team during an American football game?",
         "options": ["9", "10", "11", "12"],
@@ -1952,7 +1090,7 @@
         "hint": "It's a six-point play."
       }
     ],
-    "sports-soccer": [
+    "Soccer": [
       {
         "question": "How many players are on the field for one team during a soccer game?",
         "options": ["9", "10", "11", "12"],
@@ -2022,6 +1160,228 @@
         "answer": "Lionel Messi",
         "explanation": "Lionel Messi is an Argentinian soccer player who is widely regarded as one of the greatest players of all time.",
         "hint": "His name is in the question."
+      }
+    ]
+  },
+  "geography": {
+    "main": [
+      {
+        "question": "What is the capital of Australia?",
+        "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
+        "answer": "Canberra",
+        "explanation": "Canberra is the capital of Australia, even though it's not the most populous city.",
+        "hint": "It was a planned city."
+      },
+      {
+        "question": "Which country is the largest by population?",
+        "options": ["India", "China", "United States", "Indonesia"],
+        "answer": "India",
+        "explanation": "As of 2023, India is the most populous country in the world, surpassing China.",
+        "hint": "It's in South Asia."
+      },
+      {
+        "question": "What is the longest mountain range in the world?",
+        "options": ["The Andes", "The Himalayas", "The Rocky Mountains", "The Alps"],
+        "answer": "The Andes",
+        "explanation": "The Andes mountain range runs along the western coast of South America and is the longest continental mountain range in the world.",
+        "hint": "It's in South America."
+      },
+      {
+        "question": "What is the name of the largest desert in the world?",
+        "options": ["Sahara Desert", "Gobi Desert", "Arabian Desert", "Antarctica"],
+        "answer": "Antarctica",
+        "explanation": "Antarctica is the largest desert in the world, as a desert is defined by a lack of precipitation, not heat.",
+        "hint": "It's a continent."
+      },
+      {
+        "question": "What is the most populous city in the world?",
+        "options": ["Tokyo", "Shanghai", "Delhi", "Mumbai"],
+        "answer": "Tokyo",
+        "explanation": "Tokyo is the most populous city in the world, with over 37 million people in its metropolitan area.",
+        "hint": "It's in Japan."
+      },
+      {
+        "question": "Which country is home to the Great Barrier Reef?",
+        "options": ["Australia", "Indonesia", "Fiji", "New Zealand"],
+        "answer": "Australia",
+        "explanation": "The Great Barrier Reef is the world's largest coral reef system, located off the coast of Queensland, Australia.",
+        "hint": "It's also a continent."
+      },
+      {
+        "question": "What is the name of the famous ancient city in Jordan?",
+        "options": ["Petra", "Jerusalem", "Cairo", "Damascus"],
+        "answer": "Petra",
+        "explanation": "Petra is an ancient city in Jordan known for its rock-cut architecture.",
+        "hint": "Its name means 'rock' in Greek."
+      },
+      {
+        "question": "Which country is located at the top of South America?",
+        "options": ["Brazil", "Colombia", "Argentina", "Chile"],
+        "answer": "Colombia",
+        "explanation": "Colombia is located at the top of South America, bordering Panama.",
+        "hint": "Its name sounds like a bird."
+      },
+      {
+        "question": "What is the name of the famous river that flows through London?",
+        "options": ["River Thames", "River Seine", "River Danube", "River Rhine"],
+        "answer": "River Thames",
+        "explanation": "The River Thames is the second-longest river in the United Kingdom and flows through London.",
+        "hint": "Its name starts with 'T'."
+      },
+      {
+        "question": "What is the name of the famous monument in India?",
+        "options": ["Taj Mahal", "Eiffel Tower", "Statue of Liberty", "Great Wall of China"],
+        "answer": "Taj Mahal",
+        "explanation": "The Taj Mahal is a famous mausoleum in India that was built by the Mughal emperor Shah Jahan.",
+        "hint": "It's a symbol of love."
+      }
+    ]
+  },
+  "food": {
+    "main": [
+      {
+        "question": "What is sushi made of?",
+        "options": ["Raw fish and rice", "Cooked fish and rice", "Raw fish and noodles", "Cooked fish and noodles"],
+        "answer": "Raw fish and rice",
+        "explanation": "Sushi is a traditional Japanese dish made of raw fish and rice.",
+        "hint": "A popular Japanese food."
+      },
+      {
+        "question": "What is the main ingredient in hummus?",
+        "options": ["Chickpeas", "Lentils", "Black beans", "Kidney beans"],
+        "answer": "Chickpeas",
+        "explanation": "Hummus is a Middle Eastern dip or spread made from cooked, mashed chickpeas blended with tahini, lemon juice, and garlic.",
+        "hint": "It's a type of legume."
+      },
+      {
+        "question": "What is the main ingredient in guacamole?",
+        "options": ["Tomatoes", "Onions", "Avocados", "Cilantro"],
+        "answer": "Avocados",
+        "explanation": "Guacamole is a dip or spread made from mashed avocados, onions, tomatoes, and cilantro.",
+        "hint": "It's a green fruit."
+      },
+      {
+        "question": "What is the name of the Italian dish made of pasta and a meat sauce?",
+        "options": ["Spaghetti", "Lasagna", "Fettuccine", "Ravioli"],
+        "answer": "Spaghetti",
+        "explanation": "Spaghetti is a long, thin, cylindrical pasta that is often served with a meat sauce.",
+        "hint": "It's a popular pasta dish."
+      },
+      {
+        "question": "What is the main ingredient in paella?",
+        "options": ["Rice", "Pasta", "Noodles", "Couscous"],
+        "answer": "Rice",
+        "explanation": "Paella is a Spanish rice dish that is often made with seafood, chicken, and vegetables.",
+        "hint": "It's a popular Spanish dish."
+      },
+      {
+        "question": "What is the name of the famous dessert made of sponge cake soaked in coffee?",
+        "options": ["Tiramisu", "Panna Cotta", "Cannoli", "Gelato"],
+        "answer": "Tiramisu",
+        "explanation": "Tiramisu is a coffee-flavored Italian dessert.",
+        "hint": "It's a popular Italian dessert."
+      },
+      {
+        "question": "What is the name of the popular Mexican dish made of a corn tortilla filled with meat, cheese, and vegetables?",
+        "options": ["Burrito", "Taco", "Quesadilla", "Enchilada"],
+        "answer": "Taco",
+        "explanation": "A taco is a traditional Mexican dish made of a corn or wheat tortilla filled with meat, cheese, and vegetables.",
+        "hint": "You eat it with your hands."
+      },
+      {
+        "question": "What is the main ingredient in falafel?",
+        "options": ["Chickpeas", "Lentils", "Black beans", "Kidney beans"],
+        "answer": "Chickpeas",
+        "explanation": "Falafel is a deep-fried ball or patty made from ground chickpeas.",
+        "hint": "It's a Middle Eastern food."
+      },
+      {
+        "question": "What is the name of the famous Chinese dish made of noodles and vegetables?",
+        "options": ["Chow Mein", "Fried Rice", "Kung Pao Chicken", "Sweet and Sour Pork"],
+        "answer": "Chow Mein",
+        "explanation": "Chow Mein is a Chinese dish of stir-fried noodles with vegetables and a sauce.",
+        "hint": "Its name means 'stir-fried noodles'."
+      },
+      {
+        "question": "What is the name of the famous Italian dish made of thin layers of pasta and meat sauce?",
+        "options": ["Spaghetti", "Lasagna", "Fettuccine", "Ravioli"],
+        "answer": "Lasagna",
+        "explanation": "Lasagna is a dish made of stacked layers of pasta with sauce and cheese.",
+        "hint": "It's Garfield's favorite food."
+      }
+    ]
+  },
+  "animals": {
+    "main": [
+      {
+        "question": "What is the largest land animal?",
+        "options": ["Elephant", "Giraffe", "Hippopotamus", "Rhinoceros"],
+        "answer": "Elephant",
+        "explanation": "The African bush elephant is the largest living land animal.",
+        "hint": "It has a long trunk."
+      },
+      {
+        "question": "What is the fastest land animal?",
+        "options": ["Lion", "Tiger", "Cheetah", "Leopard"],
+        "answer": "Cheetah",
+        "explanation": "The cheetah is the fastest land animal, reaching speeds of up to 120 km/h (75 mph).",
+        "hint": "It has a spotted coat."
+      },
+      {
+        "question": "What is the largest marine animal?",
+        "options": ["Whale shark", "Blue whale", "Great white shark", "Orca"],
+        "answer": "Blue whale",
+        "explanation": "The blue whale is the largest animal known to have ever existed.",
+        "hint": "It's a mammal."
+      },
+      {
+        "question": "What is a group of lions called?",
+        "options": ["A herd", "A pack", "A pride", "A flock"],
+        "answer": "A pride",
+        "explanation": "A group of lions is called a pride, which is typically made up of a few adult males and several females.",
+        "hint": "It's a source of great honor."
+      },
+      {
+        "question": "What is the only mammal that can fly?",
+        "options": ["Bat", "Flying squirrel", "Flying fox", "Eagle"],
+        "answer": "Bat",
+        "explanation": "Bats are the only mammals that can sustain flight.",
+        "hint": "It's a nocturnal animal."
+      },
+      {
+        "question": "What is the name of the tallest animal?",
+        "options": ["Giraffe", "Elephant", "Zebra", "Rhinoceros"],
+        "answer": "Giraffe",
+        "explanation": "The giraffe is the tallest living animal.",
+        "hint": "It has a long neck."
+      },
+      {
+        "question": "What is the name of the largest bird in the world?",
+        "options": ["Ostrich", "Eagle", "Penguin", "Hummingbird"],
+        "answer": "Ostrich",
+        "explanation": "The ostrich is the largest living bird, and it cannot fly.",
+        "hint": "It's native to Africa."
+      },
+      {
+        "question": "What is the name of the largest spider in the world?",
+        "options": ["Tarantula", "Black Widow", "Wolf Spider", "Goliath Birdeater"],
+        "answer": "Goliath Birdeater",
+        "explanation": "The Goliath Birdeater is the largest spider in the world, with a leg span of up to 30 cm (12 in).",
+        "hint": "It's a type of tarantula."
+      },
+      {
+        "question": "What is a group of crows called?",
+        "options": ["A murder", "A flock", "A herd", "A parliament"],
+        "answer": "A murder",
+        "explanation": "A group of crows is called a murder, a term that dates back to the 15th century.",
+        "hint": "It's a spooky term."
+      },
+      {
+        "question": "What is the name of the fastest bird in the world?",
+        "options": ["Peregrine Falcon", "Golden Eagle", "Ostrich", "Hummingbird"],
+        "answer": "Peregrine Falcon",
+        "explanation": "The peregrine falcon is the fastest bird in the world, reaching speeds of up to 320 km/h (200 mph).",
+        "hint": "It's known for its incredible speed."
       }
     ]
   }
