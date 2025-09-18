@@ -1,7 +1,7 @@
 /* General body and container styling */
 body {
-    background-color: #12121e; /* Dark background */
-    color: #e0e0e0; /* Light text color for contrast */
+    background-color: #12121e;
+    color: #e0e0e0;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -11,14 +11,13 @@ body {
 }
 
 .game-container {
-    background-color: #1a1a2e; /* Slightly lighter dark background for the container */
+    background-color: #1a1a2e;
     padding: 30px;
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     max-width: 800px;
     width: 90%;
-    /* New: Stack elements vertically */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,7 +26,7 @@ body {
 /* Header and text styling */
 .game-title {
     font-size: 2.5em;
-    color: #8c8cff; /* A bright, appealing blue */
+    color: #8c8cff;
     margin-bottom: 20px;
     font-weight: bold;
 }
@@ -141,11 +140,10 @@ input[type="range"] {
 }
 
 .back-button {
-    /* New: Specific style for the back button to prevent it from getting theme styles */
     background-color: #4a4a6b;
     color: #ffffff;
     width: 180px;
-    margin-top: 20px; /* Space it out from the music buttons */
+    margin-top: 20px;
 }
 
 /* Scores and leaderboard styling */
@@ -175,7 +173,7 @@ input[type="range"] {
 
 /* Utility class to hide elements */
 .screen {
-    width: 100%; /* Ensures all screens take up full width to prevent layout shifts */
+    width: 100%;
 }
 
 .hidden {
