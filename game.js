@@ -93,10 +93,10 @@ function playSound(soundId) {
             const originalVolume = elements.bgMusic.volume;
             elements.bgMusic.volume = originalVolume * 0.2; // Lower volume to 20%
             
-            // Listen for the 'ended' event of the sound effect
-            sound.addEventListener('ended', () => {
+            // Restore volume after a fixed duration (2000 milliseconds)
+            setTimeout(() => {
                 elements.bgMusic.volume = originalVolume;
-            }, { once: true }); // Use { once: true } to automatically remove the listener
+            }, 2000); 
         }
 
         sound.currentTime = 0;
