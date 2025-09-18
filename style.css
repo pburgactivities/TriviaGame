@@ -200,3 +200,13 @@ button:disabled {
     transform: translateX(5px);
     background-color: #4d4d73;
 }
+/* Add to the bottom of your style.css file */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
