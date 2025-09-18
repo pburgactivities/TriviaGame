@@ -32,7 +32,6 @@ body {
 
 #game-title, h2 {
     color: var(--primary-color);
-    /* Toned down neon effect with a black outline for contrast */
     text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 5px var(--primary-color);
 }
 
