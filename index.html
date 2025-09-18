@@ -20,6 +20,12 @@
                 <label for="player-name">Player Name:</label>
                 <input type="text" id="player-name" placeholder="Enter your name">
             </div>
+            <div id="theme-selector">
+                <h3>Color Theme:</h3>
+                <button data-theme="default">Default</button>
+                <button data-theme="ocean">Ocean</button>
+                <button data-theme="forest">Forest</button>
+            </div>
             <button id="fullscreen-button">Toggle Fullscreen</button>
             <div class="controls-container">
                 <label for="volume-slider">Volume:</label>
@@ -55,8 +61,9 @@
             </div>
             <button id="start-button" disabled>Start Game</button>
             <div id="leaderboard-section">
-                <h3>Top Scores</h3>
-                <ul id="leaderboard-list"></ul>
+                <h3>Top 10 Scores</h3>
+                <ul id="leaderboard-list" class="top-scores-list"></ul>
+                <button id="view-all-scores-button">View All Scores</button>
                 <button id="reset-leaderboard-button">Reset Leaderboard</button>
             </div>
         </div>
