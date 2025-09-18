@@ -45,11 +45,9 @@ body {
     max-width: 700px;
     border: 2px solid var(--primary-color);
     transition: border-color 0.5s ease, background-color 0.5s ease;
-    /* Centering the container and allowing it to grow */
     margin: 0 auto;
 }
 
-/* Make the container fill the screen in fullscreen mode */
 .container:fullscreen {
     width: 100%;
     height: 100%;
@@ -59,16 +57,15 @@ body {
     border: none;
     box-shadow: none;
     padding: 20px;
-    overflow-y: auto; /* Ensure scrolling works in fullscreen */
+    overflow-y: auto;
 }
 
-#game-title, h2, h3, h4 {
+h1, h2, h3, h4 {
     color: var(--primary-color);
     text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 5px var(--primary-color);
     transition: color 0.5s ease, text-shadow 0.5s ease;
 }
 
-/* Styles for the new sections */
 .section-box {
     background-color: #1f1f2e;
     padding: 20px;
@@ -147,7 +144,7 @@ button:disabled {
     background-color: #3b3b5b;
     color: var(--text-color);
     border: 1px solid transparent;
-    transition: all 0.3s ease;
+    text-transform: none;
 }
 
 .option:hover:not(:disabled) {
@@ -220,8 +217,7 @@ button:disabled {
     border-left: 5px solid var(--error-color);
 }
 
-/* Grid layout for cleaner topics */
-.topic-buttons, #music-subcategories {
+.topic-buttons-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 15px;
@@ -229,16 +225,26 @@ button:disabled {
     padding: 10px 0;
 }
 
-.topic-buttons button {
+.topic-buttons-container button {
     background-color: #3b3b5b;
     color: var(--text-color);
     border: 1px solid #5b5b8c;
 }
 
-.topic-buttons button.selected {
+.topic-buttons-container button.selected {
     background-color: var(--primary-color);
     box-shadow: 0 0 10px var(--primary-color);
     border: 1px solid var(--primary-color);
+}
+
+#back-to-main-topics {
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    grid-column: 1 / -1; /* Make button span full width */
+    margin-top: 1rem;
+}
+#back-to-main-topics:hover {
+     background-color: #00b8d4;
 }
 
 #leaderboard-list {
@@ -260,7 +266,6 @@ button:disabled {
     background-color: #4d4d73;
 }
 
-/* New leaderboard page styles */
 #full-leaderboard-list {
     list-style-type: none;
     padding: 0;
@@ -310,7 +315,6 @@ button:disabled {
     text-shadow: 0 0 5px var(--secondary-color);
 }
 
-/* Animated transitions */
 .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease;
