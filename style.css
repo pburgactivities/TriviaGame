@@ -183,7 +183,7 @@ button:disabled {
 }
 
 #leaderboard-list {
-    list-style-type: none;
+    padding: 0;
 }
 
 #leaderboard-list li {
