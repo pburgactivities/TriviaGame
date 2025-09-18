@@ -1,7 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     /**
+     * CONSTANTS
+     * Centralizes strings and values used throughout the script to prevent typos and ease future updates.
+     */
+    const constants = {
+        LEADERBOARD_KEY: 'trivia_leaderboard',
+        THEME_KEY: 'theme',
+        DEFAULT_THEME: 'default',
+        DEFAULT_PLAYER_NAME: 'Player',
+        CSS_HIDDEN: 'hidden',
+        CSS_SELECTED: 'selected',
+        CSS_CORRECT: 'correct',
+        CSS_INCORRECT: 'incorrect',
+        CSS_FADE_IN: 'fade-in',
+        CSS_FADE_OUT: 'fade-out'
+    };
+
+    /**
      * ELEMENTS OBJECT
-     * Centralizes all DOM element queries into a single object for easy access and management.
+     * Centralizes all DOM element queries.
      */
     const elements = {
         // Screens
@@ -66,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         score: 0,
         selectedQuestions: [],
         answeredQuestions: [],
-        playerName: "Player",
+        playerName: constants.DEFAULT_PLAYER_NAME,
         selectedTopic: { main: null, sub: null },
         
         resetQuizState() {
@@ -77,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         
         setPlayerName(name) {
-            this.playerName = name.trim() || "Player";
+            this.playerName = name.trim() || constants.DEFAULT_PLAYER_NAME;
         },
 
         setSelectedTopic(main, sub = null) {
@@ -93,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ui = {
         showScreen(screenToShow) {
             const screens = [elements.mainMenu, elements.quizContainer, elements.resultsContainer];
-            screens.forEach(screen => screen.classList.add('hidden'));
-            screenToShow.classList.remove('hidden');
+            screens.forEach(screen => screen.classList.add(constants.CSS_HIDDEN));
+            screenToShow.classList.remove(constants.CSS_HIDDEN);
         },
 
         updateProgressBar() {
@@ -130,12 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
             Array.from(elements.optionsContainer.children).forEach(button => {
                 button.disabled = true;
                 if (button.textContent === currentQuestion.answer) {
-                    button.classList.add("correct");
+                    button.classList.add(constants.CSS_CORRECT);
                 }
             });
 
             if (!isCorrect) {
-                selectedButton.classList.add("incorrect");
+                selectedButton.classList.add(constants.CSS_INCORRECT);
             }
             elements.explanationEl.textContent = currentQuestion.explanation;
             elements.nextButton.style.display = "block";
@@ -156,8 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         populateTopics() {
             elements.mainTopicsContainer.innerHTML = "";
-            const topics = Object.keys(gameState.allQuestions);
-            topics.push("Mixed");
+            const topics = [...Object.keys(gameState.allQuestions), "Mixed"];
             
             topics.forEach(topic => {
                 const button = document.createElement("button");
@@ -179,35 +195,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 elements.subTopicsContainer.appendChild(button);
             });
             
-            elements.mainTopics.classList.add('hidden');
-            elements.subTopics.classList.remove('hidden');
+            elements.mainTopics.classList.add(constants.CSS_HIDDEN);
+            elements.subTopics.classList.remove(constants.CSS_HIDDEN);
         },
 
         showMainTopics() {
-            elements.mainTopics.classList.remove('hidden');
-            elements.subTopics.classList.add('hidden');
+            elements.mainTopics.classList.remove(constants.CSS_HIDDEN);
+            elements.subTopics.classList.add(constants.CSS_HIDDEN);
             this.clearSelections(elements.mainTopicsContainer);
             this.clearSelections(elements.subTopicsContainer);
         },
 
         clearSelections(container) {
-            container.querySelectorAll('button').forEach(btn => btn.classList.remove('selected'));
+            container.querySelectorAll('button').forEach(btn => btn.classList.remove(constants.CSS_SELECTED));
         },
 
         startTransition(callback) {
-            elements.gameContainer.classList.add("fade-out");
+            elements.gameContainer.classList.add(constants.CSS_FADE_OUT);
             setTimeout(() => {
                 callback();
-                elements.gameContainer.classList.remove("fade-out");
-                elements.gameContainer.classList.add("fade-in");
-                setTimeout(() => elements.gameContainer.classList.remove("fade-in"), 500);
+                elements.gameContainer.classList.remove(constants.CSS_FADE_OUT);
+                elements.gameContainer.classList.add(constants.CSS_FADE_IN);
+                setTimeout(() => elements.gameContainer.classList.remove(constants.CSS_FADE_IN), 500);
             }, 500);
         }
     };
 
     /**
      * AUDIO MANAGER OBJECT
-     * Manages all audio playback, volume, and muting.
+     * Manages all audio playback.
      */
     const audioManager = {
         playSound(soundElement) {
@@ -232,14 +248,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * LEADERBOARD OBJECT
-     * Handles all logic for saving and retrieving scores from localStorage.
+     * Handles localStorage for scores.
      */
     const leaderboard = {
         get() {
-            return JSON.parse(localStorage.getItem('trivia_leaderboard')) || [];
+            return JSON.parse(localStorage.getItem(constants.LEADERBOARD_KEY)) || [];
         },
         save(data) {
-            localStorage.setItem('trivia_leaderboard', JSON.stringify(data));
+            localStorage.setItem(constants.LEADERBOARD_KEY, JSON.stringify(data));
         },
         addScore(name, score) {
             const currentLeaderboard = this.get();
@@ -250,13 +266,17 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         reset() {
             if (confirm("Are you sure you want to reset the leaderboard?")) {
-                localStorage.removeItem('trivia_leaderboard');
+                localStorage.removeItem(constants.LEADERBOARD_KEY);
                 this.updateDisplay();
             }
         },
         updateDisplay() {
             const topScores = this.get().sort((a, b) => b.score - a.score).slice(0, 10);
             elements.leaderboardList.innerHTML = "";
+            if (topScores.length === 0) {
+                elements.leaderboardList.innerHTML = '<li>No scores yet! Play a game.</li>';
+                return;
+            }
             topScores.forEach((entry, index) => {
                 const li = document.createElement("li");
                 li.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
@@ -273,30 +293,33 @@ document.addEventListener('DOMContentLoaded', () => {
         async init() {
             try {
                 const response = await fetch('questions.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 gameState.allQuestions = await response.json();
                 ui.populateTopics();
             } catch (error) {
                 console.error("Failed to load questions:", error);
-                alert("Failed to load quiz questions. Please try again later.");
+                alert("Failed to load quiz questions. Please check the console for details and try again later.");
             }
             this.setupEventListeners();
             leaderboard.updateDisplay();
-            const savedTheme = localStorage.getItem('theme') || 'default';
-            document.body.className = `theme-${savedTheme}`;
+            // Theme is now set by the script in the <head> of the HTML
         },
         
         startGame() {
             gameState.resetQuizState();
             const total = parseInt(elements.questionCountInput.value, 10);
+            const { main, sub } = gameState.selectedTopic;
+
             let questionPool = [];
             let title = "";
-            const { main, sub } = gameState.selectedTopic;
 
             if (main === 'Mixed') {
                 questionPool = Object.values(gameState.allQuestions).flatMap(subCats => Object.values(subCats).flat());
                 title = "Mixed Topics";
             } else {
-                questionPool = gameState.allQuestions[main][sub];
+                questionPool = gameState.allQuestions[main]?.[sub] || [];
                 title = ui.getFormattedSubtopicName(main, sub);
             }
 
@@ -305,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            gameState.selectedQuestions = questionPool.sort(() => 0.5 - Math.random()).slice(0, total);
+            gameState.selectedQuestions = [...questionPool].sort(() => 0.5 - Math.random()).slice(0, total);
             
             ui.startTransition(() => {
                 elements.gameTitleQuiz.textContent = title;
@@ -357,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gameState.answeredQuestions.forEach(item => {
                     const li = document.createElement("li");
                     li.textContent = `${item.question} - You were ${item.correct ? 'Correct' : `Incorrect (Answer: ${item.correctAnswer})`}`;
-                    li.classList.add(item.correct ? 'correct' : 'incorrect');
+                    li.classList.add(item.correct ? constants.CSS_CORRECT : constants.CSS_INCORRECT);
                     elements.summaryList.appendChild(li);
                 });
             });
@@ -382,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (e.target.tagName !== 'BUTTON') return;
                 const mainTopic = e.target.dataset.topic;
                 ui.clearSelections(elements.mainTopicsContainer);
-                e.target.classList.add('selected');
+                e.target.classList.add(constants.CSS_SELECTED);
 
                 if (mainTopic === 'Mixed') {
                     gameState.setSelectedTopic('Mixed', 'Mixed');
@@ -402,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (e.target.tagName !== 'BUTTON') return;
                 const subTopic = e.target.dataset.subTopic;
                 ui.clearSelections(elements.subTopicsContainer);
-                e.target.classList.add('selected');
+                e.target.classList.add(constants.CSS_SELECTED);
                 gameState.setSelectedTopic(gameState.selectedTopic.main, subTopic);
             });
 
@@ -437,10 +460,11 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.viewAllScoresButton.addEventListener('click', () => window.open('leaderboard.html', '_blank'));
             
             elements.themeSelector.addEventListener('click', (e) => {
-                if (e.target.matches('button')) {
+                if (e.target.matches('button[data-theme]')) {
                     const theme = e.target.dataset.theme;
-                    document.body.className = `theme-${theme}`;
-                    localStorage.setItem('theme', theme);
+                    // IMPROVEMENT: Set data-theme attribute on the root element (<html>)
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem(constants.THEME_KEY, theme);
                 }
             });
             elements.volumeSlider.addEventListener('input', (e) => audioManager.setVolume(e.target.value));
@@ -464,6 +488,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // Initialize the game
     gameLogic.init();
 });
