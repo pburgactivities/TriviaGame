@@ -36,9 +36,19 @@ body {
 }
 
 /* Player and settings styling */
-.player-name-container,
-.questions-count-container {
+.settings-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 20px;
+}
+
+.player-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 input[type="text"],
@@ -56,6 +66,19 @@ input[type="range"] {
     width: 150px;
 }
 
+.utility-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 /* Button styling */
 .button {
     background-color: #4a4a6b;
@@ -67,6 +90,7 @@ input[type="range"] {
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.1s ease;
     text-transform: uppercase;
+    white-space: nowrap; /* Prevents text from wrapping */
 }
 
 .button:hover {
@@ -138,7 +162,7 @@ input[type="range"] {
     align-items: center;
 }
 
-/* Console error section */
-/* The console errors you see about missing files (e.g., audio) are unrelated to this styling.
-   Make sure the file paths in your JavaScript code (like 'game.js' or 'ui.js')
-   correctly point to where the audio files are located in your GitHub repository. */
+/* Utility class to hide elements */
+.hidden {
+    display: none;
+}
