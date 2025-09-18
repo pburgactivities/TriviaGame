@@ -8,15 +8,34 @@
     --error-color: #dc3545;
 }
 
+.theme-ocean {
+    --bg-color: #0b1a29;
+    --container-color: #1a2a3b;
+    --primary-color: #3e81ff;
+    --secondary-color: #b0e0e6;
+    --text-color: #e6f7ff;
+}
+
+.theme-forest {
+    --bg-color: #0d1e11;
+    --container-color: #1c2e20;
+    --primary-color: #59d2a4;
+    --secondary-color: #b9e3a6;
+    --text-color: #e3f5d6;
+}
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    align-items: flex-start;
 }
 
 .container {
@@ -28,11 +47,13 @@ body {
     width: 90%;
     max-width: 700px;
     border: 2px solid var(--primary-color);
+    transition: border-color 0.5s ease, background-color 0.5s ease;
 }
 
 #game-title, h2 {
     color: var(--primary-color);
     text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 5px var(--primary-color);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
 }
 
 #player-profile {
@@ -145,8 +166,8 @@ button:disabled {
 #summary-list {
     padding: 0;
     list-style: none;
-    max-height: 250px; /* New height limit */
-    overflow-y: auto; /* New scrolling behavior */
+    max-height: 250px;
+    overflow-y: auto;
     margin-top: 20px;
 }
 
@@ -168,10 +189,13 @@ button:disabled {
     border-left: 5px solid var(--error-color);
 }
 
-.topic-buttons {
-    display: flex;
-    flex-wrap: wrap;
+/* NEW: Grid layout for cleaner topics */
+.topic-buttons, #music-subcategories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
     justify-content: center;
+    padding: 10px 0;
 }
 
 .topic-buttons button {
@@ -186,9 +210,8 @@ button:disabled {
     border: 1px solid var(--primary-color);
 }
 
-#leaderboard-section ul {
-    max-height: 200px;
-    overflow-y: auto;
+#leaderboard-section {
+    margin-top: 2rem;
 }
 
 #leaderboard-list {
@@ -210,7 +233,39 @@ button:disabled {
     background-color: #4d4d73;
 }
 
-/* NEW: Styles for the results summary box */
+/* NEW: New leaderboard page styles */
+#full-leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 500px;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+#full-leaderboard-list li {
+    background-color: #3b3b5b;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+.leaderboard-page {
+    position: relative;
+    padding-bottom: 60px; /* Add space for the close button */
+}
+
+.leaderboard-page button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.top-scores-list {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
 .results-summary {
     background-color: #1f1f2e;
     padding: 20px;
