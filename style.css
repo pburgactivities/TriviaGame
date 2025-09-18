@@ -99,3 +99,6 @@ button:disabled {
 .selected {
     background-color: #f1c40f;
 }
+#leaderboard-list {
+    list-style-type: none;
+}
