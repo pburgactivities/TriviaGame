@@ -33,7 +33,8 @@ export const elements = {
     topicSelection: document.getElementById("topic-selection"),
     musicSubcategories: document.getElementById("music-subcategories"),
     backButton: document.getElementById("back-button"),
-    subcategoryButtons: document.querySelectorAll("#music-subcategories button")
+    subcategoryButtons: document.querySelectorAll("#music-subcategories button"),
+    volumeSlider: document.getElementById('volume-slider')
 };
 
 // Functions to handle UI updates
@@ -79,7 +80,7 @@ export function updateLeaderboardDisplay(leaderboard) {
     elements.leaderboardList.innerHTML = "";
     leaderboard.forEach((entry, index) => {
         const li = document.createElement("li");
-        li.textContent = `${entry.name} - ${entry.score}`;
+        li.textContent = `${index + 1}. ${entry.name} - ${entry.score}`;
         elements.leaderboardList.appendChild(li);
     });
 }
@@ -92,3 +93,22 @@ function shuffleArray(array) {
     }
     return array;
 }
+
+// Sound playback function
+export function playSound(soundId) {
+    const sound = elements[soundId];
+    if (sound) {
+        sound.currentTime = 0; // Rewind to the start
+        sound.play().catch(e => console.log(`Error playing sound ${soundId}:`, e));
+    }
+}
+
+// Volume control
+elements.volumeSlider.addEventListener('input', (e) => {
+    const volume = e.target.value;
+    elements.bgMusic.volume = volume;
+    elements.startSound.volume = volume;
+    elements.correctSound.volume = volume;
+    elements.wrongSound.volume = volume;
+    elements.finishSound.volume = volume;
+});
