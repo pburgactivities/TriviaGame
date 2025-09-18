@@ -32,7 +32,8 @@ body {
 
 #game-title, h2 {
     color: var(--primary-color);
-    text-shadow: 0 0 5px var(--primary-color);
+    /* Toned down neon effect with a black outline for contrast */
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 5px var(--primary-color);
 }
 
 #player-profile {
@@ -75,7 +76,7 @@ button {
 button:hover:not(:disabled) {
     background-color: #c9344d;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:disabled {
@@ -200,7 +201,8 @@ button:disabled {
     transform: translateX(5px);
     background-color: #4d4d73;
 }
-/* Add to the bottom of your style.css file */
+
+/* New CSS for animated transitions */
 .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease;
