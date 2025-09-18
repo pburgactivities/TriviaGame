@@ -254,12 +254,17 @@ function init() {
     });
 }
 
+// Add this new function to your game.js file
 function startTransition(callback) {
-    elements.gameContainer.style.opacity = 0;
+    elements.gameContainer.classList.add("fade-out");
     setTimeout(() => {
         callback();
-        elements.gameContainer.style.opacity = 1;
-    }, 500);
+        elements.gameContainer.classList.remove("fade-out");
+        elements.gameContainer.classList.add("fade-in");
+        setTimeout(() => {
+            elements.gameContainer.classList.remove("fade-in");
+        }, 500); // Duration matches the CSS
+    }, 500); // Duration matches the CSS
 }
 
 function shuffleArray(array) {
