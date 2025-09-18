@@ -18,6 +18,10 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     max-width: 800px;
     width: 90%;
+    /* New: Stack elements vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Header and text styling */
@@ -90,7 +94,7 @@ input[type="range"] {
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.1s ease;
     text-transform: uppercase;
-    white-space: nowrap; /* Prevents text from wrapping */
+    white-space: nowrap;
 }
 
 .button:hover {
@@ -106,16 +110,15 @@ input[type="range"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px; /* Adjust spacing between topic buttons */
+    gap: 15px;
     margin-bottom: 20px;
 }
 
 /* Specific button colors and styles */
-.topic-button,
-.back-button {
+.topic-button {
     background-color: #4a4a6b;
     color: #ffffff;
-    width: 150px; /* Uniform width for all topic buttons */
+    width: 150px;
 }
 
 .theme-button {
@@ -127,14 +130,22 @@ input[type="range"] {
     background-color: #c74d6c;
 }
 
-.start-button, .reset-button, .score-button {
+.start-button, .score-button {
     background-color: #8c8cff;
     color: #1a1a2e;
     font-weight: bold;
 }
 
-.start-button:hover, .reset-button:hover, .score-button:hover {
+.start-button:hover, .score-button:hover {
     background-color: #a3a3ff;
+}
+
+.back-button {
+    /* New: Specific style for the back button to prevent it from getting theme styles */
+    background-color: #4a4a6b;
+    color: #ffffff;
+    width: 180px;
+    margin-top: 20px; /* Space it out from the music buttons */
 }
 
 /* Scores and leaderboard styling */
@@ -163,6 +174,10 @@ input[type="range"] {
 }
 
 /* Utility class to hide elements */
+.screen {
+    width: 100%; /* Ensures all screens take up full width to prevent layout shifts */
+}
+
 .hidden {
     display: none;
 }
