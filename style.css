@@ -1,14 +1,20 @@
+/* IMPROVEMENT: Theme variables are now scoped to a `data-theme` attribute
+    on the <html> element. This is cleaner than adding classes to the body.
+*/
 :root {
+    --success-color: #20c997;
+    --error-color: #dc3545;
+}
+
+[data-theme="default"] {
     --bg-color: #1a1a2e;
     --container-color: #2a2a47;
     --primary-color: #e94560;
     --secondary-color: #00e0ff;
     --text-color: #e5e5e5;
-    --success-color: #20c997;
-    --error-color: #dc3545;
 }
 
-.theme-ocean {
+[data-theme="ocean"] {
     --bg-color: #0b1a29;
     --container-color: #1a2a3b;
     --primary-color: #3e81ff;
@@ -16,7 +22,7 @@
     --text-color: #e6f7ff;
 }
 
-.theme-forest {
+[data-theme="forest"] {
     --bg-color: #0d1e11;
     --container-color: #1c2e20;
     --primary-color: #59d2a4;
@@ -32,7 +38,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .container {
