@@ -88,14 +88,15 @@ function updateLeaderboardDisplay(leaderboard) {
 function playSound(soundId) {
     const sound = elements[soundId];
     if (sound) {
-        // Duck the background music if a sound effect is playing
+        // Only duck the music if a sound effect is being played
         if (soundId !== 'bgMusic' && !elements.bgMusic.paused) {
             const originalVolume = elements.bgMusic.volume;
             elements.bgMusic.volume = originalVolume * 0.2; // Lower volume to 20%
             
-            setTimeout(() => {
+            // Listen for the 'ended' event of the sound effect
+            sound.addEventListener('ended', () => {
                 elements.bgMusic.volume = originalVolume;
-            }, 500); 
+            }, { once: true }); // Use { once: true } to automatically remove the listener
         }
 
         sound.currentTime = 0;
