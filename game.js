@@ -1,6 +1,4 @@
 // game.js
-
-// Cache all your HTML elements here
 const elements = {
     mainMenu: document.getElementById("main-menu"),
     quizContainer: document.getElementById("quiz-container"),
@@ -88,7 +86,7 @@ function updateLeaderboardDisplay(leaderboard) {
 function playSound(soundId) {
     const sound = elements[soundId];
     if (sound) {
-        sound.currentTime = 0; // Rewind to the start
+        sound.currentTime = 0;
         sound.play().catch(e => console.log(`Error playing sound ${soundId}:`, e));
     }
 }
@@ -112,6 +110,7 @@ let totalQuestions = 0;
 let answeredQuestions = [];
 let playerName = "Player";
 let selectedTopic = null;
+let hasInteracted = false;
 
 // --- Data Fetching ---
 async function fetchQuestions() {
@@ -228,11 +227,14 @@ function init() {
     elements.startButton.disabled = true;
     updateLeaderboardDisplay(getLeaderboard());
     
-    // Play background music on page load
-    playSound('bgMusic'); 
-
     elements.topicButtons.forEach(button => {
         button.addEventListener("click", () => {
+            // Check if music has been played yet
+            if (!hasInteracted) {
+                playSound('bgMusic');
+                hasInteracted = true;
+            }
+
             elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
             elements.subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
             if (button.classList.contains("has-subcategories")) {
@@ -250,6 +252,12 @@ function init() {
 
     elements.subcategoryButtons.forEach(button => {
         button.addEventListener("click", () => {
+             // Check if music has been played yet
+             if (!hasInteracted) {
+                playSound('bgMusic');
+                hasInteracted = true;
+            }
+
             elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
             elements.subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
@@ -270,10 +278,18 @@ function init() {
     elements.playerNameInput.addEventListener("input", (e) => {
         playerName = e.target.value.trim() || "Player";
     });
+    
+    // Play music when the user interacts with the player name input
+    elements.playerNameInput.addEventListener('focus', () => {
+        if (!hasInteracted) {
+            playSound('bgMusic');
+            hasInteracted = true;
+        }
+    });
 
     elements.startButton.addEventListener("click", () => {
         playSound('startSound');
-        elements.bgMusic.pause(); // Pause music to avoid overlapping
+        elements.bgMusic.pause();
         totalQuestions = parseInt(elements.questionCountInput.value, 10);
         let questionsPool = [];
 
@@ -348,7 +364,6 @@ function init() {
 
     elements.resetLeaderboardButton.addEventListener("click", resetLeaderboard);
     
-    // --- Fullscreen Logic ---
     elements.fullscreenButton.addEventListener("click", () => {
         if (document.fullscreenElement) {
             document.exitFullscreen();
@@ -368,8 +383,8 @@ function startTransition(callback) {
         elements.gameContainer.classList.add("fade-in");
         setTimeout(() => {
             elements.gameContainer.classList.remove("fade-in");
-        }, 500); // Duration matches the CSS
-    }, 500); // Duration matches the CSS
+        }, 500);
+    }, 500);
 }
 
 function shuffleArray(array) {
@@ -380,5 +395,4 @@ function shuffleArray(array) {
     return array;
 }
 
-// Start the game by calling the init function
 init();
