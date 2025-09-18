@@ -1,438 +1,466 @@
-// game.js
-const elements = {
-    mainMenu: document.getElementById("main-menu"),
-    quizContainer: document.getElementById("quiz-container"),
-    resultsContainer: document.getElementById("results-container"),
-    questionEl: document.getElementById("question"),
-    optionsContainer: document.getElementById("options-container"),
-    nextButton: document.getElementById("next-button"),
-    endButton: document.getElementById("end-button"),
-    explanationEl: document.getElementById("explanation"),
-    scoreText: document.getElementById("score-text"),
-    topicButtons: document.querySelectorAll("#topic-selection .topic-buttons button"),
-    startButton: document.getElementById("start-button"),
-    restartButton: document.getElementById("restart-button"),
-    questionCountInput: document.getElementById("question-count"),
-    progressText: document.getElementById("progress-text"),
-    gameTitle: document.getElementById("game-title"),
-    progressBar: document.getElementById("progress-bar"),
-    hintButton: document.getElementById("hint-button"),
-    summaryList: document.getElementById("summary-list"),
-    playerNameInput: document.getElementById("player-name"),
-    leaderboardList: document.getElementById("leaderboard-list"),
-    resetLeaderboardButton: document.getElementById("reset-leaderboard-button"),
-    gameContainer: document.getElementById("game-container"),
-    fullscreenButton: document.getElementById("fullscreen-button"),
-    bgMusic: document.getElementById("bg-music"),
-    correctSound: document.getElementById("correct-sound"),
-    wrongSound: document.getElementById("wrong-sound"),
-    startSound: document.getElementById("start-sound"),
-    finishSound: document.getElementById("finish-sound"),
-    topicSelection: document.getElementById("topic-selection"),
-    subcategoryMenus: document.querySelectorAll(".subcategory-menu"),
-    backButtons: document.querySelectorAll(".back-button"),
-    volumeSlider: document.getElementById('volume-slider'),
-    musicToggleButton: document.getElementById('music-toggle-button'),
-    muteButton: document.getElementById('mute-button'),
-    themeSelector: document.getElementById('theme-selector'),
-    viewAllScoresButton: document.getElementById('view-all-scores-button')
-};
+document.addEventListener('DOMContentLoaded', () => {
+    /**
+     * ELEMENTS OBJECT
+     * Centralizes all DOM element queries into a single object for easy access and management.
+     */
+    const elements = {
+        // Screens
+        mainMenu: document.getElementById("main-menu"),
+        quizContainer: document.getElementById("quiz-container"),
+        resultsContainer: document.getElementById("results-container"),
+        
+        // Main Menu
+        playerNameInput: document.getElementById("player-name"),
+        themeSelector: document.getElementById('theme-selector'),
+        volumeSlider: document.getElementById('volume-slider'),
+        musicToggleButton: document.getElementById('music-toggle-button'),
+        mainTopicsContainer: document.querySelector("#main-topics .topic-buttons-container"),
+        subTopicsContainer: document.querySelector("#sub-topics .topic-buttons-container"),
+        mainTopics: document.getElementById("main-topics"),
+        subTopics: document.getElementById("sub-topics"),
+        subTopicsTitle: document.getElementById("sub-topics-title"),
+        backToMainTopicsBtn: document.getElementById("back-to-main-topics"),
+        questionCountInput: document.getElementById("question-count"),
+        startButton: document.getElementById("start-button"),
+        leaderboardList: document.getElementById("leaderboard-list"),
+        resetLeaderboardButton: document.getElementById("reset-leaderboard-button"),
+        viewAllScoresButton: document.getElementById('view-all-scores-button'),
+        fullscreenButton: document.getElementById("fullscreen-button"),
+        
+        // Quiz
+        gameTitleQuiz: document.getElementById("game-title-quiz"),
+        progressBar: document.getElementById("progress-bar"),
+        progressText: document.getElementById("progress-text"),
+        questionEl: document.getElementById("question"),
+        optionsContainer: document.getElementById("options-container"),
+        explanationEl: document.getElementById("explanation"),
+        hintButton: document.getElementById("hint-button"),
+        nextButton: document.getElementById("next-button"),
+        endButton: document.getElementById("end-button"),
+        muteButton: document.getElementById('mute-button'),
+        
+        // Results
+        scoreText: document.getElementById("score-text"),
+        summaryList: document.getElementById("summary-list"),
+        restartButton: document.getElementById("restart-button"),
+        
+        // Audio
+        bgMusic: document.getElementById("bg-music"),
+        correctSound: document.getElementById("correct-sound"),
+        wrongSound: document.getElementById("wrong-sound"),
+        startSound: document.getElementById("start-sound"),
+        finishSound: document.getElementById("finish-sound"),
+        
+        // General
+        gameContainer: document.getElementById("game-container"),
+    };
+    // Create a convenient array of all audio elements for batch operations
+    elements.allAudio = [elements.bgMusic, elements.correctSound, elements.wrongSound, elements.startSound, elements.finishSound];
 
-// UI Functions
-function updateProgressBar(current, total) {
-    const progress = (current / total) * 100;
-    elements.progressBar.style.width = `${progress}%`;
-}
+    /**
+     * GAME STATE OBJECT
+     * Manages all the data and state for the quiz, like scores, questions, and player info.
+     * This keeps the global namespace clean.
+     */
+    const gameState = {
+        allQuestions: {},
+        currentQuestionIndex: 0,
+        score: 0,
+        selectedQuestions: [],
+        answeredQuestions: [],
+        playerName: "Player",
+        selectedTopic: { main: null, sub: null },
+        
+        resetQuizState() {
+            this.currentQuestionIndex = 0;
+            this.score = 0;
+            this.selectedQuestions = [];
+            this.answeredQuestions = [];
+        },
+        
+        setPlayerName(name) {
+            this.playerName = name.trim() || "Player";
+        },
 
-function displayQuestion(questionData) {
-    elements.questionEl.textContent = questionData.question;
-    elements.optionsContainer.innerHTML = "";
-    elements.explanationEl.textContent = "";
-    elements.nextButton.style.display = "none";
-    elements.hintButton.style.display = "block";
-
-    const shuffledOptions = shuffleArray([...questionData.options]);
-    shuffledOptions.forEach(option => {
-        const button = document.createElement("button");
-        button.textContent = option;
-        button.classList.add("option");
-        elements.optionsContainer.appendChild(button);
-    });
-}
-
-function showAnswerFeedback(isCorrect, selectedButton, currentQuestion) {
-    elements.hintButton.style.display = "none";
-    elements.optionsContainer.querySelectorAll(".option").forEach(button => {
-        button.disabled = true;
-        if (button.textContent === currentQuestion.answer) {
-            button.classList.add("correct");
+        setSelectedTopic(main, sub = null) {
+            this.selectedTopic = { main, sub };
+            elements.startButton.disabled = !(this.selectedTopic.main && this.selectedTopic.sub);
         }
-    });
+    };
 
-    if (!isCorrect) {
-        selectedButton.classList.add("incorrect");
-    }
+    /**
+     * UI MANAGER OBJECT
+     * Handles all interactions with the DOM, such as showing/hiding screens and updating content.
+     * This separates display logic from game logic.
+     */
+    const ui = {
+        showScreen(screenToShow) {
+            const screens = [elements.mainMenu, elements.quizContainer, elements.resultsContainer];
+            screens.forEach(screen => screen.classList.add('hidden'));
+            screenToShow.classList.remove('hidden');
+        },
 
-    elements.explanationEl.textContent = currentQuestion.explanation;
-    elements.nextButton.style.display = "block";
-}
-
-function updateLeaderboardDisplay(leaderboard) {
-    // Sort and display only top 10 for the main menu
-    const sortedLeaderboard = leaderboard.sort((a, b) => b.score - a.score);
-    const topScores = sortedLeaderboard.slice(0, 10);
-    elements.leaderboardList.innerHTML = "";
-    topScores.forEach((entry, index) => {
-        const li = document.createElement("li");
-        li.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
-        elements.leaderboardList.appendChild(li);
-    });
-}
-
-function playSound(soundId) {
-    const sound = elements[soundId];
-    if (sound) {
-        if (soundId !== 'bgMusic' && !elements.bgMusic.paused) {
-            const originalVolume = elements.bgMusic.volume;
-            elements.bgMusic.volume = originalVolume * 0.2;
-            
-            setTimeout(() => {
-                elements.bgMusic.volume = originalVolume;
-            }, 2000); 
-        }
-
-        sound.currentTime = 0;
-        sound.play().catch(e => console.log(`Error playing sound ${soundId}:`, e));
-    }
-}
-
-elements.volumeSlider.addEventListener('input', (e) => {
-    const volume = e.target.value;
-    elements.bgMusic.volume = volume;
-    elements.startSound.volume = volume;
-    elements.correctSound.volume = volume;
-    elements.wrongSound.volume = volume;
-    elements.finishSound.volume = volume;
-});
-
-// Game Variables
-let allQuestions = {};
-let currentQuestionIndex = 0;
-let score = 0;
-let selectedQuestions = [];
-let totalQuestions = 0;
-let answeredQuestions = [];
-let playerName = "Player";
-let selectedTopic = null;
-
-// --- Data Fetching ---
-async function fetchQuestions() {
-    try {
-        const response = await fetch('questions.json');
-        const data = await response.json();
-        allQuestions = data;
-        console.log("Questions loaded successfully!");
-    } catch (error) {
-        console.error("Failed to load questions:", error);
-        alert("Failed to load quiz questions. Please try again later.");
-    }
-}
-
-// --- Leaderboard Functions ---
-function getLeaderboard() {
-    const leaderboard = JSON.parse(localStorage.getItem('trivia_leaderboard')) || [];
-    return leaderboard;
-}
-
-function saveLeaderboard(leaderboard) {
-    localStorage.setItem('trivia_leaderboard', JSON.stringify(leaderboard));
-}
-
-function addScoreToLeaderboard(name, score) {
-    const leaderboard = getLeaderboard();
-    const date = new Date().toLocaleDateString();
-    leaderboard.push({ name: name, score: score, date: date });
-    saveLeaderboard(leaderboard);
-    updateLeaderboardDisplay(getLeaderboard());
-}
-
-function resetLeaderboard() {
-    if (confirm("Are you sure you want to reset the leaderboard?")) {
-        localStorage.removeItem('trivia_leaderboard');
-        updateLeaderboardDisplay(getLeaderboard());
-    }
-}
-
-// --- Game Flow Functions ---
-function startGame() {
-    currentQuestionIndex = 0;
-    score = 0;
-    answeredQuestions = [];
-    loadQuestion();
-}
-
-function loadQuestion() {
-    if (currentQuestionIndex >= selectedQuestions.length) {
-        showResults();
-        return;
-    }
-
-    elements.progressText.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
-    updateProgressBar(currentQuestionIndex, totalQuestions);
-
-    const currentQuestion = selectedQuestions[currentQuestionIndex];
-    displayQuestion(currentQuestion);
-
-    elements.optionsContainer.querySelectorAll(".option").forEach(button => {
-        button.addEventListener("click", (e) => checkAnswer(e.target, e.target.textContent));
-    });
-}
-
-function checkAnswer(selectedButton, selectedOption) {
-    const currentQuestion = selectedQuestions[currentQuestionIndex];
-    const isCorrect = selectedOption === currentQuestion.answer;
-    
-    if (isCorrect) {
-        score++;
-        playSound('correctSound');
-    } else {
-        playSound('wrongSound');
-    }
-    
-    showAnswerFeedback(isCorrect, selectedButton, currentQuestion);
-
-    answeredQuestions.push({
-        question: currentQuestion.question,
-        correct: isCorrect,
-        correctAnswer: currentQuestion.answer
-    });
-}
-
-function showResults() {
-    elements.bgMusic.pause();
-    playSound('finishSound');
-    startTransition(() => {
-        elements.quizContainer.classList.add("hidden");
-        elements.resultsContainer.classList.remove("hidden");
-        elements.scoreText.textContent = `You scored ${score} out of ${totalQuestions} questions!`;
-        addScoreToLeaderboard(playerName, score);
-        generateSummary();
-        updateProgressBar(currentQuestionIndex, totalQuestions);
-    });
-}
-
-function generateSummary() {
-    elements.summaryList.innerHTML = "";
-    answeredQuestions.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.question} - You were ${item.correct ? 'Correct' : `Incorrect (Correct answer: ${item.correctAnswer})`}`;
-        li.classList.add(item.correct ? 'correct' : 'incorrect');
-        elements.summaryList.appendChild(li);
-    });
-}
-
-function endGame() {
-    showResults();
-}
-
-// --- Initial Setup and Event Listeners ---
-function init() {
-    fetchQuestions();
-    elements.startButton.disabled = true;
-    updateLeaderboardDisplay(getLeaderboard());
-
-    const savedTheme = localStorage.getItem('theme') || 'default';
-    document.body.className = `theme-${savedTheme}`;
-    
-    // Music Toggle Button on Main Menu
-    elements.musicToggleButton.addEventListener('click', () => {
-        if (elements.bgMusic.paused) {
-            playSound('bgMusic');
-            elements.musicToggleButton.textContent = "Pause Music";
-        } else {
-            elements.bgMusic.pause();
-            elements.musicToggleButton.textContent = "Play Music";
-        }
-    });
-
-    // Mute Button during Quiz
-    elements.muteButton.addEventListener('click', () => {
-        if (elements.bgMusic.paused) {
-            playSound('bgMusic');
-            elements.muteButton.textContent = "Mute";
-        } else {
-            elements.bgMusic.pause();
-            elements.muteButton.textContent = "Unmute";
-        }
-    });
-
-    // Theme selector
-    elements.themeSelector.addEventListener('click', (e) => {
-        if (e.target.matches('button')) {
-            const selectedTheme = e.target.dataset.theme;
-            document.body.className = `theme-${selectedTheme}`;
-            localStorage.setItem('theme', selectedTheme);
-        }
-    });
-
-    elements.topicButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
-            const mainTopic = e.target.dataset.mainTopic;
-            
-            if (mainTopic) {
-                elements.topicSelection.querySelector(".topic-buttons").classList.add("hidden");
-                elements.subcategoryMenus.forEach(menu => {
-                    if (menu.dataset.mainTopic === mainTopic) {
-                        menu.classList.remove("hidden");
-                    } else {
-                        menu.classList.add("hidden");
-                    }
-                });
-                selectedTopic = null;
-                elements.startButton.disabled = true;
-            } else {
-                button.classList.add("selected");
-                selectedTopic = button.dataset.topic;
-                elements.startButton.disabled = false;
+        updateProgressBar() {
+            const total = gameState.selectedQuestions.length;
+            const current = gameState.currentQuestionIndex;
+            const progress = total > 0 ? ((current) / total) * 100 : 0;
+            elements.progressBar.style.width = `${progress}%`;
+            if (current < total) {
+                elements.progressText.textContent = `Question ${current + 1} of ${total}`;
             }
-        });
-    });
+        },
 
-    elements.subcategoryMenus.forEach(menu => {
-        menu.querySelectorAll("button").forEach(button => {
-            button.addEventListener("click", () => {
-                menu.querySelectorAll("button").forEach(btn => btn.classList.remove("selected"));
-                button.classList.add("selected");
-                selectedTopic = button.dataset.topic;
-                elements.startButton.disabled = false;
+        displayQuestion(questionData) {
+            elements.questionEl.textContent = questionData.question;
+            elements.optionsContainer.innerHTML = "";
+            elements.explanationEl.innerHTML = "&nbsp;"; // Use a non-breaking space to maintain height
+            elements.nextButton.style.display = "none";
+            elements.hintButton.style.display = "block";
+            
+            const shuffledOptions = [...questionData.options].sort(() => Math.random() - 0.5);
+            const fragment = document.createDocumentFragment();
+            shuffledOptions.forEach(optionText => {
+                const button = document.createElement("button");
+                button.textContent = optionText;
+                button.classList.add("option");
+                fragment.appendChild(button);
             });
-        });
-    });
+            elements.optionsContainer.appendChild(fragment);
+        },
 
-    elements.backButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            elements.topicSelection.querySelector(".topic-buttons").classList.remove("hidden");
-            elements.subcategoryMenus.forEach(menu => menu.classList.add("hidden"));
-            elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
-            selectedTopic = null;
-            elements.startButton.disabled = true;
-        });
-    });
-
-    elements.playerNameInput.addEventListener("input", (e) => {
-        playerName = e.target.value.trim() || "Player";
-    });
-
-    elements.startButton.addEventListener("click", () => {
-        playSound('startSound');
-        totalQuestions = parseInt(elements.questionCountInput.value, 10);
-        let questionsPool = [];
-    
-        if (selectedTopic === "mixed") {
-            for (const topic in allQuestions) {
-                if (typeof allQuestions[topic] === 'object' && !Array.isArray(allQuestions[topic])) {
-                    for (const subtopic in allQuestions[topic]) {
-                        questionsPool = questionsPool.concat(allQuestions[topic][subtopic]);
-                    }
-                } else {
-                    questionsPool = questionsPool.concat(allQuestions[topic]);
+        showAnswerFeedback(isCorrect, selectedButton, currentQuestion) {
+            elements.hintButton.style.display = "none";
+            Array.from(elements.optionsContainer.children).forEach(button => {
+                button.disabled = true;
+                if (button.textContent === currentQuestion.answer) {
+                    button.classList.add("correct");
                 }
+            });
+
+            if (!isCorrect) {
+                selectedButton.classList.add("incorrect");
             }
-            elements.gameTitle.textContent = "Mixed Topics";
-        } else if (selectedTopic) {
-            const [mainTopic, subTopic] = selectedTopic.split('-');
+            elements.explanationEl.textContent = currentQuestion.explanation;
+            elements.nextButton.style.display = "block";
+        },
+
+        populateTopics() {
+            elements.mainTopicsContainer.innerHTML = "";
+            const topics = Object.keys(gameState.allQuestions);
+            topics.push("Mixed");
             
-            if (allQuestions[mainTopic] && allQuestions[mainTopic][selectedTopic]) {
-                questionsPool = allQuestions[mainTopic][selectedTopic];
-                const displayName = subTopic.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-                elements.gameTitle.textContent = `${displayName} Trivia`;
-            } else if (allQuestions[selectedTopic]) {
-                questionsPool = allQuestions[selectedTopic];
-                elements.gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
+            topics.forEach(topic => {
+                const button = document.createElement("button");
+                button.textContent = topic.charAt(0).toUpperCase() + topic.slice(1);
+                button.dataset.topic = topic;
+                elements.mainTopicsContainer.appendChild(button);
+            });
+        },
+
+        populateSubTopics(mainTopic) {
+            elements.subTopicsContainer.innerHTML = "";
+            const subtopics = Object.keys(gameState.allQuestions[mainTopic]);
+            elements.subTopicsTitle.textContent = `Select a ${mainTopic} Category:`;
+
+            subtopics.forEach(sub => {
+                const button = document.createElement("button");
+                button.textContent = sub.charAt(0).toUpperCase() + sub.slice(1);
+                button.dataset.subTopic = sub;
+                elements.subTopicsContainer.appendChild(button);
+            });
+            
+            elements.mainTopics.classList.add('hidden');
+            elements.subTopics.classList.remove('hidden');
+        },
+
+        showMainTopics() {
+            elements.mainTopics.classList.remove('hidden');
+            elements.subTopics.classList.add('hidden');
+            this.clearSelections(elements.mainTopicsContainer);
+            this.clearSelections(elements.subTopicsContainer);
+        },
+
+        clearSelections(container) {
+            container.querySelectorAll('button').forEach(btn => btn.classList.remove('selected'));
+        },
+
+        startTransition(callback) {
+            elements.gameContainer.classList.add("fade-out");
+            setTimeout(() => {
+                callback();
+                elements.gameContainer.classList.remove("fade-out");
+                elements.gameContainer.classList.add("fade-in");
+                setTimeout(() => elements.gameContainer.classList.remove("fade-in"), 500);
+            }, 500);
+        }
+    };
+
+    /**
+     * AUDIO MANAGER OBJECT
+     * Manages all audio playback, volume, and muting.
+     */
+    const audioManager = {
+        playSound(soundElement) {
+            if (!soundElement) return;
+            // Duck the background music volume for sound effects
+            if (soundElement.id !== 'bg-music' && !elements.bgMusic.paused) {
+                const originalVolume = elements.bgMusic.volume;
+                elements.bgMusic.volume = originalVolume * 0.2;
+                soundElement.onended = () => { elements.bgMusic.volume = originalVolume; };
             }
+            soundElement.currentTime = 0;
+            soundElement.play().catch(e => console.error(`Audio Error: ${e.message}`));
+        },
+        setVolume(volume) {
+            elements.allAudio.forEach(audio => audio.volume = volume);
+        },
+        toggleMute() {
+            const isMuted = elements.allAudio[0].muted;
+            elements.allAudio.forEach(audio => audio.muted = !isMuted);
+            elements.muteButton.textContent = !isMuted ? "Unmute" : "Mute";
         }
-    
-        if (questionsPool.length < totalQuestions) {
-            alert(`Sorry, there are only ${questionsPool.length} questions available. Please select a number less than or equal to this.`);
-            return;
-        }
-    
-        selectedQuestions = shuffleArray(questionsPool).slice(0, totalQuestions);
-        startTransition(() => {
-            elements.mainMenu.classList.add("hidden");
-            elements.resultsContainer.classList.add("hidden");
-            elements.quizContainer.classList.remove("hidden");
-            startGame();
-        });
-    });
+    };
 
-    elements.nextButton.addEventListener("click", () => {
-        startTransition(() => {
-            currentQuestionIndex++;
-            loadQuestion();
-        });
-    });
-
-    elements.endButton.addEventListener("click", endGame);
-
-    elements.hintButton.addEventListener("click", () => {
-        const currentQuestion = selectedQuestions[currentQuestionIndex];
-        elements.explanationEl.textContent = currentQuestion.hint;
-    });
-
-    elements.restartButton.addEventListener("click", () => {
-        startTransition(() => {
-            elements.bgMusic.pause();
-            elements.bgMusic.currentTime = 0;
-            elements.musicToggleButton.textContent = "Play Music";
-            elements.mainMenu.classList.remove("hidden");
-            elements.quizContainer.classList.add("hidden");
-            elements.resultsContainer.classList.add("hidden");
-            elements.questionCountInput.value = 5;
-            elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
-            elements.subcategoryMenus.forEach(menu => menu.classList.add("hidden"));
-            selectedTopic = null;
-            elements.startButton.disabled = true;
-            elements.gameTitle.textContent = "Fun Trivia Quiz";
-            updateLeaderboardDisplay(getLeaderboard());
-        });
-    });
-
-    elements.resetLeaderboardButton.addEventListener("click", resetLeaderboard);
-    elements.viewAllScoresButton.addEventListener('click', () => {
-        window.open('leaderboard.html', '_blank');
-    });
-    
-    elements.fullscreenButton.addEventListener("click", () => {
-        if (document.fullscreenElement) {
-            document.exitFullscreen();
-        } else {
-            elements.gameContainer.requestFullscreen().catch(err => {
-                console.log(`Error attempting to enable fullscreen: ${err.message}`);
+    /**
+     * LEADERBOARD OBJECT
+     * Handles all logic for saving and retrieving scores from localStorage.
+     */
+    const leaderboard = {
+        get() {
+            return JSON.parse(localStorage.getItem('trivia_leaderboard')) || [];
+        },
+        save(data) {
+            localStorage.setItem('trivia_leaderboard', JSON.stringify(data));
+        },
+        addScore(name, score) {
+            const currentLeaderboard = this.get();
+            const date = new Date().toLocaleDateString();
+            currentLeaderboard.push({ name, score, date });
+            this.save(currentLeaderboard);
+            this.updateDisplay();
+        },
+        reset() {
+            if (confirm("Are you sure you want to reset the leaderboard?")) {
+                localStorage.removeItem('trivia_leaderboard');
+                this.updateDisplay();
+            }
+        },
+        updateDisplay() {
+            const topScores = this.get().sort((a, b) => b.score - a.score).slice(0, 10);
+            elements.leaderboardList.innerHTML = "";
+            topScores.forEach((entry, index) => {
+                const li = document.createElement("li");
+                li.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
+                elements.leaderboardList.appendChild(li);
             });
         }
-    });
-}
+    };
+    
+    /**
+     * GAME LOGIC OBJECT
+     * The main controller that ties everything together. It initializes the game,
+     * handles the game flow, and sets up all event listeners.
+     */
+    const gameLogic = {
+        async init() {
+            try {
+                const response = await fetch('questions.json');
+                gameState.allQuestions = await response.json();
+                ui.populateTopics();
+            } catch (error) {
+                console.error("Failed to load questions:", error);
+                alert("Failed to load quiz questions. Please try again later.");
+            }
+            this.setupEventListeners();
+            leaderboard.updateDisplay();
+            const savedTheme = localStorage.getItem('theme') || 'default';
+            document.body.className = `theme-${savedTheme}`;
+        },
+        
+        startGame() {
+            gameState.resetQuizState();
+            const total = parseInt(elements.questionCountInput.value, 10);
+            let questionPool = [];
+            let title = "";
+            const { main, sub } = gameState.selectedTopic;
 
-function startTransition(callback) {
-    elements.gameContainer.classList.add("fade-out");
-    setTimeout(() => {
-        callback();
-        elements.gameContainer.classList.remove("fade-out");
-        elements.gameContainer.classList.add("fade-in");
-        setTimeout(() => {
-            elements.gameContainer.classList.remove("fade-in");
-        }, 500);
-    }, 500);
-}
+            if (main === 'Mixed') {
+                questionPool = Object.values(gameState.allQuestions).flatMap(subCats => Object.values(subCats).flat());
+                title = "Mixed Topics";
+            } else {
+                questionPool = gameState.allQuestions[main][sub];
+                title = `${main.charAt(0).toUpperCase() + main.slice(1)}: ${sub.charAt(0).toUpperCase() + sub.slice(1)}`;
+            }
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
+            if (questionPool.length < total) {
+                alert(`Sorry, there are only ${questionPool.length} questions available for this topic.`);
+                return;
+            }
 
-init();
+            gameState.selectedQuestions = questionPool.sort(() => 0.5 - Math.random()).slice(0, total);
+            
+            ui.startTransition(() => {
+                elements.gameTitleQuiz.textContent = title + " Trivia";
+                ui.showScreen(elements.quizContainer);
+                this.loadNextQuestion();
+            });
+        },
+
+        loadNextQuestion() {
+            if (gameState.currentQuestionIndex >= gameState.selectedQuestions.length) {
+                this.showResults();
+                return;
+            }
+            ui.updateProgressBar();
+            const currentQuestion = gameState.selectedQuestions[gameState.currentQuestionIndex];
+            ui.displayQuestion(currentQuestion);
+        },
+
+        checkAnswer(selectedButton) {
+            const currentQuestion = gameState.selectedQuestions[gameState.currentQuestionIndex];
+            const isCorrect = selectedButton.textContent === currentQuestion.answer;
+
+            if (isCorrect) {
+                gameState.score++;
+                audioManager.playSound(elements.correctSound);
+            } else {
+                audioManager.playSound(elements.wrongSound);
+            }
+            
+            ui.showAnswerFeedback(isCorrect, selectedButton, currentQuestion);
+
+            gameState.answeredQuestions.push({
+                question: currentQuestion.question,
+                correct: isCorrect,
+                correctAnswer: currentQuestion.answer
+            });
+        },
+
+        showResults() {
+            elements.bgMusic.pause();
+            audioManager.playSound(elements.finishSound);
+            ui.startTransition(() => {
+                ui.updateProgressBar(); // Final progress bar update to 100%
+                ui.showScreen(elements.resultsContainer);
+                elements.scoreText.textContent = `You scored ${gameState.score} out of ${gameState.selectedQuestions.length}!`;
+                leaderboard.addScore(gameState.playerName, gameState.score);
+                
+                elements.summaryList.innerHTML = "";
+                gameState.answeredQuestions.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = `${item.question} - You were ${item.correct ? 'Correct' : `Incorrect (Answer: ${item.correctAnswer})`}`;
+                    li.classList.add(item.correct ? 'correct' : 'incorrect');
+                    elements.summaryList.appendChild(li);
+                });
+            });
+        },
+
+        restartGame() {
+            ui.startTransition(() => {
+                elements.bgMusic.pause();
+                elements.bgMusic.currentTime = 0;
+                elements.musicToggleButton.textContent = "Play Music";
+                ui.showScreen(elements.mainMenu);
+                ui.showMainTopics();
+                gameState.setSelectedTopic(null, null);
+                leaderboard.updateDisplay();
+            });
+        },
+
+        setupEventListeners() {
+            // Player Name Input
+            elements.playerNameInput.addEventListener("input", (e) => gameState.setPlayerName(e.target.value));
+
+            // Topic Selection (using event delegation)
+            elements.mainTopicsContainer.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON') return;
+                const mainTopic = e.target.dataset.topic;
+                ui.clearSelections(elements.mainTopicsContainer);
+                e.target.classList.add('selected');
+
+                if (mainTopic === 'Mixed') {
+                    gameState.setSelectedTopic('Mixed', 'Mixed');
+                    ui.showMainTopics();
+                } else {
+                    const subtopics = Object.keys(gameState.allQuestions[mainTopic]);
+                    if (subtopics.length === 1 && subtopics[0] === 'main') {
+                         gameState.setSelectedTopic(mainTopic, 'main');
+                    } else {
+                        gameState.setSelectedTopic(mainTopic, null);
+                        ui.populateSubTopics(mainTopic);
+                    }
+                }
+            });
+
+            elements.subTopicsContainer.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON') return;
+                const subTopic = e.target.dataset.subTopic;
+                ui.clearSelections(elements.subTopicsContainer);
+                e.target.classList.add('selected');
+                gameState.setSelectedTopic(gameState.selectedTopic.main, subTopic);
+            });
+
+            elements.backToMainTopicsBtn.addEventListener('click', () => {
+                gameState.setSelectedTopic(null, null);
+                ui.showMainTopics();
+            });
+
+            // Game Flow Buttons
+            elements.startButton.addEventListener("click", () => {
+                audioManager.playSound(elements.startSound);
+                this.startGame();
+            });
+            elements.nextButton.addEventListener("click", () => {
+                ui.startTransition(() => {
+                    gameState.currentQuestionIndex++;
+                    this.loadNextQuestion();
+                });
+            });
+            elements.endButton.addEventListener("click", () => this.showResults());
+            elements.restartButton.addEventListener("click", () => this.restartGame());
+            elements.hintButton.addEventListener("click", () => {
+                const currentQuestion = gameState.selectedQuestions[gameState.currentQuestionIndex];
+                elements.explanationEl.textContent = `Hint: ${currentQuestion.hint}`;
+            });
+            elements.optionsContainer.addEventListener('click', (e) => {
+                if(e.target.classList.contains('option') && !e.target.disabled) {
+                    this.checkAnswer(e.target);
+                }
+            });
+
+            // Leaderboard Buttons
+            elements.resetLeaderboardButton.addEventListener("click", () => leaderboard.reset());
+            elements.viewAllScoresButton.addEventListener('click', () => window.open('leaderboard.html', '_blank'));
+            
+            // Settings Controls
+            elements.themeSelector.addEventListener('click', (e) => {
+                if (e.target.matches('button')) {
+                    const theme = e.target.dataset.theme;
+                    document.body.className = `theme-${theme}`;
+                    localStorage.setItem('theme', theme);
+                }
+            });
+            elements.volumeSlider.addEventListener('input', (e) => audioManager.setVolume(e.target.value));
+            elements.musicToggleButton.addEventListener('click', () => {
+                if (elements.bgMusic.paused) {
+                    audioManager.playSound(elements.bgMusic);
+                    elements.musicToggleButton.textContent = "Pause Music";
+                } else {
+                    elements.bgMusic.pause();
+                    elements.musicToggleButton.textContent = "Play Music";
+                }
+            });
+            elements.muteButton.addEventListener('click', () => audioManager.toggleMute());
+            elements.fullscreenButton.addEventListener("click", () => {
+                if (!document.fullscreenElement) {
+                    elements.gameContainer.requestFullscreen().catch(err => console.error(err));
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+        }
+    };
+    
+    // Initialize the game
+    gameLogic.init();
+});
