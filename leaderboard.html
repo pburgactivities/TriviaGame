@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Quest Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-default">
+    <div class="container leaderboard-page">
+        <h2>All High Scores</h2>
+        <ul id="full-leaderboard-list"></ul>
+        <button onclick="window.close()">Close</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const savedTheme = localStorage.getItem('theme') || 'default';
+            body.className = `theme-${savedTheme}`;
+
+            const leaderboardList = document.getElementById('full-leaderboard-list');
+            const leaderboard = JSON.parse(localStorage.getItem('trivia_leaderboard')) || [];
+            
+            // Sort scores from highest to lowest
+            const sortedLeaderboard = leaderboard.sort((a, b) => b.score - a.score);
+
+            sortedLeaderboard.forEach((entry, index) => {
+                const li = document.createElement("li");
+                li.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
+                leaderboardList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
