@@ -34,7 +34,9 @@ const elements = {
     subcategoryButtons: document.querySelectorAll("#music-subcategories button"),
     volumeSlider: document.getElementById('volume-slider'),
     musicToggleButton: document.getElementById('music-toggle-button'),
-    muteButton: document.getElementById('mute-button')
+    muteButton: document.getElementById('mute-button'),
+    themeSelector: document.getElementById('theme-selector'),
+    viewAllScoresButton: document.getElementById('view-all-scores-button')
 };
 
 // UI Functions
@@ -77,10 +79,13 @@ function showAnswerFeedback(isCorrect, selectedButton, currentQuestion) {
 }
 
 function updateLeaderboardDisplay(leaderboard) {
+    // Sort and display only top 10 for the main menu
+    const sortedLeaderboard = leaderboard.sort((a, b) => b.score - a.score);
+    const topScores = sortedLeaderboard.slice(0, 10);
     elements.leaderboardList.innerHTML = "";
-    leaderboard.forEach((entry, index) => {
+    topScores.forEach((entry, index) => {
         const li = document.createElement("li");
-        li.textContent = `${index + 1}. ${entry.name} - ${entry.score}`;
+        li.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
         elements.leaderboardList.appendChild(li);
     });
 }
@@ -88,12 +93,10 @@ function updateLeaderboardDisplay(leaderboard) {
 function playSound(soundId) {
     const sound = elements[soundId];
     if (sound) {
-        // Only duck the music if a sound effect is being played
         if (soundId !== 'bgMusic' && !elements.bgMusic.paused) {
             const originalVolume = elements.bgMusic.volume;
-            elements.bgMusic.volume = originalVolume * 0.2; // Lower volume to 20%
+            elements.bgMusic.volume = originalVolume * 0.2;
             
-            // Restore volume after a fixed duration (2000 milliseconds)
             setTimeout(() => {
                 elements.bgMusic.volume = originalVolume;
             }, 2000); 
@@ -148,7 +151,8 @@ function saveLeaderboard(leaderboard) {
 
 function addScoreToLeaderboard(name, score) {
     const leaderboard = getLeaderboard();
-    leaderboard.push({ name: name, score: score });
+    const date = new Date().toLocaleDateString();
+    leaderboard.push({ name: name, score: score, date: date });
     saveLeaderboard(leaderboard);
     updateLeaderboardDisplay(getLeaderboard());
 }
@@ -237,6 +241,9 @@ function init() {
     fetchQuestions();
     elements.startButton.disabled = true;
     updateLeaderboardDisplay(getLeaderboard());
+
+    const savedTheme = localStorage.getItem('theme') || 'default';
+    document.body.className = `theme-${savedTheme}`;
     
     // Music Toggle Button on Main Menu
     elements.musicToggleButton.addEventListener('click', () => {
@@ -257,6 +264,15 @@ function init() {
         } else {
             elements.bgMusic.pause();
             elements.muteButton.textContent = "Unmute";
+        }
+    });
+
+    // Theme selector
+    elements.themeSelector.addEventListener('click', (e) => {
+        if (e.target.matches('button')) {
+            const selectedTheme = e.target.dataset.theme;
+            document.body.className = `theme-${selectedTheme}`;
+            localStorage.setItem('theme', selectedTheme);
         }
     });
 
@@ -376,6 +392,9 @@ function init() {
     });
 
     elements.resetLeaderboardButton.addEventListener("click", resetLeaderboard);
+    elements.viewAllScoresButton.addEventListener('click', () => {
+        window.open('leaderboard.html', '_blank');
+    });
     
     elements.fullscreenButton.addEventListener("click", () => {
         if (document.fullscreenElement) {
