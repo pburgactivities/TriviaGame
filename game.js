@@ -1,5 +1,5 @@
 // game.js
-import { elements, updateProgressBar, displayQuestion, showAnswerFeedback, updateLeaderboardDisplay } from './ui.js';
+import { elements, updateProgressBar, displayQuestion, showAnswerFeedback, updateLeaderboardDisplay, playSound } from './ui.js';
 
 let allQuestions = {};
 let currentQuestionIndex = 0;
@@ -78,9 +78,9 @@ function checkAnswer(selectedButton, selectedOption) {
     
     if (isCorrect) {
         score++;
-        elements.correctSound.play().catch(e => console.log("Correct sound failed:", e));
+        playSound('correctSound');
     } else {
-        elements.wrongSound.play().catch(e => console.log("Wrong sound failed:", e));
+        playSound('wrongSound');
     }
     
     showAnswerFeedback(isCorrect, selectedButton, currentQuestion);
@@ -94,7 +94,7 @@ function checkAnswer(selectedButton, selectedOption) {
 
 function showResults() {
     elements.bgMusic.pause();
-    elements.finishSound.play().catch(e => console.log("Finish sound failed:", e));
+    playSound('finishSound');
     startTransition(() => {
         elements.quizContainer.classList.add("hidden");
         elements.resultsContainer.classList.remove("hidden");
@@ -127,16 +127,15 @@ function init() {
 
     elements.topicButtons.forEach(button => {
         button.addEventListener("click", () => {
+            elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
+            elements.subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
             if (button.classList.contains("has-subcategories")) {
-                elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
                 elements.topicSelection.querySelector(".topic-buttons").classList.add("hidden");
                 elements.musicSubcategories.classList.remove("hidden");
                 selectedTopic = null;
                 elements.startButton.disabled = true;
                 return;
             }
-            elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
-            elements.subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
             selectedTopic = button.dataset.topic;
             elements.startButton.disabled = false;
@@ -166,50 +165,44 @@ function init() {
     });
 
     elements.startButton.addEventListener("click", () => {
-    // This line plays the start sound
-    elements.startSound.play().catch(e => console.log("Start sound failed:", e));
-    
-    // This new line plays the background music
-    elements.bgMusic.play().catch(e => console.log("Background music autoplay failed:", e));
+        playSound('startSound');
+        playSound('bgMusic');
+        totalQuestions = parseInt(elements.questionCountInput.value, 10);
+        let questionsPool = [];
 
-    totalQuestions = parseInt(elements.questionCountInput.value, 10);
-    let questionsPool = [];
-
-    if (selectedTopic === "mixed") {
-        for (const topic in allQuestions) {
-            if (typeof allQuestions[topic] === 'object' && !Array.isArray(allQuestions[topic])) {
-                for (const subtopic in allQuestions[topic]) {
-                    questionsPool = questionsPool.concat(allQuestions[topic][subtopic]);
+        if (selectedTopic === "mixed") {
+            for (const topic in allQuestions) {
+                if (typeof allQuestions[topic] === 'object' && !Array.isArray(allQuestions[topic])) {
+                    for (const subtopic in allQuestions[topic]) {
+                        questionsPool = questionsPool.concat(allQuestions[topic][subtopic]);
+                    }
+                } else {
+                    questionsPool = questionsPool.concat(allQuestions[topic]);
                 }
-            } else {
-                questionsPool = questionsPool.concat(allQuestions[topic]);
+            }
+            elements.gameTitle.textContent = "Mixed Topics";
+        } else if (selectedTopic) {
+            const [parentTopic, subTopic] = selectedTopic.split('-');
+            if (allQuestions[parentTopic] && allQuestions[parentTopic][selectedTopic]) {
+                questionsPool = allQuestions[parentTopic][selectedTopic];
+                elements.gameTitle.textContent = `${subTopic.toUpperCase()} Trivia`;
+            } else if (allQuestions[selectedTopic]) {
+                questionsPool = allQuestions[selectedTopic];
+                elements.gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
             }
         }
-        elements.gameTitle.textContent = "Mixed Topics";
-    } else if (selectedTopic) {
-        const [parentTopic, subTopic] = selectedTopic.split('-');
-        if (allQuestions[parentTopic] && allQuestions[parentTopic][selectedTopic]) {
-            questionsPool = allQuestions[parentTopic][selectedTopic];
-            elements.gameTitle.textContent = `${subTopic.toUpperCase()} Trivia`;
-        } else if (allQuestions[selectedTopic]) {
-            questionsPool = allQuestions[selectedTopic];
-            elements.gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
+
+        if (questionsPool.length < totalQuestions) {
+            alert(`Sorry, there are only ${questionsPool.length} questions available. Please select a number less than or equal to this.`);
+            return;
         }
-    }
 
-    if (questionsPool.length < totalQuestions) {
-        alert(`Sorry, there are only ${questionsPool.length} questions available. Please select a number less than or equal to this.`);
-        return;
-    }
-
-    selectedQuestions = shuffleArray(questionsPool).slice(0, totalQuestions);
-    startTransition(() => {
-        elements.mainMenu.classList.add("hidden");
-        elements.resultsContainer.classList.add("hidden");
-        elements.quizContainer.classList.remove("hidden");
-        startGame();
-    });
-});
+        selectedQuestions = shuffleArray(questionsPool).slice(0, totalQuestions);
+        startTransition(() => {
+            elements.mainMenu.classList.add("hidden");
+            elements.resultsContainer.classList.add("hidden");
+            elements.quizContainer.classList.remove("hidden");
+            startGame();
         });
     });
 
