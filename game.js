@@ -32,7 +32,9 @@ const elements = {
     musicSubcategories: document.getElementById("music-subcategories"),
     backButton: document.getElementById("back-button"),
     subcategoryButtons: document.querySelectorAll("#music-subcategories button"),
-    volumeSlider: document.getElementById('volume-slider')
+    volumeSlider: document.getElementById('volume-slider'),
+    musicToggleButton: document.getElementById('music-toggle-button'),
+    muteButton: document.getElementById('mute-button')
 };
 
 // UI Functions
@@ -86,6 +88,16 @@ function updateLeaderboardDisplay(leaderboard) {
 function playSound(soundId) {
     const sound = elements[soundId];
     if (sound) {
+        // Duck the background music if a sound effect is playing
+        if (soundId !== 'bgMusic' && !elements.bgMusic.paused) {
+            const originalVolume = elements.bgMusic.volume;
+            elements.bgMusic.volume = originalVolume * 0.2; // Lower volume to 20%
+            
+            setTimeout(() => {
+                elements.bgMusic.volume = originalVolume;
+            }, 500); 
+        }
+
         sound.currentTime = 0;
         sound.play().catch(e => console.log(`Error playing sound ${soundId}:`, e));
     }
@@ -100,7 +112,6 @@ elements.volumeSlider.addEventListener('input', (e) => {
     elements.finishSound.volume = volume;
 });
 
-
 // Game Variables
 let allQuestions = {};
 let currentQuestionIndex = 0;
@@ -110,7 +121,6 @@ let totalQuestions = 0;
 let answeredQuestions = [];
 let playerName = "Player";
 let selectedTopic = null;
-let hasInteracted = false;
 
 // --- Data Fetching ---
 async function fetchQuestions() {
@@ -227,14 +237,30 @@ function init() {
     elements.startButton.disabled = true;
     updateLeaderboardDisplay(getLeaderboard());
     
+    // Music Toggle Button on Main Menu
+    elements.musicToggleButton.addEventListener('click', () => {
+        if (elements.bgMusic.paused) {
+            playSound('bgMusic');
+            elements.musicToggleButton.textContent = "Pause Music";
+        } else {
+            elements.bgMusic.pause();
+            elements.musicToggleButton.textContent = "Play Music";
+        }
+    });
+
+    // Mute Button during Quiz
+    elements.muteButton.addEventListener('click', () => {
+        if (elements.bgMusic.paused) {
+            playSound('bgMusic');
+            elements.muteButton.textContent = "Mute";
+        } else {
+            elements.bgMusic.pause();
+            elements.muteButton.textContent = "Unmute";
+        }
+    });
+
     elements.topicButtons.forEach(button => {
         button.addEventListener("click", () => {
-            // Check if music has been played yet
-            if (!hasInteracted) {
-                playSound('bgMusic');
-                hasInteracted = true;
-            }
-
             elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
             elements.subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
             if (button.classList.contains("has-subcategories")) {
@@ -252,12 +278,6 @@ function init() {
 
     elements.subcategoryButtons.forEach(button => {
         button.addEventListener("click", () => {
-             // Check if music has been played yet
-             if (!hasInteracted) {
-                playSound('bgMusic');
-                hasInteracted = true;
-            }
-
             elements.topicButtons.forEach(btn => btn.classList.remove("selected"));
             elements.subcategoryButtons.forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
@@ -278,18 +298,9 @@ function init() {
     elements.playerNameInput.addEventListener("input", (e) => {
         playerName = e.target.value.trim() || "Player";
     });
-    
-    // Play music when the user interacts with the player name input
-    elements.playerNameInput.addEventListener('focus', () => {
-        if (!hasInteracted) {
-            playSound('bgMusic');
-            hasInteracted = true;
-        }
-    });
 
     elements.startButton.addEventListener("click", () => {
         playSound('startSound');
-        elements.bgMusic.pause();
         totalQuestions = parseInt(elements.questionCountInput.value, 10);
         let questionsPool = [];
 
@@ -347,6 +358,7 @@ function init() {
         startTransition(() => {
             elements.bgMusic.pause();
             elements.bgMusic.currentTime = 0;
+            elements.musicToggleButton.textContent = "Play Music";
             elements.mainMenu.classList.remove("hidden");
             elements.quizContainer.classList.add("hidden");
             elements.resultsContainer.classList.add("hidden");
