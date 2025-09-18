@@ -50,10 +50,29 @@ body {
     transition: border-color 0.5s ease, background-color 0.5s ease;
 }
 
-#game-title, h2 {
+#game-title, h2, h3, h4 {
     color: var(--primary-color);
     text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 5px var(--primary-color);
     transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+/* NEW: Styles for the new sections */
+.section-box {
+    background-color: #1f1f2e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.section-box h3, .section-box h4 {
+    margin-top: 0;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: var(--secondary-color);
+    margin: 25px 0;
 }
 
 #player-profile {
@@ -208,10 +227,6 @@ button:disabled {
     background-color: var(--primary-color);
     box-shadow: 0 0 10px var(--primary-color);
     border: 1px solid var(--primary-color);
-}
-
-#leaderboard-section {
-    margin-top: 2rem;
 }
 
 #leaderboard-list {
