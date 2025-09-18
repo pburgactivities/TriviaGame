@@ -182,6 +182,11 @@ button:disabled {
     border: 1px solid var(--primary-color);
 }
 
+#leaderboard-section ul {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
 #leaderboard-list {
     padding: 0;
 }
