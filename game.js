@@ -50,7 +50,6 @@ function resetLeaderboard() {
 // --- Game Flow Functions ---
 function startGame() {
     elements.bgMusic.play().catch(e => console.log("Background music autoplay failed:", e));
-    elements.startSound.play().catch(e => console.log("Start sound failed:", e));
     currentQuestionIndex = 0;
     score = 0;
     answeredQuestions = [];
@@ -168,6 +167,7 @@ function init() {
     });
 
     elements.startButton.addEventListener("click", () => {
+        elements.startSound.play().catch(e => console.log("Start sound failed:", e));
         totalQuestions = parseInt(elements.questionCountInput.value, 10);
         let questionsPool = [];
 
@@ -254,7 +254,6 @@ function init() {
     });
 }
 
-// Add this new function to your game.js file
 function startTransition(callback) {
     elements.gameContainer.classList.add("fade-out");
     setTimeout(() => {
