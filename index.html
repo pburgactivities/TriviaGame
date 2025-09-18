@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'default';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
     <audio id="bg-music" src="assets/Main Menu.wav" loop></audio>
     <audio id="correct-sound" src="assets/Correct.wav"></audio>
     <audio id="wrong-sound" src="assets/Wrong.wav"></audio>
     <audio id="start-sound" src="assets/Game Start.mp3"></audio>
     <audio id="finish-sound" src="assets/Completed.wav"></audio>
 
-    <div class="container" id="game-container">
-        <div id="main-menu">
+    <main class="container" id="game-container">
+        <section id="main-menu">
             <h1 id="game-title-main">Quiz Quest</h1>
             
             <div class="section-box">
@@ -49,7 +56,7 @@
                     <div id="sub-topics" class="hidden">
                         <h4 id="sub-topics-title"></h4>
                         <div class="topic-buttons-container">
-                            </div>
+                             </div>
                         <button id="back-to-main-topics">Back to Topics</button>
                     </div>
                 </div>
@@ -70,9 +77,9 @@
             </div>
 
             <button id="fullscreen-button">Toggle Fullscreen</button>
-        </div>
+        </section>
         
-        <div id="quiz-container" class="hidden">
+        <section id="quiz-container" class="hidden">
             <h2 id="game-title-quiz">Quiz Title</h2>
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
@@ -85,17 +92,17 @@
             <button id="next-button">Next Question</button>
             <button id="end-button">End Game</button>
             <button id="mute-button">Mute</button>
-        </div>
+        </section>
 
-        <div id="results-container" class="hidden">
+        <section id="results-container" class="hidden">
             <h2>Quiz Complete!</h2>
             <div class="results-summary">
                 <p id="score-text"></p>
                 <ul id="summary-list"></ul>
             </div>
             <button id="restart-button">Play Again</button>
-        </div>
-    </div>
+        </section>
+    </main>
     <script src="game.js"></script>
 </body>
 </html>
