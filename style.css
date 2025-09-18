@@ -144,6 +144,10 @@ button:disabled {
 
 #summary-list {
     padding: 0;
+    list-style: none;
+    max-height: 250px; /* New height limit */
+    overflow-y: auto; /* New scrolling behavior */
+    margin-top: 20px;
 }
 
 #summary-list li {
@@ -204,6 +208,24 @@ button:disabled {
 #leaderboard-list li:hover {
     transform: translateX(5px);
     background-color: #4d4d73;
+}
+
+/* NEW: Styles for the results summary box */
+.results-summary {
+    background-color: #1f1f2e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.results-summary #score-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px var(--secondary-color);
 }
 
 /* New CSS for animated transitions */
