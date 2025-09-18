@@ -49,7 +49,6 @@ function resetLeaderboard() {
 
 // --- Game Flow Functions ---
 function startGame() {
-    elements.bgMusic.play().catch(e => console.log("Background music autoplay failed:", e));
     currentQuestionIndex = 0;
     score = 0;
     answeredQuestions = [];
@@ -167,43 +166,50 @@ function init() {
     });
 
     elements.startButton.addEventListener("click", () => {
-        elements.startSound.play().catch(e => console.log("Start sound failed:", e));
-        totalQuestions = parseInt(elements.questionCountInput.value, 10);
-        let questionsPool = [];
+    // This line plays the start sound
+    elements.startSound.play().catch(e => console.log("Start sound failed:", e));
+    
+    // This new line plays the background music
+    elements.bgMusic.play().catch(e => console.log("Background music autoplay failed:", e));
 
-        if (selectedTopic === "mixed") {
-            for (const topic in allQuestions) {
-                if (typeof allQuestions[topic] === 'object' && !Array.isArray(allQuestions[topic])) {
-                    for (const subtopic in allQuestions[topic]) {
-                        questionsPool = questionsPool.concat(allQuestions[topic][subtopic]);
-                    }
-                } else {
-                    questionsPool = questionsPool.concat(allQuestions[topic]);
+    totalQuestions = parseInt(elements.questionCountInput.value, 10);
+    let questionsPool = [];
+
+    if (selectedTopic === "mixed") {
+        for (const topic in allQuestions) {
+            if (typeof allQuestions[topic] === 'object' && !Array.isArray(allQuestions[topic])) {
+                for (const subtopic in allQuestions[topic]) {
+                    questionsPool = questionsPool.concat(allQuestions[topic][subtopic]);
                 }
-            }
-            elements.gameTitle.textContent = "Mixed Topics";
-        } else if (selectedTopic) {
-            const [parentTopic, subTopic] = selectedTopic.split('-');
-            if (allQuestions[parentTopic] && allQuestions[parentTopic][selectedTopic]) {
-                questionsPool = allQuestions[parentTopic][selectedTopic];
-                elements.gameTitle.textContent = `${subTopic.toUpperCase()} Trivia`;
-            } else if (allQuestions[selectedTopic]) {
-                questionsPool = allQuestions[selectedTopic];
-                elements.gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
+            } else {
+                questionsPool = questionsPool.concat(allQuestions[topic]);
             }
         }
-
-        if (questionsPool.length < totalQuestions) {
-            alert(`Sorry, there are only ${questionsPool.length} questions available. Please select a number less than or equal to this.`);
-            return;
+        elements.gameTitle.textContent = "Mixed Topics";
+    } else if (selectedTopic) {
+        const [parentTopic, subTopic] = selectedTopic.split('-');
+        if (allQuestions[parentTopic] && allQuestions[parentTopic][selectedTopic]) {
+            questionsPool = allQuestions[parentTopic][selectedTopic];
+            elements.gameTitle.textContent = `${subTopic.toUpperCase()} Trivia`;
+        } else if (allQuestions[selectedTopic]) {
+            questionsPool = allQuestions[selectedTopic];
+            elements.gameTitle.textContent = selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1) + " Trivia";
         }
+    }
 
-        selectedQuestions = shuffleArray(questionsPool).slice(0, totalQuestions);
-        startTransition(() => {
-            elements.mainMenu.classList.add("hidden");
-            elements.resultsContainer.classList.add("hidden");
-            elements.quizContainer.classList.remove("hidden");
-            startGame();
+    if (questionsPool.length < totalQuestions) {
+        alert(`Sorry, there are only ${questionsPool.length} questions available. Please select a number less than or equal to this.`);
+        return;
+    }
+
+    selectedQuestions = shuffleArray(questionsPool).slice(0, totalQuestions);
+    startTransition(() => {
+        elements.mainMenu.classList.add("hidden");
+        elements.resultsContainer.classList.add("hidden");
+        elements.quizContainer.classList.remove("hidden");
+        startGame();
+    });
+});
         });
     });
 
