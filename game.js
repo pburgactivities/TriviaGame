@@ -54,13 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // General
         gameContainer: document.getElementById("game-container"),
     };
-    // Create a convenient array of all audio elements for batch operations
     elements.allAudio = [elements.bgMusic, elements.correctSound, elements.wrongSound, elements.startSound, elements.finishSound];
 
     /**
      * GAME STATE OBJECT
-     * Manages all the data and state for the quiz, like scores, questions, and player info.
-     * This keeps the global namespace clean.
+     * Manages all the data and state for the quiz.
      */
     const gameState = {
         allQuestions: {},
@@ -90,8 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * UI MANAGER OBJECT
-     * Handles all interactions with the DOM, such as showing/hiding screens and updating content.
-     * This separates display logic from game logic.
+     * Handles all interactions with the DOM.
      */
     const ui = {
         showScreen(screenToShow) {
@@ -113,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayQuestion(questionData) {
             elements.questionEl.textContent = questionData.question;
             elements.optionsContainer.innerHTML = "";
-            elements.explanationEl.innerHTML = "&nbsp;"; // Use a non-breaking space to maintain height
+            elements.explanationEl.innerHTML = "&nbsp;";
             elements.nextButton.style.display = "none";
             elements.hintButton.style.display = "block";
             
@@ -144,6 +141,19 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.nextButton.style.display = "block";
         },
 
+        getFormattedSubtopicName(main, sub) {
+            switch (main.toLowerCase()) {
+                case 'music':
+                    return `${sub}s Hits`;
+                case 'history':
+                    return `${sub} History`;
+                case 'sports':
+                    return `${sub} Trivia`;
+                default:
+                    return sub.charAt(0).toUpperCase() + sub.slice(1);
+            }
+        },
+
         populateTopics() {
             elements.mainTopicsContainer.innerHTML = "";
             const topics = Object.keys(gameState.allQuestions);
@@ -164,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             subtopics.forEach(sub => {
                 const button = document.createElement("button");
-                button.textContent = sub.charAt(0).toUpperCase() + sub.slice(1);
+                button.textContent = this.getFormattedSubtopicName(mainTopic, sub);
                 button.dataset.subTopic = sub;
                 elements.subTopicsContainer.appendChild(button);
             });
@@ -202,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioManager = {
         playSound(soundElement) {
             if (!soundElement) return;
-            // Duck the background music volume for sound effects
             if (soundElement.id !== 'bg-music' && !elements.bgMusic.paused) {
                 const originalVolume = elements.bgMusic.volume;
                 elements.bgMusic.volume = originalVolume * 0.2;
@@ -215,9 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.allAudio.forEach(audio => audio.volume = volume);
         },
         toggleMute() {
-            const isMuted = elements.allAudio[0].muted;
-            elements.allAudio.forEach(audio => audio.muted = !isMuted);
-            elements.muteButton.textContent = !isMuted ? "Unmute" : "Mute";
+            const isMuted = !elements.allAudio[0].muted;
+            elements.allAudio.forEach(audio => audio.muted = isMuted);
+            elements.muteButton.textContent = isMuted ? "Unmute" : "Mute";
         }
     };
 
@@ -258,8 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     /**
      * GAME LOGIC OBJECT
-     * The main controller that ties everything together. It initializes the game,
-     * handles the game flow, and sets up all event listeners.
+     * The main controller that ties everything together.
      */
     const gameLogic = {
         async init() {
@@ -289,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title = "Mixed Topics";
             } else {
                 questionPool = gameState.allQuestions[main][sub];
-                title = `${main.charAt(0).toUpperCase() + main.slice(1)}: ${sub.charAt(0).toUpperCase() + sub.slice(1)}`;
+                title = ui.getFormattedSubtopicName(main, sub);
             }
 
             if (questionPool.length < total) {
@@ -300,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gameState.selectedQuestions = questionPool.sort(() => 0.5 - Math.random()).slice(0, total);
             
             ui.startTransition(() => {
-                elements.gameTitleQuiz.textContent = title + " Trivia";
+                elements.gameTitleQuiz.textContent = title;
                 ui.showScreen(elements.quizContainer);
                 this.loadNextQuestion();
             });
@@ -340,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.bgMusic.pause();
             audioManager.playSound(elements.finishSound);
             ui.startTransition(() => {
-                ui.updateProgressBar(); // Final progress bar update to 100%
+                ui.updateProgressBar();
                 ui.showScreen(elements.resultsContainer);
                 elements.scoreText.textContent = `You scored ${gameState.score} out of ${gameState.selectedQuestions.length}!`;
                 leaderboard.addScore(gameState.playerName, gameState.score);
@@ -368,10 +376,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         setupEventListeners() {
-            // Player Name Input
             elements.playerNameInput.addEventListener("input", (e) => gameState.setPlayerName(e.target.value));
 
-            // Topic Selection (using event delegation)
             elements.mainTopicsContainer.addEventListener('click', (e) => {
                 if (e.target.tagName !== 'BUTTON') return;
                 const mainTopic = e.target.dataset.topic;
@@ -405,7 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ui.showMainTopics();
             });
 
-            // Game Flow Buttons
             elements.startButton.addEventListener("click", () => {
                 audioManager.playSound(elements.startSound);
                 this.startGame();
@@ -428,11 +433,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Leaderboard Buttons
             elements.resetLeaderboardButton.addEventListener("click", () => leaderboard.reset());
             elements.viewAllScoresButton.addEventListener('click', () => window.open('leaderboard.html', '_blank'));
             
-            // Settings Controls
             elements.themeSelector.addEventListener('click', (e) => {
                 if (e.target.matches('button')) {
                     const theme = e.target.dataset.theme;
