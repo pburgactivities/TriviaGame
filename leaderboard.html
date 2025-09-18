@@ -5,30 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Quest Leaderboard</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'default';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
-<body class="theme-default">
+<body>
     <div class="container leaderboard-page">
         <h2>All High Scores</h2>
         <ul id="full-leaderboard-list"></ul>
-        <button onclick="window.close()">Close</button>
+        <button id="close-button">Close</button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-            const savedTheme = localStorage.getItem('theme') || 'default';
-            body.className = `theme-${savedTheme}`;
-
             const leaderboardList = document.getElementById('full-leaderboard-list');
+            const closeButton = document.getElementById('close-button');
             const leaderboard = JSON.parse(localStorage.getItem('trivia_leaderboard')) || [];
             
             // Sort scores from highest to lowest
-            const sortedLeaderboard = leaderboard.sort((a, b) => b.score - a.score);
+            leaderboard.sort((a, b) => b.score - a.score);
 
-            sortedLeaderboard.forEach((entry, index) => {
-                const li = document.createElement("li");
-                li.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
-                leaderboardList.appendChild(li);
+            if (leaderboard.length === 0) {
+                leaderboardList.innerHTML = '<li>No scores yet!</li>';
+            } else {
+                leaderboard.forEach((entry, index) => {
+                    const li = document.createElement("li");
+                    li.textContent = `${index + 1}. ${entry.name} - ${entry.score} (${entry.date})`;
+                    leaderboardList.appendChild(li);
+                });
+            }
+
+            // IMPROVEMENT: Added an event listener for the close button.
+            closeButton.addEventListener('click', () => {
+                window.close();
             });
         });
     </script>
