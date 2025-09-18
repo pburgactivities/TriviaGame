@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivia Game</title>
+    <title>Quiz Quest</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,6 +21,10 @@
                 <input type="text" id="player-name" placeholder="Enter your name">
             </div>
             <button id="fullscreen-button">Toggle Fullscreen</button>
+            <div class="controls-container">
+                <label for="volume-slider">Volume:</label>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+            </div>
             <div id="topic-selection">
                 <h3>Choose a Topic:</h3>
                 <div class="topic-buttons">
