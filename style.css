@@ -1,9 +1,6 @@
 /* ================================== */
-/* FIX #1: THEME VARIABLES            */
+/* THEME VARIABLES                    */
 /* ================================== */
-/* I've added new variables for elements that were previously hardcoded,
-   like section boxes and input fields, and defined them for each theme.
-*/
 :root {
     --success-color: #20c997;
     --error-color: #dc3545;
@@ -15,9 +12,9 @@
     --primary-color: #e94560;
     --secondary-color: #00e0ff;
     --text-color: #e5e5e5;
-    --section-box-color: #1f1f2e; /* New Variable */
-    --input-bg-color: #3b3b5b;    /* New Variable */
-    --input-border-color: #5b5b8c;/* New Variable */
+    --section-box-color: #1f1f2e;
+    --input-bg-color: #3b3b5b;
+    --input-border-color: #5b5b8c;
 }
 
 [data-theme="ocean"] {
@@ -26,9 +23,9 @@
     --primary-color: #3e81ff;
     --secondary-color: #b0e0e6;
     --text-color: #e6f7ff;
-    --section-box-color: #121e29; /* New Variable */
-    --input-bg-color: #2a3c50;    /* New Variable */
-    --input-border-color: #48607a;/* New Variable */
+    --section-box-color: #121e29;
+    --input-bg-color: #2a3c50;
+    --input-border-color: #48607a;
 }
 
 [data-theme="forest"] {
@@ -37,9 +34,9 @@
     --primary-color: #59d2a4;
     --secondary-color: #b9e3a6;
     --text-color: #e3f5d6;
-    --section-box-color: #142118; /* New Variable */
-    --input-bg-color: #2a3e2f;    /* New Variable */
-    --input-border-color: #435c4a;/* New Variable */
+    --section-box-color: #142118;
+    --input-bg-color: #2a3e2f;
+    --input-border-color: #435c4a;
 }
 
 body {
@@ -85,7 +82,7 @@ h1, h2, h3, h4 {
 }
 
 .section-box {
-    background-color: var(--section-box-color); /* Using variable now */
+    background-color: var(--section-box-color);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 25px;
@@ -112,7 +109,7 @@ hr {
     padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--secondary-color);
-    background-color: var(--input-bg-color); /* Using variable now */
+    background-color: var(--input-bg-color);
     color: var(--text-color);
     margin-left: 10px;
     transition: all 0.3s ease;
@@ -161,7 +158,7 @@ button:disabled {
 }
 
 .option {
-    background-color: var(--input-bg-color); /* Using variable now */
+    background-color: var(--input-bg-color);
     color: var(--text-color);
     border: 1px solid transparent;
     text-transform: none;
@@ -189,7 +186,7 @@ button:disabled {
     padding: 15px;
     border: 1px solid var(--secondary-color);
     border-radius: 8px;
-    background-color: var(--container-color); /* Using variable now */
+    background-color: var(--container-color);
     font-style: italic;
     color: var(--secondary-color);
     box-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
@@ -238,23 +235,24 @@ button:disabled {
     border-left: 5px solid var(--error-color);
 }
 
-/* ================================== */
-/* FIX #2: TOPIC BUTTONS LAYOUT       */
-/* ================================== */
 .topic-buttons-container {
     display: grid;
-    /* Increased the min-width of columns to give buttons more space */
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 15px;
     justify-content: center;
     padding: 10px 0;
 }
 
+/* ================================== */
+/* FIX #1: TOPIC BUTTON OVERFLOW      */
+/* ================================== */
 .topic-buttons-container button {
-    background-color: var(--input-bg-color); /* Using variable now */
+    background-color: var(--input-bg-color);
     color: var(--text-color);
-    border: 1px solid var(--input-border-color); /* Using variable now */
-    padding: 12px 15px; /* Reduced horizontal padding */
+    border: 1px solid var(--input-border-color);
+    padding: 12px 15px;
+    /* This new rule allows long text to wrap to the next line */
+    white-space: normal;
 }
 
 .topic-buttons-container button.selected {
@@ -269,13 +267,14 @@ button:disabled {
     grid-column: 1 / -1;
     margin-top: 1rem;
 }
+
 #back-to-main-topics:hover {
      background-color: #00b8d4;
 }
 
 #leaderboard-list li {
     list-style-type: none;
-    background-color: var(--input-bg-color); /* Using variable now */
+    background-color: var(--input-bg-color);
     padding: 10px;
     margin-bottom: 8px;
     border-radius: 8px;
@@ -289,7 +288,7 @@ button:disabled {
 }
 
 #full-leaderboard-list li {
-    background-color: var(--input-bg-color); /* Using variable now */
+    background-color: var(--input-bg-color);
     padding: 12px;
     margin-bottom: 8px;
     border-radius: 8px;
@@ -308,9 +307,10 @@ button:disabled {
 }
 
 /* ================================== */
-/* FIX #3: LEADERBOARD BUTTON HOVER   */
+/* FIX #2: LEADERBOARD BUTTON HOVER   */
 /* ================================== */
-/* This new rule combines the centering transform with the hover transform */
+/* This specific rule combines the centering transform with the upward hover movement,
+   overriding the general button:hover rule that was causing the problem. */
 .leaderboard-page button:hover:not(:disabled) {
     transform: translateX(-50%) translateY(-2px);
 }
@@ -321,7 +321,7 @@ button:disabled {
 }
 
 .results-summary {
-    background-color: var(--section-box-color); /* Using variable now */
+    background-color: var(--section-box-color);
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
