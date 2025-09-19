@@ -60,50 +60,6 @@ body {
     margin: 0 auto;
 }
 
-.container:fullscreen {
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-h1, h2, h3, h4 {
-    color: var(--primary-color);
-    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 5px var(--primary-color);
-    transition: color 0.5s ease, text-shadow 0.5s ease;
-}
-
-.section-box {
-    background-color: var(--section-box-color);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    transition: background-color 0.5s ease;
-}
-
-hr {
-    border: none;
-    height: 2px;
-    background-color: var(--secondary-color);
-    margin: 25px 0;
-    transition: background-color 0.5s ease;
-}
-
-#player-name {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid var(--secondary-color);
-    background-color: var(--input-bg-color);
-    color: var(--text-color);
-    margin-left: 10px;
-    transition: all 0.3s ease;
-}
-
 .hidden {
     display: none;
 }
@@ -122,79 +78,114 @@ button {
     letter-spacing: 1px;
 }
 
-/* This is the general hover rule that causes the problem for the leaderboard button */
 button:hover:not(:disabled) {
     background-color: #c9344d;
     transform: translateY(-2px);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-button:disabled {
-    background-color: #4b4b6c;
-    cursor: not-allowed;
-    box-shadow: none;
+/* ================================== */
+/* FIX #1: RESTORING LIGHTING EFFECTS */
+/* ================================== */
+.option:hover:not(:disabled) {
+    background-color: #4d4d73;
+    /* Glow effect for option buttons on hover */
+    box-shadow: 0 0 10px var(--secondary-color);
 }
 
-.options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.option.correct, .option.incorrect {
+    color: white; /* Ensure text is readable */
+}
+
+.option.correct {
+    background-color: var(--success-color);
+    border: 2px solid var(--success-color);
+    /* Glow effect for correct answers */
+    box-shadow: 0 0 15px var(--success-color);
+}
+
+.option.incorrect {
+    background-color: var(--error-color);
+    border: 2px solid var(--error-color);
+    /* Glow effect for incorrect answers */
+    box-shadow: 0 0 15px var(--error-color);
+}
+
+/* Restored the box and glow for the explanation area */
+#explanation {
     margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding: 15px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    background-color: var(--section-box-color);
+    font-style: italic;
+    color: var(--secondary-color);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+    min-height: 1.5em; /* Ensure it doesn't collapse when empty */
 }
 
-.option {
-    background-color: var(--input-bg-color);
-    text-transform: none;
+/* ================================== */
+/* FIX #2: NEXT BUTTON LAYOUT         */
+/* ================================== */
+/* This new container will hold our action buttons */
+#quiz-actions {
+    display: flex;
+    justify-content: space-between; /* This separates hint/end from next */
+    align-items: center;
+    margin-top: 2rem;
+    border-top: 2px solid var(--input-border-color);
+    padding-top: 1rem;
 }
 
-/*==================================================*/
-/* DESKTOP UI FIX #1: TOPIC BUTTONS                 */
-/*==================================================*/
+/* We want the Next button to be more prominent */
+#next-button {
+    background-color: var(--success-color);
+    color: white;
+}
+#next-button:hover {
+    background-color: #1aa37a;
+}
+
+/* The End Game button can be less prominent */
+#end-button {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+#end-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+/* --- Other Styles (no major changes below) --- */
+
 .topic-buttons-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 15px;
-    /* IMPROVEMENT: This makes all buttons in the same row stretch to the same height. */
     align-items: stretch;
 }
 
 .topic-buttons-container button {
     background-color: var(--input-bg-color);
     border: 1px solid var(--input-border-color);
-    padding: 10px; /* Adjusted padding for better wrapping */
-    
-    /* IMPROVEMENT: The next 4 lines create a "flexbox" inside the button
-       to perfectly center the text, even when it wraps to two lines. */
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    white-space: normal; /* This allows the text to wrap */
+    white-space: normal;
 }
 
 .topic-buttons-container button.selected {
     background-color: var(--primary-color);
+    /* Glow effect for selected topic */
     box-shadow: 0 0 10px var(--primary-color);
     border: 1px solid var(--primary-color);
 }
 
-#leaderboard-list li, #full-leaderboard-list li {
-    background-color: var(--input-bg-color);
-    transition: background-color 0.5s ease;
-}
-
-/*==================================================*/
-/* DESKTOP UI FIX #2: LEADERBOARD BUTTON            */
-/*==================================================*/
-.leaderboard-page button {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    /* This rule initially centers the button */
-    transform: translateX(-50%);
-}
-
-/* This MORE SPECIFIC hover rule will be used for the leaderboard button instead of the general one.
-   It combines the centering (translateX) with the upward movement (translateY). */
 .leaderboard-page button:hover:not(:disabled) {
     transform: translateX(-50%) translateY(-2px);
 }
