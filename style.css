@@ -1,6 +1,3 @@
-/* ================================== */
-/* THEME VARIABLES                    */
-/* ================================== */
 :root {
     --success-color: #20c997;
     --error-color: #dc3545;
@@ -89,20 +86,12 @@ h1, h2, h3, h4 {
     transition: background-color 0.5s ease;
 }
 
-.section-box h3, .section-box h4 {
-    margin-top: 0;
-}
-
 hr {
     border: none;
     height: 2px;
     background-color: var(--secondary-color);
     margin: 25px 0;
     transition: background-color 0.5s ease;
-}
-
-#player-profile {
-    margin-bottom: 2rem;
 }
 
 #player-name {
@@ -113,11 +102,6 @@ hr {
     color: var(--text-color);
     margin-left: 10px;
     transition: all 0.3s ease;
-}
-
-#player-name:focus {
-    outline: none;
-    box-shadow: 0 0 8px var(--secondary-color);
 }
 
 .hidden {
@@ -138,6 +122,7 @@ button {
     letter-spacing: 1px;
 }
 
+/* This is the general hover rule that causes the problem for the leaderboard button */
 button:hover:not(:disabled) {
     background-color: #c9344d;
     transform: translateY(-2px);
@@ -159,100 +144,31 @@ button:disabled {
 
 .option {
     background-color: var(--input-bg-color);
-    color: var(--text-color);
-    border: 1px solid transparent;
     text-transform: none;
 }
 
-.option:hover:not(:disabled) {
-    background-color: #4d4d73;
-    box-shadow: 0 0 10px var(--secondary-color);
-}
-
-.option.correct {
-    background-color: var(--success-color);
-    border: 2px solid var(--success-color);
-    box-shadow: 0 0 15px var(--success-color);
-}
-
-.option.incorrect {
-    background-color: var(--error-color);
-    border: 2px solid var(--error-color);
-    box-shadow: 0 0 15px var(--error-color);
-}
-
-#explanation {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 8px;
-    background-color: var(--container-color);
-    font-style: italic;
-    color: var(--secondary-color);
-    box-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
-    transition: all 0.5s ease;
-}
-
-.progress-container {
-    background-color: #4b4b6c;
-    border-radius: 10px;
-    height: 12px;
-    width: 100%;
-    margin: 20px 0;
-}
-
-.progress-bar {
-    background-color: var(--primary-color);
-    height: 100%;
-    width: 0%;
-    border-radius: 10px;
-    transition: width 0.4s ease, background-color 0.5s ease;
-}
-
-#summary-list {
-    padding: 0;
-    list-style: none;
-    max-height: 250px;
-    overflow-y: auto;
-    margin-top: 20px;
-}
-
-#summary-list li {
-    list-style-type: none;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: left;
-}
-
-#summary-list li.correct {
-    background-color: rgba(32, 201, 151, 0.2);
-    border-left: 5px solid var(--success-color);
-}
-
-#summary-list li.incorrect {
-    background-color: rgba(220, 53, 69, 0.2);
-    border-left: 5px solid var(--error-color);
-}
-
+/*==================================================*/
+/* DESKTOP UI FIX #1: TOPIC BUTTONS                 */
+/*==================================================*/
 .topic-buttons-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 15px;
-    justify-content: center;
-    padding: 10px 0;
+    /* IMPROVEMENT: This makes all buttons in the same row stretch to the same height. */
+    align-items: stretch;
 }
 
-/* ================================== */
-/* FIX #1: TOPIC BUTTON OVERFLOW      */
-/* ================================== */
 .topic-buttons-container button {
     background-color: var(--input-bg-color);
-    color: var(--text-color);
     border: 1px solid var(--input-border-color);
-    padding: 12px 15px;
-    /* This new rule allows long text to wrap to the next line */
-    white-space: normal;
+    padding: 10px; /* Adjusted padding for better wrapping */
+    
+    /* IMPROVEMENT: The next 4 lines create a "flexbox" inside the button
+       to perfectly center the text, even when it wraps to two lines. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: normal; /* This allows the text to wrap */
 }
 
 .topic-buttons-container button.selected {
@@ -261,88 +177,24 @@ button:disabled {
     border: 1px solid var(--primary-color);
 }
 
-#back-to-main-topics {
-    background-color: var(--secondary-color);
-    color: var(--bg-color);
-    grid-column: 1 / -1;
-    margin-top: 1rem;
-}
-
-#back-to-main-topics:hover {
-     background-color: #00b8d4;
-}
-
-#leaderboard-list li {
-    list-style-type: none;
+#leaderboard-list li, #full-leaderboard-list li {
     background-color: var(--input-bg-color);
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    text-align: left;
-    transition: transform 0.2s ease, background-color 0.5s ease;
+    transition: background-color 0.5s ease;
 }
 
-#leaderboard-list li:hover {
-    transform: translateX(5px);
-    background-color: #4d4d73;
-}
-
-#full-leaderboard-list li {
-    background-color: var(--input-bg-color);
-    padding: 12px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-}
-
-.leaderboard-page {
-    position: relative;
-    padding-bottom: 60px;
-}
-
+/*==================================================*/
+/* DESKTOP UI FIX #2: LEADERBOARD BUTTON            */
+/*==================================================*/
 .leaderboard-page button {
     position: absolute;
     bottom: 20px;
     left: 50%;
+    /* This rule initially centers the button */
     transform: translateX(-50%);
 }
 
-/* ================================== */
-/* FIX #2: LEADERBOARD BUTTON HOVER   */
-/* ================================== */
-/* This specific rule combines the centering transform with the upward hover movement,
-   overriding the general button:hover rule that was causing the problem. */
+/* This MORE SPECIFIC hover rule will be used for the leaderboard button instead of the general one.
+   It combines the centering (translateX) with the upward movement (translateY). */
 .leaderboard-page button:hover:not(:disabled) {
     transform: translateX(-50%) translateY(-2px);
-}
-
-.top-scores-list {
-    max-height: 250px;
-    overflow-y: auto;
-}
-
-.results-summary {
-    background-color: var(--section-box-color);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-.results-summary #score-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--secondary-color);
-    margin-bottom: 15px;
-    text-shadow: 0 0 5px var(--secondary-color);
-}
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.5s ease;
 }
