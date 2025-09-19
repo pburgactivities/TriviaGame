@@ -160,8 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         getFormattedSubtopicName(main, sub) {
             switch (main.toLowerCase()) {
+                //==================================================
+                // TYPO FIX: Removed the extra 's' from `${sub}s`
+                //==================================================
                 case 'music':
-                    return `${sub}s Hits`;
+                    return `${sub} Hits`;
                 case 'history':
                     return `${sub} History`;
                 case 'sports':
@@ -304,7 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             this.setupEventListeners();
             leaderboard.updateDisplay();
-            // Theme is now set by the script in the <head> of the HTML
         },
         
         startGame() {
@@ -462,7 +464,6 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.themeSelector.addEventListener('click', (e) => {
                 if (e.target.matches('button[data-theme]')) {
                     const theme = e.target.dataset.theme;
-                    // IMPROVEMENT: Set data-theme attribute on the root element (<html>)
                     document.documentElement.setAttribute('data-theme', theme);
                     localStorage.setItem(constants.THEME_KEY, theme);
                 }
