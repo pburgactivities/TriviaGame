@@ -60,6 +60,25 @@ body {
     margin: 0 auto;
 }
 
+/* ================================== */
+/* FIX FOR MOBILE FULLSCREEN SCROLLING */
+/* ================================== */
+/* This is the rule that handles the fullscreen state. */
+.container:fullscreen {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 20px;
+    overflow-y: auto;
+    /* This line enables smooth, native-style scrolling on mobile devices */
+    -webkit-overflow-scrolling: touch;
+}
+
+
 .hidden {
     display: none;
 }
@@ -169,11 +188,6 @@ button:hover:not(:disabled) {
     border: 1px solid var(--primary-color);
 }
 
-/* ================================== */
-/* FIXES FOR LEADERBOARD PAGE         */
-/* ================================== */
-
-/* This rule centers the button on the separate leaderboard page */
 .leaderboard-page button {
     position: absolute;
     bottom: 20px;
@@ -181,12 +195,10 @@ button:hover:not(:disabled) {
     transform: translateX(-50%);
 }
 
-/* This specific hover rule stops the button from moving on hover */
 .leaderboard-page button:hover:not(:disabled) {
     transform: translateX(-50%) translateY(-2px);
 }
 
-/* This rule removes the bullet points from the main leaderboard list */
 #full-leaderboard-list {
     list-style-type: none;
     padding: 0;
@@ -194,8 +206,6 @@ button:hover:not(:disabled) {
     overflow-y: auto;
     margin: 20px 0;
 }
-
-/* ================================== */
 
 #summary-list, #leaderboard-list {
     padding: 0;
