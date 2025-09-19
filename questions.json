@@ -432,6 +432,41 @@
         "answer": "Beauty and the Beast",
         "explanation": "'Beauty and the Beast' was the first animated film to be nominated for Best Picture in 1991.",
         "hint": "A tale as old as time."
+      },
+      {
+        "question": "What is the highest-grossing film of all time (unadjusted for inflation)?",
+        "options": ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars: The Force Awakens"],
+        "answer": "Avatar",
+        "explanation": "James Cameron's 'Avatar' has held the top spot for most of the time since its release in 2009.",
+        "hint": "It's a sci-fi film about blue aliens."
+      },
+      {
+        "question": "Who wrote the screenplay for 'Pulp Fiction'?",
+        "options": ["Quentin Tarantino", "Martin Scorsese", "Spike Lee", "The Coen Brothers"],
+        "answer": "Quentin Tarantino",
+        "explanation": "Quentin Tarantino wrote and directed this iconic 1994 film, winning an Oscar for Best Original Screenplay.",
+        "hint": "He is known for his non-linear storytelling."
+      },
+      {
+        "question": "In 'Forrest Gump', what does Forrest say life is like?",
+        "options": ["A hurricane", "A box of chocolates", "A long road", "A rollercoaster"],
+        "answer": "A box of chocolates",
+        "explanation": "The famous line is 'My momma always said, life was like a box of chocolates. You never know what you're gonna get.'",
+        "hint": "It's a sweet analogy."
+      },
+      {
+        "question": "Which movie features the character Hannibal Lecter?",
+        "options": ["The Shining", "Psycho", "A Nightmare on Elm Street", "The Silence of the Lambs"],
+        "answer": "The Silence of the Lambs",
+        "explanation": "Hannibal Lecter, a brilliant psychiatrist and cannibalistic serial killer, is a central character in the film.",
+        "hint": "It involves a novice FBI agent."
+      },
+      {
+        "question": "What is the name of the ship in the 'Pirates of the Caribbean' series captained by Jack Sparrow?",
+        "options": ["The Flying Dutchman", "The Queen Anne's Revenge", "The Black Pearl", "The Interceptor"],
+        "answer": "The Black Pearl",
+        "explanation": "The Black Pearl is the infamous ship that Jack Sparrow is constantly trying to reclaim.",
+        "hint": "It's a color and a gemstone."
       }
     ]
   },
@@ -506,6 +541,41 @@
         "answer": "A galaxy",
         "explanation": "A galaxy is a massive system of stars, stellar remnants, interstellar gas, dust, and dark matter bound together by gravity.",
         "hint": "The Milky Way is one."
+      },
+      {
+        "question": "What does 'DNA' stand for?",
+        "options": ["Deoxyribonucleic Acid", "Dynamic Neural Axis", "Deoxyribo Nutrient Additive", "Digital Network Adapter"],
+        "answer": "Deoxyribonucleic Acid",
+        "explanation": "DNA is a molecule that carries the genetic instructions for the development and functioning of all known organisms.",
+        "hint": "It's the blueprint of life."
+      },
+      {
+        "question": "What is the hardest natural substance on Earth?",
+        "options": ["Gold", "Iron", "Quartz", "Diamond"],
+        "answer": "Diamond",
+        "explanation": "Diamonds are the hardest known natural material, scoring a 10 on the Mohs scale of hardness.",
+        "hint": "It's a popular gemstone."
+      },
+      {
+        "question": "How many bones are in the adult human body?",
+        "options": ["206", "212", "198", "225"],
+        "answer": "206",
+        "explanation": "The adult human skeleton is composed of 206 bones. Babies are born with more, but many fuse together as they grow.",
+        "hint": "A number just over 200."
+      },
+      {
+        "question": "Who developed the theory of relativity?",
+        "options": ["Isaac Newton", "Galileo Galilei", "Albert Einstein", "Stephen Hawking"],
+        "answer": "Albert Einstein",
+        "explanation": "Albert Einstein's theory of relativity includes both special relativity and general relativity, which are fundamental to modern physics.",
+        "hint": "He is famous for the equation E=mc²."
+      },
+      {
+        "question": "What is the speed of light?",
+        "options": ["300,000 km/s", "150,000 km/s", "500,000 km/s", "1,000,000 km/s"],
+        "answer": "300,000 km/s",
+        "explanation": "The speed of light in a vacuum is approximately 299,792 kilometers per second.",
+        "hint": "It's considered the universe's speed limit."
       }
     ]
   },
@@ -580,10 +650,117 @@
         "answer": "Mount Everest",
         "explanation": "Mount Everest, located in the Himalayas, is the highest mountain above sea level.",
         "hint": "You have to climb it to be an expert."
+      },
+      {
+        "question": "Which country is famous for its tulips and windmills?",
+        "options": ["Belgium", "Germany", "Netherlands", "Denmark"],
+        "answer": "Netherlands",
+        "explanation": "The Netherlands is iconic for its vast tulip fields and historic windmills.",
+        "hint": "Its capital is Amsterdam."
+      },
+      {
+        "question": "Who wrote the play 'Romeo and Juliet'?",
+        "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+        "answer": "William Shakespeare",
+        "explanation": "Romeo and Juliet is one of the most famous tragedies written by the English playwright William Shakespeare.",
+        "hint": "He is often called 'The Bard'."
+      },
+      {
+        "question": "In which city would you find the Colosseum?",
+        "options": ["Athens", "Paris", "London", "Rome"],
+        "answer": "Rome",
+        "explanation": "The Colosseum is an ancient oval amphitheater in the center of Rome, Italy.",
+        "hint": "The capital city of Italy."
+      },
+      {
+        "question": "How many sides does a hexagon have?",
+        "options": ["5", "6", "7", "8"],
+        "answer": "6",
+        "explanation": "A hexagon is a polygon with six sides and six angles.",
+        "hint": "The prefix 'hexa' means six."
+      },
+      {
+        "question": "What is the name of the world's largest desert?",
+        "options": ["Gobi", "Sahara", "Arabian", "Antarctic Polar"],
+        "answer": "Antarctic Polar",
+        "explanation": "A desert is defined by low precipitation. The Antarctic Polar Desert is the largest, coldest desert in the world.",
+        "hint": "It's a cold desert, not a hot one."
       }
     ]
   },
   "music": {
+    "50s": [
+      {
+        "question": "Who is known as 'The King of Rock and Roll'?",
+        "options": ["Chuck Berry", "Little Richard", "Elvis Presley", "Jerry Lee Lewis"],
+        "answer": "Elvis Presley",
+        "explanation": "Elvis Presley became the leading figure of rock and roll music in the 1950s, earning him his famous nickname.",
+        "hint": "His home was named Graceland."
+      },
+      {
+        "question": "What iconic dance craze was popularized by Chubby Checker's song of the same name?",
+        "options": ["The Mashed Potato", "The Twist", "The Stroll", "The Hand Jive"],
+        "answer": "The Twist",
+        "explanation": "Although released in 1960, the song and dance 'The Twist' have strong roots in late 50s rock and roll.",
+        "hint": "It's a dance that involves swiveling your hips."
+      },
+      {
+        "question": "Which artist recorded the hit song 'Johnny B. Goode'?",
+        "options": ["Chuck Berry", "Bo Diddley", "Fats Domino", "Buddy Holly"],
+        "answer": "Chuck Berry",
+        "explanation": "Released in 1958, 'Johnny B. Goode' is one of the most recognizable songs in the history of popular music.",
+        "hint": "He was famous for his 'duckwalk' on stage."
+      },
+      {
+        "question": "What tragic event on February 3, 1959, is often referred to as 'The Day the Music Died'?",
+        "options": ["The death of Elvis Presley", "A plane crash killing Buddy Holly, Ritchie Valens, and The Big Bopper", "The breakup of The Beatles", "A fire at a recording studio"],
+        "answer": "A plane crash killing Buddy Holly, Ritchie Valens, and The Big Bopper",
+        "explanation": "The phrase was coined by Don McLean in his 1971 song 'American Pie' to refer to this tragic event.",
+        "hint": "The event was immortalized in the song 'American Pie'."
+      },
+      {
+        "question": "Which singer had a major hit with 'Great Balls of Fire'?",
+        "options": ["Elvis Presley", "Carl Perkins", "Gene Vincent", "Jerry Lee Lewis"],
+        "answer": "Jerry Lee Lewis",
+        "explanation": "Jerry Lee Lewis, nicknamed 'The Killer', was known for his energetic piano-pounding performances of songs like this.",
+        "hint": "He was famous for playing the piano with his feet."
+      },
+      {
+        "question": "What was the name of the famous record label founded by Sam Phillips in Memphis that discovered Elvis Presley and Johnny Cash?",
+        "options": ["Motown Records", "Sun Records", "Chess Records", "Atlantic Records"],
+        "answer": "Sun Records",
+        "explanation": "Sun Records is renowned for discovering and first recording many rock and roll and country music pioneers.",
+        "hint": "It's named after a star."
+      },
+      {
+        "question": "Which doo-wop group had a hit with the song 'The Great Pretender'?",
+        "options": ["The Drifters", "The Coasters", "The Platters", "The Penguins"],
+        "answer": "The Platters",
+        "explanation": "'The Great Pretender', released in 1955, was a number one hit for The Platters and became one of their signature songs.",
+        "hint": "Their name refers to flat dishes."
+      },
+      {
+        "question": "Who wrote and performed the 1955 hit 'Tutti Frutti'?",
+        "options": ["Little Richard", "Chuck Berry", "Fats Domino", "Ray Charles"],
+        "answer": "Little Richard",
+        "explanation": "With its famous opening 'A-wop-bop-a-loo-bop-a-wop-bam-boom!', 'Tutti Frutti' is a landmark song in rock and roll history.",
+        "hint": "He was known for his flamboyant performances and high-energy vocals."
+      },
+      {
+        "question": "What 1956 Elvis Presley song was his best-selling single and became his signature song?",
+        "options": ["Jailhouse Rock", "Hound Dog", "Love Me Tender", "Heartbreak Hotel"],
+        "answer": "Hound Dog",
+        "explanation": "Often paired with 'Don't Be Cruel', 'Hound Dog' became an iconic hit for Elvis after his controversial performance on The Milton Berle Show.",
+        "hint": "The title refers to a type of dog."
+      },
+      {
+        "question": "Which artist was famous for his thick glasses and hits like 'Peggy Sue' and 'That'll Be the Day'?",
+        "options": ["Roy Orbison", "Buddy Holly", "Eddie Cochran", "Bill Haley"],
+        "answer": "Buddy Holly",
+        "explanation": "Buddy Holly and his band, The Crickets, were pioneers of the standard rock band lineup of two guitars, bass, and drums.",
+        "hint": "His last name is a festive plant."
+      }
+    ],
     "60s": [
       {
         "question": "The Beatles' final album released was 'Let It Be', but what was the last one they recorded?",
@@ -1234,6 +1411,41 @@
         "answer": "Taj Mahal",
         "explanation": "The Taj Mahal is a famous mausoleum in India that was built by the Mughal emperor Shah Jahan.",
         "hint": "It's a symbol of love."
+      },
+      {
+        "question": "Which country is known as the Land of the Rising Sun?",
+        "options": ["China", "South Korea", "Japan", "Thailand"],
+        "answer": "Japan",
+        "explanation": "The name for Japan in Japanese is 'Nihon' or 'Nippon', which means 'sun origin'.",
+        "hint": "Its flag features a red circle."
+      },
+      {
+        "question": "What is the smallest country in the world?",
+        "options": ["Monaco", "Nauru", "Vatican City", "San Marino"],
+        "answer": "Vatican City",
+        "explanation": "Vatican City is an independent city-state enclaved within Rome, Italy.",
+        "hint": "It's the home of the Pope."
+      },
+      {
+        "question": "The Panama Canal connects which two oceans?",
+        "options": ["Atlantic and Indian", "Indian and Pacific", "Atlantic and Pacific", "Arctic and Atlantic"],
+        "answer": "Atlantic and Pacific",
+        "explanation": "The Panama Canal is an artificial waterway that connects the Atlantic Ocean with the Pacific Ocean.",
+        "hint": "It's a vital shortcut for shipping."
+      },
+      {
+        "question": "In which U.S. state is the Grand Canyon located?",
+        "options": ["Nevada", "Utah", "Arizona", "California"],
+        "answer": "Arizona",
+        "explanation": "The Grand Canyon is a steep-sided canyon carved by the Colorado River in Arizona.",
+        "hint": "Its nickname is 'The Grand Canyon State'."
+      },
+      {
+        "question": "What is the capital of Canada?",
+        "options": ["Toronto", "Vancouver", "Montreal", "Ottawa"],
+        "answer": "Ottawa",
+        "explanation": "While Toronto is the largest city, Ottawa is the capital of Canada.",
+        "hint": "It is located in the province of Ontario."
       }
     ]
   },
@@ -1308,6 +1520,41 @@
         "answer": "Lasagna",
         "explanation": "Lasagna is a dish made of stacked layers of pasta with sauce and cheese.",
         "hint": "It's Garfield's favorite food."
+      },
+      {
+        "question": "From which country does Feta cheese originate?",
+        "options": ["Italy", "France", "Greece", "Spain"],
+        "answer": "Greece",
+        "explanation": "Feta is a brined curd cheese traditionally made in Greece.",
+        "hint": "It's often found in salads with olives."
+      },
+      {
+        "question": "Which spice is the most expensive by weight?",
+        "options": ["Vanilla", "Cardamom", "Saffron", "Cinnamon"],
+        "answer": "Saffron",
+        "explanation": "Saffron is a spice derived from the flower of Crocus sativus, and it is prized for its color, flavor, and aroma.",
+        "hint": "It gives food a golden-yellow color."
+      },
+      {
+        "question": "What is the primary ingredient in a traditional Caesar salad?",
+        "options": ["Iceberg lettuce", "Spinach", "Romaine lettuce", "Arugula"],
+        "answer": "Romaine lettuce",
+        "explanation": "A traditional Caesar salad consists of romaine lettuce and croutons dressed with lemon juice, olive oil, egg, Worcestershire sauce, and Parmesan cheese.",
+        "hint": "It's a long, leafy green."
+      },
+      {
+        "question": "The dish 'sushi' originated in which country?",
+        "options": ["China", "Japan", "Korea", "Vietnam"],
+        "answer": "Japan",
+        "explanation": "Sushi is a traditional Japanese dish of prepared vinegared rice, usually with some sugar and salt, accompanying a variety of ingredients.",
+        "hint": "The country is known as the Land of the Rising Sun."
+      },
+      {
+        "question": "What type of pasta is shaped like small butterflies?",
+        "options": ["Penne", "Farfalle", "Fusilli", "Rigatoni"],
+        "answer": "Farfalle",
+        "explanation": "Farfalle are a type of pasta commonly known as 'bow-tie pasta'. The name is derived from the Italian word 'farfalla' (butterfly).",
+        "hint": "Its name means 'butterflies' in Italian."
       }
     ]
   },
@@ -1382,6 +1629,41 @@
         "answer": "Peregrine Falcon",
         "explanation": "The peregrine falcon is the fastest bird in the world, reaching speeds of up to 320 km/h (200 mph).",
         "hint": "It's known for its incredible speed."
+      },
+      {
+        "question": "Which animal is known to have the longest lifespan?",
+        "options": ["Galapagos Tortoise", "Blue Whale", "Ocean Quahog", "Greenland Shark"],
+        "answer": "Ocean Quahog",
+        "explanation": "The ocean quahog, a type of clam, is the longest-living animal, with some specimens living over 500 years.",
+        "hint": "It's a type of shellfish."
+      },
+      {
+        "question": "How many hearts does an octopus have?",
+        "options": ["1", "2", "3", "4"],
+        "answer": "3",
+        "explanation": "An octopus has three hearts: two pump blood through the gills, and one larger heart circulates blood to the rest of the body.",
+        "hint": "More than one, but not an even number."
+      },
+      {
+        "question": "What is a female donkey called?",
+        "options": ["A mare", "A doe", "A jenny", "A ewe"],
+        "answer": "A jenny",
+        "explanation": "A female donkey is called a jenny or a jennet, while a male donkey is called a jack.",
+        "hint": "A common female first name."
+      },
+      {
+        "question": "Which animal has fingerprints that are nearly identical to humans?",
+        "options": ["Chimpanzee", "Gorilla", "Orangutan", "Koala"],
+        "answer": "Koala",
+        "explanation": "Koalas have fingerprints that are so similar to human fingerprints that they have been confused at crime scenes.",
+        "hint": "An Australian marsupial that eats eucalyptus."
+      },
+      {
+        "question": "A group of owls is called what?",
+        "options": ["A flock", "A parliament", "A senate", "A committee"],
+        "answer": "A parliament",
+        "explanation": "A group of owls is called a parliament, supposedly because owls are thought to be wise.",
+        "hint": "A term for a legislative body."
       }
     ]
   }
