@@ -1,5 +1,8 @@
-/* IMPROVEMENT: Theme variables are now scoped to a `data-theme` attribute
-    on the <html> element. This is cleaner than adding classes to the body.
+/* ================================== */
+/* FIX #1: THEME VARIABLES            */
+/* ================================== */
+/* I've added new variables for elements that were previously hardcoded,
+   like section boxes and input fields, and defined them for each theme.
 */
 :root {
     --success-color: #20c997;
@@ -12,6 +15,9 @@
     --primary-color: #e94560;
     --secondary-color: #00e0ff;
     --text-color: #e5e5e5;
+    --section-box-color: #1f1f2e; /* New Variable */
+    --input-bg-color: #3b3b5b;    /* New Variable */
+    --input-border-color: #5b5b8c;/* New Variable */
 }
 
 [data-theme="ocean"] {
@@ -20,6 +26,9 @@
     --primary-color: #3e81ff;
     --secondary-color: #b0e0e6;
     --text-color: #e6f7ff;
+    --section-box-color: #121e29; /* New Variable */
+    --input-bg-color: #2a3c50;    /* New Variable */
+    --input-border-color: #48607a;/* New Variable */
 }
 
 [data-theme="forest"] {
@@ -28,6 +37,9 @@
     --primary-color: #59d2a4;
     --secondary-color: #b9e3a6;
     --text-color: #e3f5d6;
+    --section-box-color: #142118; /* New Variable */
+    --input-bg-color: #2a3e2f;    /* New Variable */
+    --input-border-color: #435c4a;/* New Variable */
 }
 
 body {
@@ -73,10 +85,11 @@ h1, h2, h3, h4 {
 }
 
 .section-box {
-    background-color: #1f1f2e;
+    background-color: var(--section-box-color); /* Using variable now */
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 25px;
+    transition: background-color 0.5s ease;
 }
 
 .section-box h3, .section-box h4 {
@@ -88,6 +101,7 @@ hr {
     height: 2px;
     background-color: var(--secondary-color);
     margin: 25px 0;
+    transition: background-color 0.5s ease;
 }
 
 #player-profile {
@@ -98,7 +112,7 @@ hr {
     padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--secondary-color);
-    background-color: #3b3b5b;
+    background-color: var(--input-bg-color); /* Using variable now */
     color: var(--text-color);
     margin-left: 10px;
     transition: all 0.3s ease;
@@ -147,7 +161,7 @@ button:disabled {
 }
 
 .option {
-    background-color: #3b3b5b;
+    background-color: var(--input-bg-color); /* Using variable now */
     color: var(--text-color);
     border: 1px solid transparent;
     text-transform: none;
@@ -175,10 +189,11 @@ button:disabled {
     padding: 15px;
     border: 1px solid var(--secondary-color);
     border-radius: 8px;
-    background-color: #2a2a47;
+    background-color: var(--container-color); /* Using variable now */
     font-style: italic;
     color: var(--secondary-color);
     box-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
+    transition: all 0.5s ease;
 }
 
 .progress-container {
@@ -194,7 +209,7 @@ button:disabled {
     height: 100%;
     width: 0%;
     border-radius: 10px;
-    transition: width 0.4s ease;
+    transition: width 0.4s ease, background-color 0.5s ease;
 }
 
 #summary-list {
@@ -223,18 +238,23 @@ button:disabled {
     border-left: 5px solid var(--error-color);
 }
 
+/* ================================== */
+/* FIX #2: TOPIC BUTTONS LAYOUT       */
+/* ================================== */
 .topic-buttons-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    /* Increased the min-width of columns to give buttons more space */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 15px;
     justify-content: center;
     padding: 10px 0;
 }
 
 .topic-buttons-container button {
-    background-color: #3b3b5b;
+    background-color: var(--input-bg-color); /* Using variable now */
     color: var(--text-color);
-    border: 1px solid #5b5b8c;
+    border: 1px solid var(--input-border-color); /* Using variable now */
+    padding: 12px 15px; /* Reduced horizontal padding */
 }
 
 .topic-buttons-container button.selected {
@@ -246,25 +266,21 @@ button:disabled {
 #back-to-main-topics {
     background-color: var(--secondary-color);
     color: var(--bg-color);
-    grid-column: 1 / -1; /* Make button span full width */
+    grid-column: 1 / -1;
     margin-top: 1rem;
 }
 #back-to-main-topics:hover {
      background-color: #00b8d4;
 }
 
-#leaderboard-list {
-    padding: 0;
-}
-
 #leaderboard-list li {
     list-style-type: none;
-    background-color: #3b3b5b;
+    background-color: var(--input-bg-color); /* Using variable now */
     padding: 10px;
     margin-bottom: 8px;
     border-radius: 8px;
     text-align: left;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.5s ease;
 }
 
 #leaderboard-list li:hover {
@@ -272,16 +288,8 @@ button:disabled {
     background-color: #4d4d73;
 }
 
-#full-leaderboard-list {
-    list-style-type: none;
-    padding: 0;
-    max-height: 500px;
-    overflow-y: auto;
-    margin: 20px 0;
-}
-
 #full-leaderboard-list li {
-    background-color: #3b3b5b;
+    background-color: var(--input-bg-color); /* Using variable now */
     padding: 12px;
     margin-bottom: 8px;
     border-radius: 8px;
@@ -299,13 +307,21 @@ button:disabled {
     transform: translateX(-50%);
 }
 
+/* ================================== */
+/* FIX #3: LEADERBOARD BUTTON HOVER   */
+/* ================================== */
+/* This new rule combines the centering transform with the hover transform */
+.leaderboard-page button:hover:not(:disabled) {
+    transform: translateX(-50%) translateY(-2px);
+}
+
 .top-scores-list {
     max-height: 250px;
     overflow-y: auto;
 }
 
 .results-summary {
-    background-color: #1f1f2e;
+    background-color: var(--section-box-color); /* Using variable now */
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
